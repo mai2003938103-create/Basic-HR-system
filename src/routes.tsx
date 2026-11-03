@@ -10,6 +10,9 @@ import { ChangePasswordPage } from './pages/auth/ChangePasswordPage';
 import { DepartmentsPage } from './pages/departments/DepartmentsPage';
 import { DepartmentDetailPage } from './pages/departments/DepartmentDetailPage';
 import { PositionsPage } from './pages/positions/PositionsPage';
+import { EmployeesPage } from './pages/employees/EmployeesPage';
+import { EmployeeFormPage } from './pages/employees/EmployeeFormPage';
+import { EmployeeDetailPage } from './pages/employees/EmployeeDetailPage';
 
 function Home() {
   const { can } = useAuth();
@@ -32,6 +35,10 @@ export function AppRoutes() {
         <Route path="change-password" element={<ChangePasswordPage />} />
         <Route path="departments" element={<ProtectedRoute permission="department.read"><DepartmentsPage /></ProtectedRoute>} />
         <Route path="departments/:id" element={<ProtectedRoute permission="department.read"><DepartmentDetailPage /></ProtectedRoute>} />
+        <Route path="employees" element={<ProtectedRoute permission="employee.read"><EmployeesPage /></ProtectedRoute>} />
+        <Route path="employees/new" element={<ProtectedRoute permission="employee.create"><EmployeeFormPage /></ProtectedRoute>} />
+        <Route path="employees/:id" element={<ProtectedRoute permission="employee.read"><EmployeeDetailPage /></ProtectedRoute>} />
+        <Route path="employees/:id/edit" element={<ProtectedRoute permission="employee.update"><EmployeeFormPage /></ProtectedRoute>} />
         <Route path="positions" element={<ProtectedRoute permission="position.read"><PositionsPage /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Route>

@@ -160,6 +160,7 @@ T = {
   "password": ("ລະຫັດຜ່ານເລີ່ມຕົ້ນ","Initial password"), "confirmDeactivate": ("ປິດບັນຊີ {{email}}?","Deactivate {{email}}?"), "emptyTitle": ("ຍັງບໍ່ມີຜູ້ໃຊ້","No users yet"),
  },
  "roles": {
+  "names": {"super_admin": ("ຜູ້ດູແລລະບົບສູງສຸດ","Super Admin"), "hr_admin": ("ຜູ້ດູແລຝ່າຍບຸກຄະລາກອນ","HR Admin"), "manager": ("ຫົວໜ້າພະແນກ","Manager"), "employee": ("ພະນັກງານ","Employee")},
   "title": ("ບົດບາດ ແລະ ສິດ","Roles & permissions"), "add": ("ເພີ່ມບົດບາດ","Add role"), "editTitle": ("ແກ້ໄຂບົດບາດ","Edit role"), "code": ("ລະຫັດ","Code"),
   "name": ("ຊື່ບົດບາດ","Role"), "scope": ("ຂອບເຂດຂໍ້ມູນ","Data scope"), "permissions": ("ສິດ","Permissions"), "userCount": ("ຜູ້ໃຊ້","Users"),
   "locked": ("ບົດບາດນີ້ມີສິດທັງໝົດ ແລະ ແກ້ໄຂບໍ່ໄດ້","This role has every permission and cannot be changed"),

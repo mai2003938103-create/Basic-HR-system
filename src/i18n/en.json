@@ -414,6 +414,12 @@
   "emptyTitle": "No users yet"
  },
  "roles": {
+  "names": {
+   "super_admin": "Super Admin",
+   "hr_admin": "HR Admin",
+   "manager": "Manager",
+   "employee": "Employee"
+  },
   "title": "Roles & permissions",
   "add": "Add role",
   "editTitle": "Edit role",

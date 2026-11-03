@@ -1,5 +1,6 @@
 import { Search, X } from 'lucide-react';
-import { forwardRef, useRef, type InputHTMLAttributes } from 'react';
+import { forwardRef, useContext, useRef, type InputHTMLAttributes } from 'react';
+import { FieldContext } from './FormField';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { Input } from '../ui/input';
@@ -42,8 +43,10 @@ export function FilterDropdown({ value, onChange, options, allLabel, label, clas
 
 /** Form select (use inside FormField; it forwards id/aria props to the trigger). */
 export const SelectInput = forwardRef<HTMLButtonElement, { value?: string; onChange: (v: string) => void; options: Option[]; placeholder?: string; disabled?: boolean; id?: string; 'aria-invalid'?: boolean; 'aria-describedby'?: string }>(
-  ({ value, onChange, options, placeholder, disabled, ...aria }, ref) => {
+  ({ value, onChange, options, placeholder, disabled, ...props }, ref) => {
     const { t } = useTranslation();
+    const field = useContext(FieldContext);
+    const aria = { ...field, ...Object.fromEntries(Object.entries(props).filter(([, v]) => v !== undefined)) };
     return (
       <Select value={value || undefined} onValueChange={onChange} disabled={disabled}>
         <SelectTrigger ref={ref} {...aria}>
