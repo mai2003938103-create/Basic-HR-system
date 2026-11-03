@@ -12,3 +12,14 @@ window.matchMedia ??= ((q: string) => ({ matches: false, media: q, onchange: nul
 Element.prototype.scrollIntoView ??= function () {};
 Element.prototype.hasPointerCapture ??= () => false;
 Element.prototype.releasePointerCapture ??= () => {};
+
+import { server } from './server';
+import { beforeAll, afterAll } from 'vitest';
+import i18n from '../i18n';
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+afterEach(() => {
+  server.resetHandlers();
+  void i18n.changeLanguage('lo');
+  localStorage.clear();
+});
+afterAll(() => server.close());
