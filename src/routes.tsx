@@ -16,13 +16,14 @@ import { LeavePage } from './pages/leave/LeavePage';
 import { UsersPage } from './pages/users/UsersPage';
 import { RolesPage } from './pages/users/RolesPage';
 import { ProfilePage } from './pages/profile/ProfilePage';
+import { DashboardPage } from './pages/dashboard/DashboardPage';
 import { EmployeeFormPage } from './pages/employees/EmployeeFormPage';
 import { EmployeeDetailPage } from './pages/employees/EmployeeDetailPage';
 
 function Home() {
   const { can } = useAuth();
   const to = homePath(can);
-  return to === '/' ? <div className="text-page-title">Systory HRMS</div> : <Navigate to={to} replace />;
+  return to === '/' ? <DashboardPage /> : <Navigate to={to} replace />;
 }
 
 function NotFound() {

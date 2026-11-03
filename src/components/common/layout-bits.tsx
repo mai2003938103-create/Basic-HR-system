@@ -36,7 +36,7 @@ export function DashboardCard({ label, value, icon: Icon, tone = 'primary', meta
     featured: 'bg-surface-card text-primary-hover',
   }[tone];
   const body = (
-    <div className={cn('flex h-full flex-col gap-2 rounded-md border p-6 transition-shadow', featured ? 'border-transparent bg-brand text-on-secondary' : 'border-border bg-surface-card shadow-card', to && 'hover:shadow-overlay')}>
+    <div data-testid="stat-card" className={cn('flex h-full flex-col gap-2 rounded-md border p-6 transition-shadow', featured ? 'border-transparent bg-brand text-on-secondary' : 'border-border bg-surface-card shadow-card', to && 'hover:shadow-overlay')}>
       <div className={cn('flex items-center justify-between gap-2 text-label', featured ? 'text-on-secondary-muted' : 'text-ink-muted')}>
         <span>{label}</span>
         <span className={cn('grid size-9 place-items-center rounded-sm', tile)}>
