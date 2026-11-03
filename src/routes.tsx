@@ -12,6 +12,7 @@ import { DepartmentDetailPage } from './pages/departments/DepartmentDetailPage';
 import { PositionsPage } from './pages/positions/PositionsPage';
 import { EmployeesPage } from './pages/employees/EmployeesPage';
 import { AttendancePage } from './pages/attendance/AttendancePage';
+import { LeavePage } from './pages/leave/LeavePage';
 import { EmployeeFormPage } from './pages/employees/EmployeeFormPage';
 import { EmployeeDetailPage } from './pages/employees/EmployeeDetailPage';
 
@@ -41,6 +42,7 @@ export function AppRoutes() {
         <Route path="employees/:id" element={<ProtectedRoute permission="employee.read"><EmployeeDetailPage /></ProtectedRoute>} />
         <Route path="employees/:id/edit" element={<ProtectedRoute permission="employee.update"><EmployeeFormPage /></ProtectedRoute>} />
         <Route path="attendance" element={<ProtectedRoute permission="attendance.read"><AttendancePage /></ProtectedRoute>} />
+        <Route path="leave" element={<ProtectedRoute permission="leave.read"><LeavePage /></ProtectedRoute>} />
         <Route path="positions" element={<ProtectedRoute permission="position.read"><PositionsPage /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Route>
