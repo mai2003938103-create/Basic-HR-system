@@ -13,6 +13,9 @@ import { PositionsPage } from './pages/positions/PositionsPage';
 import { EmployeesPage } from './pages/employees/EmployeesPage';
 import { AttendancePage } from './pages/attendance/AttendancePage';
 import { LeavePage } from './pages/leave/LeavePage';
+import { UsersPage } from './pages/users/UsersPage';
+import { RolesPage } from './pages/users/RolesPage';
+import { ProfilePage } from './pages/profile/ProfilePage';
 import { EmployeeFormPage } from './pages/employees/EmployeeFormPage';
 import { EmployeeDetailPage } from './pages/employees/EmployeeDetailPage';
 
@@ -43,6 +46,9 @@ export function AppRoutes() {
         <Route path="employees/:id/edit" element={<ProtectedRoute permission="employee.update"><EmployeeFormPage /></ProtectedRoute>} />
         <Route path="attendance" element={<ProtectedRoute permission="attendance.read"><AttendancePage /></ProtectedRoute>} />
         <Route path="leave" element={<ProtectedRoute permission="leave.read"><LeavePage /></ProtectedRoute>} />
+        <Route path="users" element={<ProtectedRoute permission="user.read"><UsersPage /></ProtectedRoute>} />
+        <Route path="roles" element={<ProtectedRoute permission="role.manage"><RolesPage /></ProtectedRoute>} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="positions" element={<ProtectedRoute permission="position.read"><PositionsPage /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Route>
