@@ -61,7 +61,7 @@ export function LeaveRequestList({ mode, refreshKey, onChanged }: { mode: Mode; 
               <Button size="sm" variant="outline" onClick={() => setAction({ kind: 'reject', req: r })}><X />{t('leave.reject')}</Button>
             </>
           )}
-          {r.canCancel && mode === 'mine' && <Button size="sm" variant="ghost" onClick={() => setAction({ kind: 'cancel', req: r })}>{t('leave.cancel')}</Button>}
+          {r.canCancel && mode !== 'approvals' && <Button size="sm" variant="ghost" onClick={() => setAction({ kind: 'cancel', req: r })}>{t('leave.cancel')}</Button>}
         </div>
       ),
     },

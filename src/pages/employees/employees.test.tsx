@@ -63,6 +63,7 @@ describe('EmployeeDetailPage', () => {
     server.use(
       ...sessionHandlers(),
       http.get(`/api/employees/${employee.id}`, () => HttpResponse.json({ data: current })),
+      http.get('/api/leave-balances', () => HttpResponse.json({ data: [] })),
       http.patch(`/api/employees/${employee.id}/status`, async ({ request }) => {
         const body = (await request.json()) as { status: string };
         current = { ...current, employmentStatus: body.status };

@@ -11,6 +11,7 @@ import { useAuth } from '../../auth/useAuth';
 import { useQuery } from '../../hooks/useQuery';
 import { api, apiError, type Page } from '../../lib/api';
 import { fullName } from '../../lib/format';
+import { localName } from '../../i18n';
 import type { Employee, UserRow } from '../../lib/types';
 import { newPasswordSchema } from '../auth/passwordSchema';
 
@@ -26,7 +27,7 @@ export function UserFormDialog({ open, onOpenChange, user, onSaved }: { open: bo
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const employees = useQuery(() => api.get<Page<Employee>>('/employees', { params: { pageSize: 100, sort: 'firstName:asc' } }).then((r) => r.data.data), [open], open && can('employee.read'));
-  const roleCodes = ['employee', 'manager', 'hr_admin', ...(can('role.manage') ? ['super_admin'] : [])];
+  const assignable = useQuery(() => api.get<{ data: { code: string; nameLo: string; nameEn: string }[] }>('/roles/assignable').then((r) => r.data.data), [open], open);
 
   useEffect(() => {
     if (open) {
@@ -75,10 +76,10 @@ export function UserFormDialog({ open, onOpenChange, user, onSaved }: { open: bo
           {!user && <FormField label={t('users.password')} required error={errors.password} hint={t('auth.passwordRule')}><Input value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="new-password" /></FormField>}
           <fieldset className="flex flex-col gap-2">
             <legend className="mb-1 text-label">{t('users.roles')}</legend>
-            {roleCodes.map((r) => (
-              <label key={r} className="flex items-center gap-2 text-body">
-                <Checkbox checked={roles.includes(r)} onCheckedChange={(v) => setRoles((cur) => (v === true ? [...cur, r] : cur.filter((x) => x !== r)))} />
-                {t(`roles.names.${r}`)}
+            {(assignable.data ?? []).map((r) => (
+              <label key={r.code} className="flex items-center gap-2 text-body">
+                <Checkbox checked={roles.includes(r.code)} onCheckedChange={(v) => setRoles((cur) => (v === true ? [...cur, r.code] : cur.filter((x) => x !== r.code)))} />
+                {localName(r)}
               </label>
             ))}
             {errors.roleCodes && <p className="text-body-sm text-danger-text">{t(errors.roleCodes)}</p>}

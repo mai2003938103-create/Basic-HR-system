@@ -18,6 +18,7 @@ import { toastError } from '../../lib/form-errors';
 import { formatDate, formatMoney, fullName } from '../../lib/format';
 import type { Employee } from '../../lib/types';
 import { Avatar } from './Avatar';
+import { EmployeeLeaveBalances } from './EmployeeLeaveBalances';
 
 function Info({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -137,6 +138,9 @@ export function EmployeeDetailPage() {
             <p className="text-body-sm text-ink-muted sm:col-span-2">{t('employees.noAccount')}</p>
           )}
         </Block>
+        <PermissionGate permission="leave.manage">
+          <EmployeeLeaveBalances employeeId={e.id} />
+        </PermissionGate>
       </div>
       <ConfirmDialog
         open={confirm !== null}
