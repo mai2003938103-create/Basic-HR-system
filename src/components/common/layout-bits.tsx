@@ -26,6 +26,16 @@ export function PermissionGate({ permission, children, fallback = null }: { perm
   return <>{can(permission) ? children : fallback}</>;
 }
 
+/** Money for a StatCard: the amount stays on one line and the symbol drops to label size. */
+export function MoneyValue({ amount, symbol }: { amount: number; symbol: string }) {
+  return (
+    <span className="whitespace-nowrap">
+      <span className="text-[26px] leading-[38px]">{Math.round(amount).toLocaleString('en-US')}</span>
+      <span className="ml-1 text-label">{symbol}</span>
+    </span>
+  );
+}
+
 /** Design System StatCard; `featured` takes the brand gradient (one per dashboard). */
 export function DashboardCard({ label, value, icon: Icon, tone = 'primary', meta, to }: { label: string; value: ReactNode; icon: LucideIcon; tone?: 'primary' | 'warning' | 'danger' | 'featured'; meta?: ReactNode; to?: string }) {
   const featured = tone === 'featured';

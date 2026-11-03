@@ -63,6 +63,8 @@ function Notifications() {
     if (!n.readAt) await api.put(`/notifications/${n.id}/read`).catch(() => undefined);
     void load();
     if (n.type.startsWith('leave.')) navigate(n.type === 'leave.requested' ? '/leave?tab=approvals' : '/leave');
+    else if (n.type.startsWith('payroll.') && n.data?.payRunId) navigate(`/payroll/${n.data.payRunId}`);
+    else if (n.type === 'payslip.ready') navigate('/payslips');
   };
   const fmt = (d: Record<string, string> | null) => ({ ...d, startDate: formatDate(d?.startDate), endDate: formatDate(d?.endDate) });
 

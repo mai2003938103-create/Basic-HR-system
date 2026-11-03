@@ -14,6 +14,7 @@ const MAP: Record<string, Record<string, Tone>> = {
   leave: { pending: 'warning', approved: 'success', rejected: 'danger', cancelled: 'neutral' },
   employment: { active: 'success', probation: 'info', inactive: 'neutral', terminated: 'neutral' },
   account: { active: 'success', inactive: 'neutral' },
+  payroll: { draft: 'neutral', pending: 'warning', approved: 'info', paid: 'success' },
 };
 
 export function StatusBadge({ kind, value, className }: { kind: keyof typeof MAP; value: string; className?: string }) {

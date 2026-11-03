@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "build:prototype": "tsc --noEmit && vite build --mode prototype",
     "preview": "vite preview --port 5173",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
@@ -30,6 +31,7 @@
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
     "vite": "^5.4.21",
+    "vite-plugin-singlefile": "^2.0.3",
     "vitest": "^2.1.9"
   },
   "dependencies": {

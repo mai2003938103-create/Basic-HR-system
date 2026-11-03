@@ -45,7 +45,7 @@ export function DataTable<T extends { id: string }>(p: DataTableProps<T>) {
   return (
     <div aria-busy={p.loading || undefined}>
       {p.mobileCard && <ul className="divide-y divide-border md:hidden">{p.rows.map((r) => <li key={r.id}>{p.mobileCard!(r)}</li>)}</ul>}
-      <div className={cn('overflow-x-auto', p.mobileCard && 'hidden md:block')}>
+      <div className={cn('relative overflow-x-auto', p.mobileCard && 'hidden md:block')}>
         <table className="w-full border-collapse text-left text-body">
           <thead>
             <tr className="bg-surface-sunken">
@@ -81,7 +81,7 @@ export function DataTable<T extends { id: string }>(p: DataTableProps<T>) {
                 className={cn('border-t border-border hover:bg-surface-sunken', p.onRowClick && 'cursor-pointer')}
               >
                 {p.columns.map((c) => (
-                  <td key={c.key} className={cn('px-4 py-3 align-middle first:pl-6 last:pr-6', c.align === 'right' && 'text-right tabular', c.className)}>
+                  <td key={c.key} className={cn('px-4 py-3 align-middle first:pl-6 last:pr-6', c.align === 'right' && 'whitespace-nowrap text-right tabular', c.className)}>
                     {c.cell ? c.cell(r) : String((r as Record<string, unknown>)[c.key] ?? '')}
                   </td>
                 ))}

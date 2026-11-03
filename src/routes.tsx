@@ -19,6 +19,11 @@ import { ProfilePage } from './pages/profile/ProfilePage';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
 import { EmployeeFormPage } from './pages/employees/EmployeeFormPage';
 import { EmployeeDetailPage } from './pages/employees/EmployeeDetailPage';
+import { PayrollPage } from './pages/payroll/PayrollPage';
+import { PayRunPage } from './pages/payroll/PayRunPage';
+import { PayslipsPage } from './pages/payroll/PayslipsPage';
+import { ReportsPage } from './pages/reports/ReportsPage';
+import { SettingsPage } from './pages/settings/SettingsPage';
 
 function Home() {
   const { can } = useAuth();
@@ -51,6 +56,11 @@ export function AppRoutes() {
         <Route path="roles" element={<ProtectedRoute permission="role.manage"><RolesPage /></ProtectedRoute>} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="positions" element={<ProtectedRoute permission="position.read"><PositionsPage /></ProtectedRoute>} />
+        <Route path="payroll" element={<ProtectedRoute permission="payroll.read"><PayrollPage /></ProtectedRoute>} />
+        <Route path="payroll/:id" element={<ProtectedRoute permission="payroll.read"><PayRunPage /></ProtectedRoute>} />
+        <Route path="payslips" element={<ProtectedRoute permission="payslip.self"><PayslipsPage /></ProtectedRoute>} />
+        <Route path="reports" element={<ProtectedRoute permission="report.view"><ReportsPage /></ProtectedRoute>} />
+        <Route path="settings" element={<ProtectedRoute permission="settings.manage"><SettingsPage /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

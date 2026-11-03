@@ -27,4 +27,10 @@ export function useSettings() {
   return settings;
 }
 
+/** Drops the cached public settings after an admin changes them. */
+export const clearSettingsCache = () => {
+  cache = null;
+  inflight = null;
+};
+
 export const currencyOf = (s: PublicSettings | null) => ({ code: s?.currencyCode ?? 'LAK', symbol: s?.currencySymbol ?? '₭' });

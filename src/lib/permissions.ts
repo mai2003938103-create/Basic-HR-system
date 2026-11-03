@@ -1,4 +1,4 @@
-import { Building2, BriefcaseBusiness, CalendarDays, Clock, LayoutDashboard, ShieldCheck, UserRound, Users, UsersRound, type LucideIcon } from 'lucide-react';
+import { BarChart3, Building2, BriefcaseBusiness, CalendarDays, Clock, LayoutDashboard, ReceiptText, Settings, ShieldCheck, UserRound, Users, UsersRound, Wallet, type LucideIcon } from 'lucide-react';
 
 export interface NavItem {
   key: string;
@@ -8,7 +8,7 @@ export interface NavItem {
   section?: 'system';
 }
 
-/** Stage 1 modules in the Design System's sidebar order. */
+/** Modules in the Design System's sidebar order. */
 export const NAV_ITEMS: NavItem[] = [
   { key: 'dashboard', to: '/', icon: LayoutDashboard, permission: 'dashboard.view' },
   { key: 'employees', to: '/employees', icon: Users, permission: 'employee.read' },
@@ -16,8 +16,13 @@ export const NAV_ITEMS: NavItem[] = [
   { key: 'positions', to: '/positions', icon: BriefcaseBusiness, permission: 'position.read' },
   { key: 'attendance', to: '/attendance', icon: Clock, permission: 'attendance.read' },
   { key: 'leave', to: '/leave', icon: CalendarDays, permission: 'leave.read' },
+  // Stage 2 (design-first): hidden until the backend grants these permissions.
+  { key: 'payroll', to: '/payroll', icon: Wallet, permission: 'payroll.read' },
+  { key: 'payslips', to: '/payslips', icon: ReceiptText, permission: 'payslip.self' },
+  { key: 'reports', to: '/reports', icon: BarChart3, permission: 'report.view' },
   { key: 'users', to: '/users', icon: UsersRound, permission: 'user.read', section: 'system' },
   { key: 'roles', to: '/roles', icon: ShieldCheck, permission: 'role.manage', section: 'system' },
+  { key: 'settings', to: '/settings', icon: Settings, permission: 'settings.manage', section: 'system' },
   { key: 'profile', to: '/profile', icon: UserRound },
 ];
 

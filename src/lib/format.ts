@@ -13,6 +13,9 @@ export function formatMoney(n: number | string | null | undefined, c: Currency):
   return `${v.toLocaleString('en-US')} ${c.symbol}`;
 }
 
+/** Whole number with thousands separators, for money columns whose header names the currency. */
+export const formatAmount = (n: number) => Math.round(n).toLocaleString('en-US');
+
 /** YYYY-MM-DD or a Date/ISO instant → DD/MM/YYYY (instants in Vientiane time). */
 export function formatDate(d: string | Date | null | undefined): string {
   if (!d) return '';
