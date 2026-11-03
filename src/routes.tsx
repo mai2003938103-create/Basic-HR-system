@@ -7,6 +7,9 @@ import { AppLayout } from './layouts/AppLayout';
 import { LoginPage } from './pages/auth/LoginPage';
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage';
 import { ChangePasswordPage } from './pages/auth/ChangePasswordPage';
+import { DepartmentsPage } from './pages/departments/DepartmentsPage';
+import { DepartmentDetailPage } from './pages/departments/DepartmentDetailPage';
+import { PositionsPage } from './pages/positions/PositionsPage';
 
 function Home() {
   const { can } = useAuth();
@@ -27,6 +30,9 @@ export function AppRoutes() {
       <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
         <Route index element={<Home />} />
         <Route path="change-password" element={<ChangePasswordPage />} />
+        <Route path="departments" element={<ProtectedRoute permission="department.read"><DepartmentsPage /></ProtectedRoute>} />
+        <Route path="departments/:id" element={<ProtectedRoute permission="department.read"><DepartmentDetailPage /></ProtectedRoute>} />
+        <Route path="positions" element={<ProtectedRoute permission="position.read"><PositionsPage /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
