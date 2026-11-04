@@ -41,7 +41,7 @@ export function LeavePage() {
       <PageHeader title={t('leave.title')} actions={canRequest && <Button onClick={() => setFormOpen(true)}><Plus />{t('leave.request')}</Button>} />
       {canRequest && <div className="mb-6"><BalancesCard balances={balances.data ?? []} /></div>}
       <Tabs value={tab} onValueChange={(v) => setSp((p) => { const n = new URLSearchParams(); n.set('tab', v); void p; return n; }, { replace: true })}>
-        <TabsList>{tabs.map((k) => <TabsTrigger key={k} value={k}>{label[k]}</TabsTrigger>)}</TabsList>
+        {tabs.length > 1 ? <TabsList>{tabs.map((k) => <TabsTrigger key={k} value={k}>{label[k]}</TabsTrigger>)}</TabsList> : <h2 className="text-subhead">{label[tabs[0]]}</h2>}
         {tabs.includes('mine') && <TabsContent value="mine"><LeaveRequestList mode="mine" refreshKey={refresh} onChanged={bump} /></TabsContent>}
         {tabs.includes('approvals') && <TabsContent value="approvals"><LeaveRequestList mode="approvals" refreshKey={refresh} onChanged={bump} /></TabsContent>}
         {tabs.includes('all') && <TabsContent value="all"><LeaveRequestList mode="all" refreshKey={refresh} onChanged={bump} /></TabsContent>}

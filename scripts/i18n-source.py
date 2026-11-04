@@ -14,7 +14,7 @@ T = {
   "showing": ("{{from}}–{{to}} ຈາກ {{total}}","{{from}}–{{to}} of {{total}}"), "rowsPerPage": ("ແຖວຕໍ່ໜ້າ","Rows per page"),
   "details": ("ລາຍລະອຽດ","Details"), "reason": ("ເຫດຜົນ","Reason"), "note": ("ໝາຍເຫດ","Note"), "submit": ("ສົ່ງ","Submit"),
   "saving": ("ກຳລັງບັນທຶກ...","Saving..."), "active": ("ເປີດໃຊ້","Active"), "inactive": ("ປິດໃຊ້","Inactive"),
-  "choose": ("ເລືອກ...","Select..."), "clear": ("ລ້າງ","Clear"), "menu": ("ເມນູ","Menu"), "saved": ("ບັນທຶກແລ້ວ","Saved"),
+  "choose": ("ເລືອກ...","Select..."), "filters": ("ຕົວກັ່ນຕອງ","Filters"), "clear": ("ລ້າງ","Clear"), "menu": ("ເມນູ","Menu"), "saved": ("ບັນທຶກແລ້ວ","Saved"),
   "deleted": ("ລຶບແລ້ວ","Deleted"), "none": ("ບໍ່ມີ","None"), "emptyTitle": ("ຍັງບໍ່ມີຂໍ້ມູນ","Nothing here yet"),
   "emptyFiltered": ("ບໍ່ພົບຂໍ້ມູນທີ່ກົງກັບການຄົ້ນຫາ","No results match your search"), "errorTitle": ("ໂຫຼດຂໍ້ມູນບໍ່ສຳເລັດ","Could not load data"),
   "confirmDeleteTitle": ("ຢືນຢັນການລຶບ","Confirm delete"), "cannotUndo": ("ການກະທຳນີ້ຍ້ອນຄືນບໍ່ໄດ້.","This cannot be undone."),
@@ -132,6 +132,7 @@ T = {
   "confirmDelete": ("ລຶບຕຳແໜ່ງ {{name}}?","Delete position {{name}}?"), "emptyTitle": ("ຍັງບໍ່ມີຕຳແໜ່ງ","No positions yet"),
  },
  "attendance": {
+  "lateBy": ("ຊ້າ {{n}} ນາທີ","{{n}} min late"),
   "title": ("ການເຂົ້າວຽກ","Attendance"), "myToday": ("ການລົງເວລາມື້ນີ້","Today"), "checkIn": ("ລົງເວລາເຂົ້າວຽກ","Check in"), "checkOut": ("ລົງເວລາເລີກວຽກ","Check out"),
   "checkedInAt": ("ເຂົ້າວຽກເວລາ {{time}}","Checked in at {{time}}"), "checkedOutAt": ("ເລີກວຽກເວລາ {{time}}","Checked out at {{time}}"),
   "done": ("ລົງເວລາຄົບແລ້ວມື້ນີ້","All done for today"), "notWorkingDay": ("ມື້ນີ້ບໍ່ແມ່ນວັນເຮັດວຽກ","Today is not a working day"),
@@ -143,6 +144,7 @@ T = {
   "emptyTitle": ("ຍັງບໍ່ມີຂໍ້ມູນການເຂົ້າວຽກ","No attendance records"),
  },
  "leave": {
+  "daysN": ("{{n}} ວັນ","{{n}} days"),
   "title": ("ການລາພັກ","Leave"), "request": ("ຂໍລາພັກ","Request leave"), "myRequests": ("ຄຳຮ້ອງຂອງຂ້ອຍ","My requests"), "approvals": ("ລໍຖ້າອະນຸມັດ","Approvals"),
   "all": ("ຄຳຮ້ອງທັງໝົດ","All requests"), "balances": ("ວັນລາຄົງເຫຼືອ","Leave balance"), "types": ("ປະເພດການລາ","Leave types"), "holidays": ("ວັນພັກລັດຖະການ","Public holidays"),
   "type": ("ປະເພດການລາ","Leave type"), "startDate": ("ວັນເລີ່ມ","Start date"), "endDate": ("ວັນສິ້ນສຸດ","End date"), "halfDay": ("ເຄິ່ງວັນ","Half day"),
@@ -181,7 +183,7 @@ T = {
  "prototype": {
   "badge": ("ຕົວຢ່າງທົດລອງ","Prototype"), "title": ("ຕົວຢ່າງທົດລອງ (Prototype)","Clickable prototype"),
   "note": ("ໜ້າຈໍທັງໝົດໃຊ້ຂໍ້ມູນສົມມຸດໃນ browser ເທົ່ານັ້ນ, ບໍ່ມີ backend. ຕົວເລກເງິນເດືອນ ແລະ ອາກອນ ເປັນຕົວຢ່າງ, ບໍ່ແມ່ນການຄິດໄລ່ທີ່ຢືນຢັນແລ້ວ.","Every screen runs on sample data in your browser, with no backend. Payroll and tax figures are examples, not confirmed calculations."),
-  "switchRole": ("ເຂົ້າໃຊ້ເປັນ","Sign in as"), "password": ("ລະຫັດຜ່ານທຸກບັນຊີ: Demo1234","Password for every account: Demo1234"),
+  "switchRole": ("ເຂົ້າໃຊ້ເປັນ","Sign in as"), "pickAccount": ("ເລືອກບັນຊີທົດລອງ","Pick a demo account"), "password": ("ລະຫັດຜ່ານທຸກບັນຊີ: Demo1234","Password for every account: Demo1234"),
   "downloadBlocked": ("ໃນຕົວຢ່າງທົດລອງ ດາວໂຫຼດໄຟລ໌ບໍ່ໄດ້. ລະບົບຈິງຈະດາວໂຫຼດ {{file}}","Downloads are off in the prototype. The real system saves {{file}}"),
   "reset": ("ລີເຊັດຂໍ້ມູນຕົວຢ່າງ","Reset sample data"), "resetDone": ("ລີເຊັດຂໍ້ມູນແລ້ວ","Sample data reset"),
   "roles": {"superAdmin": ("ຜູ້ດູແລລະບົບສູງສຸດ","Super Admin"), "hr": ("ຝ່າຍບຸກຄະລາກອນ (HR)","HR Admin"), "director": ("ຜູ້ອຳນວຍການ (ອະນຸມັດເງິນເດືອນ)","Director (approves payroll)"),

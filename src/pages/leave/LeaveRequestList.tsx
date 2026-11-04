@@ -6,6 +6,8 @@ import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import { ConfirmDialog } from '../../components/common/ConfirmDialog';
 import { DataTable, type Column } from '../../components/common/DataTable';
+import { cn } from '@/lib/utils';
+import { FilterBar } from '../../components/common/FilterBar';
 import { FilterDropdown } from '../../components/common/inputs';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { cleanParams, useListQuery } from '../../hooks/useListQuery';
@@ -39,6 +41,24 @@ export function LeaveRequestList({ mode, refreshKey, onChanged }: { mode: Mode; 
     }
   };
 
+  /** Row actions, shared by the table (right-aligned) and the phone cards (left-aligned). */
+  const actions = (r: LeaveRequest, align: 'start' | 'end' = 'end') => (
+    <div className={cn('flex flex-wrap gap-1', align === 'end' ? 'justify-end' : 'justify-start')}>
+      {r.documentUrl && (
+        <Button variant="subtle" size="iconSm" aria-label={t('leave.document')} onClick={() => downloadFile(r.documentUrl!.replace(/^\/api/, ''), {}, `leave-${r.id}`).catch(toastError)}>
+          <FileText />
+        </Button>
+      )}
+      {r.canApprove && (
+        <>
+          <Button size="sm" onClick={() => setAction({ kind: 'approve', req: r })}><Check />{t('leave.approve')}</Button>
+          <Button size="sm" variant="outline" onClick={() => setAction({ kind: 'reject', req: r })}><X />{t('leave.reject')}</Button>
+        </>
+      )}
+      {r.canCancel && mode !== 'approvals' && <Button size="sm" variant="ghost" onClick={() => setAction({ kind: 'cancel', req: r })}>{t('leave.cancel')}</Button>}
+    </div>
+  );
+
   const columns: Column<LeaveRequest>[] = [
     ...(mode !== 'mine' ? [{ key: 'employee', header: t('leave.employee'), cell: (r: LeaveRequest) => <span><span className="block">{fullName(r.employee)}</span><span className="block text-body-sm text-ink-muted">{r.employee.employeeCode}</span></span> }] : []),
     { key: 'leaveType', header: t('leave.type'), cell: (r) => localName(r.leaveType) },
@@ -46,33 +66,15 @@ export function LeaveRequestList({ mode, refreshKey, onChanged }: { mode: Mode; 
     { key: 'days', header: t('leave.days'), align: 'right', cell: (r) => r.days },
     { key: 'reason', header: t('leave.reason'), cell: (r) => <span className="line-clamp-2 max-w-[260px]" title={r.reason}>{r.reason}{r.decisionNote ? <span className="block text-body-sm text-ink-muted">{t('leave.decisionNote')}: {r.decisionNote}</span> : null}</span> },
     { key: 'status', header: t('common.status'), cell: (r) => <StatusBadge kind="leave" value={r.status} /> },
-    {
-      key: 'actions', header: '',
-      cell: (r) => (
-        <div className="flex flex-wrap justify-end gap-1">
-          {r.documentUrl && (
-            <Button variant="subtle" size="iconSm" aria-label={t('leave.document')} onClick={() => downloadFile(r.documentUrl!.replace(/^\/api/, ''), {}, `leave-${r.id}`).catch(toastError)}>
-              <FileText />
-            </Button>
-          )}
-          {r.canApprove && (
-            <>
-              <Button size="sm" onClick={() => setAction({ kind: 'approve', req: r })}><Check />{t('leave.approve')}</Button>
-              <Button size="sm" variant="outline" onClick={() => setAction({ kind: 'reject', req: r })}><X />{t('leave.reject')}</Button>
-            </>
-          )}
-          {r.canCancel && mode !== 'approvals' && <Button size="sm" variant="ghost" onClick={() => setAction({ kind: 'cancel', req: r })}>{t('leave.cancel')}</Button>}
-        </div>
-      ),
-    },
+    { key: 'actions', header: '', cell: (r) => actions(r) },
   ];
 
   return (
     <Card>
       {mode !== 'approvals' && (
-        <div className="flex flex-wrap gap-3 p-4">
+        <FilterBar activeCount={lq.params.status ? 1 : 0}>
           <FilterDropdown label={t('common.status')} value={lq.params.status as string | undefined} onChange={(v) => lq.setFilter('status', v)} allLabel={t('employees.allStatuses')} options={['pending', 'approved', 'rejected', 'cancelled'].map((s) => ({ value: s, label: t(`status.leave.${s}`) }))} />
-        </div>
+        </FilterBar>
       )}
       <DataTable
         columns={columns}
@@ -85,6 +87,22 @@ export function LeaveRequestList({ mode, refreshKey, onChanged }: { mode: Mode; 
         onSortChange={lq.setSort}
         onPageChange={lq.setPage}
         emptyTitle={mode === 'approvals' ? t('leave.noPending') : t('leave.emptyTitle')}
+        mobileCard={(r) => (
+          <div className="flex flex-col gap-2 px-4 py-3">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="font-medium">{mode !== 'mine' ? `${fullName(r.employee)} · ` : ''}{localName(r.leaveType)}</p>
+                <p className="tabular text-body-sm text-ink-muted">
+                  {formatDate(r.startDate)}{r.endDate !== r.startDate ? ` – ${formatDate(r.endDate)}` : ''} · {t('leave.daysN', { n: r.days })}
+                </p>
+              </div>
+              <StatusBadge kind="leave" value={r.status} />
+            </div>
+            <p className="line-clamp-2 text-body-sm">{r.reason}</p>
+            {r.decisionNote && <p className="text-body-sm text-ink-muted">{t('leave.decisionNote')}: {r.decisionNote}</p>}
+            {(r.documentUrl || r.canApprove || (r.canCancel && mode !== 'approvals')) && actions(r, 'start')}
+          </div>
+        )}
       />
       <ConfirmDialog
         open={!!action}

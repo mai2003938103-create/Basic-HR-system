@@ -54,6 +54,7 @@
   "active": "Active",
   "inactive": "Inactive",
   "choose": "Select...",
+  "filters": "Filters",
   "clear": "Clear",
   "menu": "Menu",
   "saved": "Saved",
@@ -352,6 +353,7 @@
   "emptyTitle": "No positions yet"
  },
  "attendance": {
+  "lateBy": "{{n}} min late",
   "title": "Attendance",
   "myToday": "Today",
   "checkIn": "Check in",
@@ -379,6 +381,7 @@
   "emptyTitle": "No attendance records"
  },
  "leave": {
+  "daysN": "{{n}} days",
   "title": "Leave",
   "request": "Request leave",
   "myRequests": "My requests",
@@ -496,6 +499,7 @@
   "title": "Clickable prototype",
   "note": "Every screen runs on sample data in your browser, with no backend. Payroll and tax figures are examples, not confirmed calculations.",
   "switchRole": "Sign in as",
+  "pickAccount": "Pick a demo account",
   "password": "Password for every account: Demo1234",
   "downloadBlocked": "Downloads are off in the prototype. The real system saves {{file}}",
   "reset": "Reset sample data",

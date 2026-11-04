@@ -57,6 +57,19 @@ describe('DataTable', () => {
     await userEvent.click(within(screen.getByRole('table')).getByRole('button', { name: /Name/ }));
     expect(onSort).toHaveBeenLastCalledWith('name:desc');
   });
+
+  it('shows stacked cards instead of the table on phones when mobileCard is given', () => {
+    const original = window.matchMedia;
+    window.matchMedia = ((q: string) => ({ matches: q.includes('max-width'), media: q, addEventListener() {}, removeEventListener() {} })) as unknown as typeof window.matchMedia;
+    try {
+      const rows = [{ id: '1', name: 'A' }];
+      render(<DataTable<Row> columns={columns} rows={rows} total={1} params={params} loading={false} onSortChange={() => {}} onPageChange={() => {}} emptyTitle="-" mobileCard={(r) => <p>card {r.name}</p>} />);
+      expect(screen.getByText('card A')).toBeInTheDocument();
+      expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    } finally {
+      window.matchMedia = original;
+    }
+  });
 });
 
 describe('StatusBadge', () => {

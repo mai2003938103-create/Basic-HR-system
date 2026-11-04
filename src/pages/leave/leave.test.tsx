@@ -81,7 +81,7 @@ describe('LeavePage', () => {
   it('shows admin tabs only with leave.manage', async () => {
     server.use(...sessionHandlers(employeeMe()), ...base());
     const { unmount } = renderApp(<LeavePage />);
-    await screen.findByRole('tab', { name: 'ຄຳຮ້ອງຂອງຂ້ອຍ' });
+    await screen.findByRole('heading', { name: 'ຄຳຮ້ອງຂອງຂ້ອຍ' }); // a single view shows a heading, not a tab strip
     expect(screen.queryByRole('tab', { name: 'ປະເພດການລາ' })).toBeNull();
     unmount();
     server.use(...sessionHandlers(me()), ...base());

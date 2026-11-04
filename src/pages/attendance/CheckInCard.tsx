@@ -54,13 +54,14 @@ export function CheckInCard({ onChange }: { onChange?: () => void }) {
   const rec = d?.record;
 
   return (
-    <Card className="flex flex-wrap items-center gap-6 p-6">
-      <div className="min-w-0 flex-1">
+    // Phones: one column with a full-width action; wider screens: clock left, action right.
+    <Card className="grid gap-5 p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6 sm:p-6">
+      <div className="min-w-0">
         <p className="text-label text-ink-muted">{t('attendance.myToday')} · {formatDate(d?.date ?? '')}</p>
         <p className="tabular text-[40px] font-bold leading-[48px] text-primary-hover">{formatTime(now)}</p>
         {settings && <p className="text-body-sm text-ink-muted">{t('attendance.workHours', { start: settings.workStart, end: settings.workEnd })}</p>}
       </div>
-      <div className="flex min-w-[220px] flex-col items-start gap-2">
+      <div className="flex flex-col gap-2 sm:min-w-[220px] sm:items-start">
         {rec?.checkInAt && <p className="text-body">{t('attendance.checkedInAt', { time: formatTime(rec.checkInAt) })} {rec.status !== 'leave' && <StatusBadge kind="attendance" value={rec.status} className="ml-1" />}</p>}
         {rec?.checkOutAt && <p className="text-body">{t('attendance.checkedOutAt', { time: formatTime(rec.checkOutAt) })} · {formatMinutes(rec.workedMinutes, i18n.language)}</p>}
         {d?.onLeave ? (
@@ -68,10 +69,10 @@ export function CheckInCard({ onChange }: { onChange?: () => void }) {
         ) : !rec?.checkInAt ? (
           <>
             {!d?.isWorkingDay && <p className="text-body-sm text-ink-muted">{t('attendance.notWorkingDay')}</p>}
-            <Button className="h-12 px-8 text-[16px]" onClick={() => act('check-in')} disabled={busy} loading={busy}><LogIn />{t('attendance.checkIn')}</Button>
+            <Button className="h-12 w-full px-8 text-[16px] sm:w-auto" onClick={() => act('check-in')} disabled={busy} loading={busy}><LogIn />{t('attendance.checkIn')}</Button>
           </>
         ) : !rec.checkOutAt ? (
-          <Button variant="outline" className="h-12 px-8 text-[16px]" onClick={() => act('check-out')} disabled={busy} loading={busy}><LogOut />{t('attendance.checkOut')}</Button>
+          <Button variant="outline" className="h-12 w-full px-8 text-[16px] sm:w-auto" onClick={() => act('check-out')} disabled={busy} loading={busy}><LogOut />{t('attendance.checkOut')}</Button>
         ) : (
           <p className="inline-flex items-center gap-2 rounded-pill bg-success-tint px-4 py-2 text-label text-success-text"><CheckCircle2 className="size-4" />{t('attendance.done')}</p>
         )}

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../../components/ui/button';
 import { Card, CardHeader, CardTitle } from '../../components/ui/card';
 import { DataTable, type Column } from '../../components/common/DataTable';
+import { FilterBar } from '../../components/common/FilterBar';
 import { DatePicker, FilterDropdown } from '../../components/common/inputs';
 import { PageHeader, PermissionGate } from '../../components/common/layout-bits';
 import { StatusBadge } from '../../components/common/StatusBadge';
@@ -69,14 +70,14 @@ export function AttendancePage() {
             </PermissionGate>
           )}
         </CardHeader>
-        <div className="flex flex-wrap items-end gap-3 p-4">
-          <label className="flex flex-col gap-1 text-body-sm text-ink-muted">{t('common.from')}<DatePicker className="w-44" value={(lq.params.from as string) ?? ''} onChange={(e) => lq.setFilter('from', e.target.value || undefined)} /></label>
-          <label className="flex flex-col gap-1 text-body-sm text-ink-muted">{t('common.to')}<DatePicker className="w-44" value={(lq.params.to as string) ?? ''} onChange={(e) => lq.setFilter('to', e.target.value || undefined)} /></label>
+        <FilterBar activeCount={['from', 'to', 'status', 'departmentId'].filter((k) => lq.params[k]).length}>
+          <label className="flex flex-col gap-1 text-body-sm text-ink-muted">{t('common.from')}<DatePicker className="w-full md:w-44" value={(lq.params.from as string) ?? ''} onChange={(e) => lq.setFilter('from', e.target.value || undefined)} /></label>
+          <label className="flex flex-col gap-1 text-body-sm text-ink-muted">{t('common.to')}<DatePicker className="w-full md:w-44" value={(lq.params.to as string) ?? ''} onChange={(e) => lq.setFilter('to', e.target.value || undefined)} /></label>
           <FilterDropdown label={t('common.status')} value={lq.params.status as string | undefined} onChange={(v) => lq.setFilter('status', v)} allLabel={t('employees.allStatuses')} options={STATUSES.map((s) => ({ value: s, label: t(`status.attendance.${s}`) }))} />
           {user?.scope === 'all' && (
             <FilterDropdown label={t('employees.department')} value={lq.params.departmentId as string | undefined} onChange={(v) => lq.setFilter('departmentId', v)} allLabel={t('employees.allDepartments')} options={(depts.data ?? []).map((d) => ({ value: d.id, label: localName(d) }))} />
           )}
-        </div>
+        </FilterBar>
         <DataTable
           columns={columns}
           rows={q.data?.data ?? []}
@@ -88,6 +89,20 @@ export function AttendancePage() {
           onSortChange={lq.setSort}
           onPageChange={lq.setPage}
           emptyTitle={t('attendance.emptyTitle')}
+          mobileCard={(r) => (
+            <div className="flex items-center gap-3 px-4 py-3">
+              <div className="min-w-0 flex-1">
+                <p className="tabular font-medium">{formatDate(r.workDate)}{team && <span className="font-normal text-ink-muted"> · {fullName(r.employee)}</span>}</p>
+                <p className="tabular text-body-sm text-ink-muted">
+                  {r.checkInAt ? `${formatTime(r.checkInAt)} – ${formatTime(r.checkOutAt) || '…'}` : t(`status.attendance.${r.status}`)}
+                  {r.workedMinutes ? ` · ${formatMinutes(r.workedMinutes, i18n.language)}` : ''}
+                  {r.lateMinutes ? <span className="text-warning-text"> · {t('attendance.lateBy', { n: r.lateMinutes })}</span> : null}
+                </p>
+              </div>
+              <StatusBadge kind="attendance" value={r.status} />
+              {manage && <Button variant="subtle" size="iconSm" aria-label={`${t('common.edit')} ${fullName(r.employee)} ${formatDate(r.workDate)}`} onClick={() => setEditing(r)}><Pencil /></Button>}
+            </div>
+          )}
         />
       </Card>
       <AttendanceEditDialog record={editing} onOpenChange={(o) => !o && setEditing(null)} onSaved={q.reload} />

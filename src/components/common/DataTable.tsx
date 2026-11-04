@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { LoadingState } from './LoadingState';
 import { EmptyState, ErrorState } from './EmptyState';
 import { Pagination } from './Pagination';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { apiError } from '../../lib/api';
 
 export interface Column<T> {
@@ -35,6 +36,9 @@ export interface DataTableProps<T extends { id: string }> {
 export function DataTable<T extends { id: string }>(p: DataTableProps<T>) {
   const { t } = useTranslation();
   const [sortField, sortDir] = p.params.sort.split(':');
+  // Below 768px a list with `mobileCard` renders stacked cards instead of the table (only one is mounted).
+  const phone = useMediaQuery('(max-width: 767px)');
+  const phoneCards = !!p.mobileCard && phone;
 
   if (p.loading && p.rows.length === 0) return <LoadingState rows={5} />;
   if (p.error) return <ErrorState onRetry={p.onRetry} message={apiError(p.error).messageKey} />;
@@ -44,8 +48,8 @@ export function DataTable<T extends { id: string }>(p: DataTableProps<T>) {
 
   return (
     <div aria-busy={p.loading || undefined}>
-      {p.mobileCard && <ul className="divide-y divide-border md:hidden">{p.rows.map((r) => <li key={r.id}>{p.mobileCard!(r)}</li>)}</ul>}
-      <div className={cn('relative overflow-x-auto', p.mobileCard && 'hidden md:block')}>
+      {phoneCards && <ul className="divide-y divide-border">{p.rows.map((r) => <li key={r.id}>{p.mobileCard!(r)}</li>)}</ul>}
+      {!phoneCards && <div className="relative overflow-x-auto">
         <table className="w-full border-collapse text-left text-body">
           <thead>
             <tr className="bg-surface-sunken">
@@ -89,7 +93,7 @@ export function DataTable<T extends { id: string }>(p: DataTableProps<T>) {
             ))}
           </tbody>
         </table>
-      </div>
+      </div>}
       <Pagination page={p.params.page} pageSize={p.params.pageSize} total={p.total} onPageChange={p.onPageChange} />
     </div>
   );
