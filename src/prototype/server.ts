@@ -534,9 +534,25 @@ on('GET', '/dashboard/summary', (c) => {
   return { data: {
     totalEmployees: emps.filter((e) => e.employmentStatus !== 'terminated').length, activeEmployees: working.length, inactiveEmployees: emps.filter((e) => e.employmentStatus === 'inactive').length,
     departments: c.scope === 'all' ? c.db.departments.filter((x) => x.isActive).length : 1, presentToday: present,
-    absentToday: Math.max(0, working.length - present - onLeave), onLeaveToday: onLeave,
+    // Stage 2 contract: "absent" counts only recorded absences; people yet to arrive are `notCheckedInToday`.
+    absentToday: att.filter((a) => a.status === 'absent').length,
+    notCheckedInToday: isWorkingDay(c.db, d) ? Math.max(0, working.length - present - onLeave - att.filter((a) => a.status === 'absent').length) : 0,
+    onLeaveToday: onLeave,
     pendingLeave: c.db.leaves.filter((l) => ids.has(l.employeeId) && l.status === 'pending' && l.employeeId !== c.emp?.id).length,
   } };
+});
+on('GET', '/dashboard/today', (c) => {
+  need(c, 'attendance.read');
+  if (c.scope === 'self') throw forbidden();
+  const d = today();
+  const working = scoped(c).filter((e) => e.employmentStatus === 'active' || e.employmentStatus === 'probation');
+  const person = (e: PEmp) => { const dep = c.db.departments.find((x) => x.id === e.departmentId); return { id: e.id, employeeCode: e.employeeCode, firstName: e.firstName, lastName: e.lastName, photoUrl: e.photoUrl, department: named(dep) }; };
+  const att = new Map(c.db.attendance.filter((a) => a.workDate === d).map((a) => [a.employeeId, a]));
+  const leaves = new Map(c.db.leaves.filter((l) => l.status === 'approved' && l.startDate <= d && l.endDate >= d).map((l) => [l.employeeId, l]));
+  const late = working.filter((e) => att.get(e.id)?.status === 'late').map((e) => ({ ...person(e), checkInAt: att.get(e.id)!.checkInAt, lateMinutes: att.get(e.id)!.lateMinutes }));
+  const onLeave = working.filter((e) => leaves.has(e.id)).map((e) => ({ ...person(e), leaveType: named(c.db.leaveTypes.find((x) => x.id === leaves.get(e.id)!.leaveTypeId)), endDate: leaves.get(e.id)!.endDate }));
+  const notCheckedIn = isWorkingDay(c.db, d) ? working.filter((e) => !att.get(e.id)?.checkInAt && !leaves.has(e.id) && att.get(e.id)?.status !== 'absent').map(person) : [];
+  return { data: { date: d, isWorkingDay: isWorkingDay(c.db, d), workStart: c.db.settings.workStart, present: working.filter((e) => att.get(e.id)?.checkInAt).length, total: working.length, notCheckedIn, late, onLeave } };
 });
 on('GET', '/dashboard/charts', (c) => {
   need(c, 'dashboard.view');
@@ -579,8 +595,16 @@ on('POST', '/payroll/runs', (c, req) => {
 on('GET', '/payroll/runs/:id', (c, _r, p) => {
   payPerm(c);
   const r = findRun(c.db, p.id);
+  // Comparison with the latest earlier run that left draft, so approvers see what changed.
+  const prev = c.db.payRuns.filter((x) => x.period < r.period && x.status !== 'draft').sort((a, b) => b.period.localeCompare(a.period))[0];
+  const prevNet = new Map((prev?.items ?? []).map((i) => [i.employeeId, calcLine(i, c.db.settings.payroll).net]));
+  const current = new Set(r.items.map((i) => i.employeeId));
+  const ps = prev ? runSummary(c.db, prev) : null;
   return { data: {
-    ...runSummary(c.db, r), lines: r.items.map((i) => lineDto(c.db, i)),
+    ...runSummary(c.db, r),
+    previous: ps ? { id: ps.id, period: ps.period, employeeCount: ps.employeeCount, totalGross: ps.totalGross, totalNet: ps.totalNet, totalEmployerCost: ps.totalEmployerCost, totalTax: ps.totalTax, totalSsEmployee: ps.totalSsEmployee } : null,
+    lines: r.items.map((i) => ({ ...lineDto(c.db, i), previousNet: prev ? prevNet.get(i.employeeId) ?? null : null })),
+    leavers: (prev?.items ?? []).filter((i) => !current.has(i.employeeId)).map((i) => ({ ...brief(c.db.employees.find((e) => e.id === i.employeeId)!), previousNet: prevNet.get(i.employeeId)! })),
     canEdit: r.status === 'draft' && c.perms.has('payroll.manage'), canSubmit: r.status === 'draft' && c.perms.has('payroll.manage'),
     canApprove: r.status === 'pending' && c.perms.has('payroll.approve'), canPay: r.status === 'approved' && c.perms.has('payroll.manage'),
   } };

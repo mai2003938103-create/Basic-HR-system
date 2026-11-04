@@ -1,4 +1,4 @@
-import { ArrowLeft, Banknote, Building2, Check, Download, FileText, Pencil, Printer, RefreshCw, Send, Trash2, Undo2, Wallet } from 'lucide-react';
+import { ArrowLeft, Banknote, Building2, Check, Download, FileText, Minus, Pencil, Printer, RefreshCw, Send, Trash2, TrendingDown, TrendingUp, Undo2, Wallet } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -102,6 +102,40 @@ function AdjustDialog({ run, line, onClose, onSaved }: { run: PayRunDetail; line
   );
 }
 
+/** A line counts as changed when it is new or its net pay moved by 1% or more. */
+const isChanged = (l: { previousNet: number | null; calc: { net: number } }, hasPrevious: boolean) =>
+  hasPrevious && (l.previousNet === null || Math.abs(l.calc.net - l.previousNet) >= Math.max(1, Math.abs(l.previousNet) * 0.01));
+
+/** Percentage change against the previous run, with direction shown by arrow and sign (not colour alone). */
+function Delta({ now, before, period }: { now: number; before: number; period?: string }) {
+  const { t } = useTranslation();
+  if (!before) return null;
+  const pct = ((now - before) / before) * 100;
+  const flat = Math.abs(pct) < 0.05;
+  const Icon = flat ? Minus : pct > 0 ? TrendingUp : TrendingDown;
+  return (
+    <span className="inline-flex items-center gap-1 whitespace-nowrap">
+      <Icon className="size-3.5" aria-hidden />
+      <span className="tabular">{flat ? '0%' : `${pct > 0 ? '+' : '−'}${Math.abs(pct).toFixed(1)}%`}</span>
+      {period && <span>{t('payroll.vsPeriod', { period: formatPeriod(period) })}</span>}
+    </span>
+  );
+}
+
+function LineChange({ line }: { line: { previousNet: number | null; calc: { net: number } } }) {
+  const { t } = useTranslation();
+  if (line.previousNet === null) return <span className="rounded-pill bg-primary-tint px-2 py-0.5 text-caption text-primary-hover">{t('payroll.newEmployee')}</span>;
+  const diff = line.calc.net - line.previousNet;
+  if (Math.abs(diff) < 1) return <span className="text-ink-muted">—</span>;
+  const big = Math.abs(diff) >= Math.abs(line.previousNet) * 0.1;
+  return (
+    <span className={cn('tabular inline-flex items-center gap-1', big ? 'font-semibold text-warning-text' : 'text-ink-muted')} title={big ? t('payroll.bigChange') : undefined}>
+      {diff > 0 ? <TrendingUp className="size-3.5" aria-hidden /> : <TrendingDown className="size-3.5" aria-hidden />}
+      {diff > 0 ? '+' : '−'}{formatAmount(Math.abs(diff))}
+    </span>
+  );
+}
+
 export function PayslipDialog({ runId, employeeId, onClose }: { runId: string; employeeId: string; onClose: () => void }) {
   const { t } = useTranslation();
   const q = useQuery(() => api.get<{ data: Payslip }>(`/payslips/${runId}/${employeeId}`).then((r) => r.data.data), [runId, employeeId]);
@@ -132,6 +166,7 @@ export function PayRunPage() {
   const q = useQuery(() => api.get<{ data: PayRunDetail }>(`/payroll/runs/${id}`).then((r) => r.data.data), [id]);
   const [search, setSearch] = useState('');
   const [dept, setDept] = useState<string>();
+  const [changedOnly, setChangedOnly] = useState(false);
   const [editing, setEditing] = useState<PayLine | null>(null);
   const [slip, setSlip] = useState<string | null>(null);
   const [action, setAction] = useState<Action | null>(null);
@@ -141,8 +176,11 @@ export function PayRunPage() {
   const run = q.data;
   const lines = useMemo(() => {
     const s = search.trim().toLowerCase();
-    return (run?.lines ?? []).filter((l) => (!dept || l.employee.departmentId === dept) && (!s || `${l.employee.employeeCode} ${fullName(l.employee)}`.toLowerCase().includes(s))).map((l) => ({ ...l, id: l.employeeId }));
-  }, [run, search, dept]);
+    return (run?.lines ?? [])
+      .filter((l) => (!dept || l.employee.departmentId === dept) && (!s || `${l.employee.employeeCode} ${fullName(l.employee)}`.toLowerCase().includes(s)) && (!changedOnly || isChanged(l, !!run?.previous)))
+      .map((l) => ({ ...l, id: l.employeeId }));
+  }, [run, search, dept, changedOnly]);
+  const changedCount = useMemo(() => (run?.lines ?? []).filter((l) => isChanged(l, !!run?.previous)).length, [run]);
   const table = useLocalTable(lines, 'code:asc', { code: (l) => l.employee.employeeCode, name: (l) => l.employee.firstName, gross: (l) => l.calc.gross, net: (l) => l.calc.net, basic: (l) => l.calc.basic }, 50);
   const depts = useMemo(() => { const map = new Map<string, { id: string; nameLo: string; nameEn: string }>(); for (const l of run?.lines ?? []) if (l.employee.department) map.set(l.employee.departmentId, l.employee.department); return [...map.entries()]; }, [run]);
 
@@ -161,15 +199,32 @@ export function PayRunPage() {
     }
   };
 
-  const columns: Column<PayLine & { id: string }>[] = [
+  type Row = PayRunDetail['lines'][number] & { id: string };
+  const columns: Column<Row>[] = [
     { key: 'name', header: t('payroll.employee'), sortable: true, className: 'min-w-[13rem]', cell: (l) => <span><span className="block font-medium">{fullName(l.employee)}</span><span className="block text-body-sm text-ink-muted">{l.employee.employeeCode} · {localName(l.employee.department)}</span></span> },
     { key: 'basic', header: t('payroll.basic'), sortable: true, align: 'right', cell: (l) => formatAmount(l.calc.basic) },
     { key: 'extra', header: t('payroll.extraEarnings'), align: 'right', cell: (l) => <span title={`${t('payroll.allowance')} ${formatAmount(l.calc.allowance)} · ${t('payroll.overtimePay')} ${formatAmount(l.calc.overtimePay)} · ${t('payroll.bonus')} ${formatAmount(l.calc.bonus)}`}>{formatAmount(l.calc.allowance + l.calc.overtimePay + l.calc.bonus)}</span> },
     { key: 'gross', header: t('payroll.gross'), sortable: true, align: 'right', cell: (l) => formatAmount(l.calc.gross) },
-    { key: 'ss', header: t('payroll.ssShort'), align: 'right', cell: (l) => formatAmount(l.calc.ssEmployee) },
-    { key: 'tax', header: t('payroll.taxShort'), align: 'right', cell: (l) => formatAmount(l.calc.incomeTax) },
-    { key: 'other', header: t('payroll.otherShort'), align: 'right', cell: (l) => (l.calc.otherDeduction + l.calc.unpaidDeduction ? <span className="text-danger-text">{formatAmount(l.calc.otherDeduction + l.calc.unpaidDeduction)}</span> : '—') },
-    { key: 'net', header: t('payroll.net'), sortable: true, align: 'right', cell: (l) => <span className="font-semibold">{formatAmount(l.calc.net)}</span> },
+    {
+      key: 'deductions', header: t('payroll.deductions'), align: 'right',
+      // One column keeps the comparison visible at 1366 px; the breakdown is in the tooltip and on the payslip.
+      cell: (l) => (
+        <span title={`${t('payroll.ssShort')} ${formatAmount(l.calc.ssEmployee)} · ${t('payroll.taxShort')} ${formatAmount(l.calc.incomeTax)}${l.calc.otherDeduction ? ` · ${t('payroll.otherShort')} ${formatAmount(l.calc.otherDeduction)}` : ''}`}>
+          {formatAmount(l.calc.totalDeductions)}
+          {l.calc.otherDeduction > 0 && <span className="block text-caption font-normal text-danger-text">{t('payroll.inclOther', { amount: formatAmount(l.calc.otherDeduction) })}</span>}
+        </span>
+      ),
+    },
+    {
+      key: 'net', header: run.previous ? t('payroll.netAndChange') : t('payroll.net'), sortable: true, align: 'right',
+      // The change against last run sits under the amount, so approvers see both without an extra column.
+      cell: (l) => (
+        <span className="flex flex-col items-end">
+          <span className="font-semibold">{formatAmount(l.calc.net)}</span>
+          {run.previous && <span className="text-caption font-normal"><LineChange line={l} /></span>}
+        </span>
+      ),
+    },
     {
       key: 'actions', header: '', cell: (l) => (
         <span className="flex justify-end gap-1">
@@ -216,17 +271,35 @@ export function PayRunPage() {
       <Stepper run={run} />
       <p role="status" className="mb-6 rounded-sm bg-primary-tint px-4 py-3 text-body-sm text-ink">{banner}</p>
       <div className="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        <DashboardCard tone="featured" icon={Banknote} label={t('payroll.totalNet')} value={<MoneyValue amount={run.totalNet} symbol={cur.symbol} />} meta={t('payroll.employeesN', { n: run.employeeCount })} />
-        <DashboardCard icon={FileText} label={t('payroll.gross')} value={<MoneyValue amount={run.totalGross} symbol={cur.symbol} />} />
+        <DashboardCard tone="featured" icon={Banknote} label={t('payroll.totalNet')} value={<MoneyValue amount={run.totalNet} symbol={cur.symbol} />} meta={<>{t('payroll.employeesN', { n: run.employeeCount })}{run.previous && <> · <Delta now={run.totalNet} before={run.previous.totalNet} /></>}</>} />
+        <DashboardCard icon={FileText} label={t('payroll.gross')} value={<MoneyValue amount={run.totalGross} symbol={cur.symbol} />} meta={run.previous && <Delta now={run.totalGross} before={run.previous.totalGross} period={run.previous.period} />} />
         <DashboardCard icon={Undo2} tone="warning" label={t('payroll.taxAndSsTitle')} value={<MoneyValue amount={run.totalTax + run.totalSsEmployee} symbol={cur.symbol} />} meta={t('payroll.taxAndSs', { tax: m(run.totalTax), ss: m(run.totalSsEmployee) })} />
-        <DashboardCard icon={Building2} label={t('payroll.employerCost')} value={<MoneyValue amount={run.totalEmployerCost} symbol={cur.symbol} />} meta={t('payroll.employerSsShort', { amount: m(run.totalSsEmployer) })} />
+        <DashboardCard icon={Building2} label={t('payroll.employerCost')} value={<MoneyValue amount={run.totalEmployerCost} symbol={cur.symbol} />} meta={run.previous ? <Delta now={run.totalEmployerCost} before={run.previous.totalEmployerCost} period={run.previous.period} /> : t('payroll.employerSsShort', { amount: m(run.totalSsEmployer) })} />
       </div>
       <Card>
         <div className="flex flex-wrap items-center gap-3 p-4">
           <SearchBar value={search} onChange={setSearch} />
           <FilterDropdown label={t('employees.department')} value={dept} onChange={setDept} allLabel={t('employees.allDepartments')} options={depts.map(([v, d]) => ({ value: v, label: localName(d) }))} />
+          {run.previous && (
+            <button
+              type="button"
+              aria-pressed={changedOnly}
+              onClick={() => setChangedOnly((v) => !v)}
+              className={cn('flex h-10 items-center gap-2 rounded-pill border px-4 text-label', changedOnly ? 'border-primary bg-primary-tint text-primary-hover' : 'border-border-strong bg-surface-card text-ink hover:bg-surface-sunken')}
+            >
+              {changedOnly && <Check className="size-4" aria-hidden />}
+              {t('payroll.changedOnly', { n: changedCount })}
+            </button>
+          )}
           <span className="ml-auto text-body-sm text-ink-muted">{t('payroll.amountsIn', { symbol: cur.symbol })}</span>
         </div>
+        {run.previous && (
+          <p className="border-t border-border px-6 py-3 text-body-sm text-ink-muted">
+            {t('payroll.comparedWith', { period: formatPeriod(run.previous.period), n: run.previous.employeeCount })}
+            {run.lines.some((l) => l.previousNet === null) && <> · {t('payroll.newThisRun', { n: run.lines.filter((l) => l.previousNet === null).length })}</>}
+            {run.leavers.length > 0 && <> · {t('payroll.leftSince', { names: run.leavers.map((x) => fullName(x)).join(', ') })}</>}
+          </p>
+        )}
         <DataTable
           columns={columns}
           rows={table.rows}

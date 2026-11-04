@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { visibleNav } from '../../lib/permissions';
 
 /** Navigation list: pills on the brand gradient; the active item is a white pill. */
-export function SidebarNav({ can, collapsed = false, onNavigate }: { can: (p: string) => boolean; collapsed?: boolean; onNavigate?: () => void }) {
+export function SidebarNav({ can, collapsed = false, onNavigate, badges = {} }: { can: (p: string) => boolean; collapsed?: boolean; onNavigate?: () => void; badges?: Record<string, number> }) {
   const { t } = useTranslation();
   const items = visibleNav(can);
   const main = items.filter((i) => !i.section && i.key !== 'profile');
@@ -28,8 +28,16 @@ export function SidebarNav({ can, collapsed = false, onNavigate }: { can: (p: st
         )
       }
     >
-      <i.icon className="size-5 shrink-0" aria-hidden />
-      <span className={cn(collapsed && 'sr-only')}>{t(`nav.${i.key}`)}</span>
+      <span className="relative shrink-0">
+        <i.icon className="size-5" aria-hidden />
+        {collapsed && badges[i.key] ? <span aria-hidden className="absolute -right-1 -top-1 size-2.5 rounded-full bg-warning ring-2 ring-secondary" /> : null}
+      </span>
+      <span className={cn('flex-1', collapsed && 'sr-only')}>{t(`nav.${i.key}`)}</span>
+      {badges[i.key] ? (
+        <span className={cn('tabular rounded-pill bg-warning-tint px-2 text-caption text-warning-text', collapsed && 'sr-only')}>
+          {badges[i.key]}<span className="sr-only"> {t('dashboard.waitingForYou')}</span>
+        </span>
+      ) : null}
     </NavLink>
   );
 
@@ -60,16 +68,16 @@ export function Brand({ collapsed = false }: { collapsed?: boolean }) {
 }
 
 /** Desktop/tablet sidebar: full at ≥1024px, icons only 768–1023px, hidden below (drawer instead). */
-export function Sidebar({ can }: { can: (p: string) => boolean }) {
+export function Sidebar({ can, badges }: { can: (p: string) => boolean; badges?: Record<string, number> }) {
   return (
     <aside className="sticky top-0 hidden h-screen shrink-0 flex-col overflow-y-auto bg-brand p-4 md:flex md:w-[72px] lg:w-[248px]">
       <div className="lg:hidden">
         <Brand collapsed />
-        <SidebarNav can={can} collapsed />
+        <SidebarNav can={can} collapsed badges={badges} />
       </div>
       <div className="hidden lg:block">
         <Brand />
-        <SidebarNav can={can} />
+        <SidebarNav can={can} badges={badges} />
       </div>
     </aside>
   );

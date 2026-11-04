@@ -21,7 +21,15 @@ export interface PayLine {
   item: PayItem;
   calc: PayCalc;
 }
-export interface PayRunDetail extends PayRunSummary { lines: PayLine[]; canEdit: boolean; canSubmit: boolean; canApprove: boolean; canPay: boolean }
+export interface PayRunComparison { id: string; period: string; employeeCount: number; totalGross: number; totalNet: number; totalEmployerCost: number; totalTax: number; totalSsEmployee: number }
+export interface PayRunDetail extends PayRunSummary {
+  lines: (PayLine & { previousNet: number | null })[];
+  /** Latest earlier run that left draft; null for the first run. */
+  previous: PayRunComparison | null;
+  /** In the previous run but not in this one. */
+  leavers: { id: string; employeeCode: string; firstName: string; lastName: string; previousNet: number }[];
+  canEdit: boolean; canSubmit: boolean; canApprove: boolean; canPay: boolean;
+}
 export interface PayslipRow { payRunId: string; employeeId: string; period: string; payDate: string; paidAt: string | null; gross: number; totalDeductions: number; net: number }
 export interface TaxBracket { upTo: number | null; rate: number }
 export interface PayrollSettings { payDay: number; workDaysPerMonth: number; overtimeRate: number; ssEmployeeRate: number; ssEmployerRate: number; ssCeiling: number; taxBrackets: TaxBracket[] }

@@ -88,5 +88,8 @@ describe('LeavePage', () => {
     renderApp(<LeavePage />);
     expect(await screen.findByRole('tab', { name: 'ປະເພດການລາ' })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: 'ວັນພັກລັດຖະການ' })).toBeInTheDocument();
+    // approvers land on the approvals tab, ahead of their own requests
+    expect(screen.getAllByRole('tab')[0]).toHaveTextContent('ລໍຖ້າອະນຸມັດ');
+    expect(screen.getAllByRole('tab')[0]).toHaveAttribute('aria-selected', 'true');
   });
 });

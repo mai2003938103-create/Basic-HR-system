@@ -6,6 +6,7 @@ import { useAuth } from '../auth/useAuth';
 import { Brand, Sidebar, SidebarNav } from '../components/common/Sidebar';
 import { Header } from '../components/common/Header';
 import { SheetContent } from '../components/ui/dialog';
+import { usePendingApprovals } from '../hooks/usePendingApprovals';
 
 export function AppLayout() {
   const { can } = useAuth();
@@ -13,15 +14,17 @@ export function AppLayout() {
   const [drawer, setDrawer] = useState(false);
   const location = useLocation();
   useEffect(() => setDrawer(false), [location.pathname]);
+  const pending = usePendingApprovals(can('leave.approve'), location.pathname);
+  const badges = { leave: pending };
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar can={can} />
+      <Sidebar can={can} badges={badges} />
       <D.Root open={drawer} onOpenChange={setDrawer}>
         <SheetContent className="overflow-y-auto bg-brand p-4" aria-describedby={undefined}>
           <D.Title className="sr-only">{t('common.menu')}</D.Title>
           <Brand />
-          <SidebarNav can={can} onNavigate={() => setDrawer(false)} />
+          <SidebarNav can={can} badges={badges} onNavigate={() => setDrawer(false)} />
         </SheetContent>
       </D.Root>
       <div className="flex min-w-0 flex-1 flex-col">
