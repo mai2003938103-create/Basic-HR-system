@@ -15,7 +15,6 @@ import { formatPeriod, type Payslip, type PayslipRow } from '../../lib/payroll';
 import { cn } from '@/lib/utils';
 import { PayslipView } from './PayslipView';
 
-/** The hosted prototype's frame cannot open the print dialog. */
 
 export function PayslipsPage() {
   const { t } = useTranslation();

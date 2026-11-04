@@ -26,7 +26,6 @@ import { formatPeriod, type PayLine, type PayRunDetail, type PayRunStatus, type 
 import { cn } from '@/lib/utils';
 import { PayslipView } from './PayslipView';
 
-/** The hosted prototype's frame cannot open the print dialog. */
 import { useLocalTable } from './useLocalTable';
 
 const STEPS: PayRunStatus[] = ['draft', 'pending', 'approved', 'paid'];

@@ -6,7 +6,7 @@ import { ParamsContext, navigation, useHref } from './navigation';
 
 type Entry = { path: string; element: ReactElement };
 
-/** react-router style patterns: '*', '/employees/:id', 'employees/new'. */
+/** Route patterns: '*', '/employees/:id', 'employees/new'. */
 function match(pattern: string, pathname: string): Record<string, string> | null {
   if (pattern === '*') return {};
   const p = pattern.replace(/^\//, '').split('/');
@@ -22,7 +22,7 @@ function match(pattern: string, pathname: string): Record<string, string> | null
 
 function TestRoutes({ entries }: { entries: Entry[] }) {
   const { pathname } = new URL(useHref());
-  // Exact patterns win over the '*' catch-all, as in react-router.
+  // Exact patterns win over the '*' catch-all, like the real router.
   for (const e of [...entries.filter((x) => x.path !== '*'), ...entries.filter((x) => x.path === '*')]) {
     const params = match(e.path, pathname);
     if (params) return <ParamsContext.Provider value={params}>{e.element}</ParamsContext.Provider>;

@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const DB = process.env.E2E_DATABASE_URL ?? 'postgresql://postgres:postgres@localhost:5432/hrms_e2e';
+const DB = process.env.E2E_DATABASE_URL ?? 'mysql://hrms:hrms@127.0.0.1:3306/hrms_e2e';
 const backendEnv = {
   NODE_ENV: 'development',
   PORT: '4100',
@@ -33,11 +33,12 @@ export default defineConfig({
       timeout: 60_000,
     },
     {
-      command: 'npx vite build --logLevel error && npx vite preview --port 5180 --strictPort',
-      url: 'http://localhost:5180',
-      env: { VITE_API_TARGET: 'http://localhost:4100' },
+      // Production build of the Next.js app; /api is forwarded to the e2e backend.
+      command: 'npx next build && npx next start -p 5180',
+      url: 'http://localhost:5180/login',
+      env: { BACKEND_URL: 'http://localhost:4100', NEXT_TELEMETRY_DISABLED: '1' },
       reuseExistingServer: false,
-      timeout: 120_000,
+      timeout: 240_000,
     },
   ],
 });

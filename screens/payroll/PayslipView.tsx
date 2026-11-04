@@ -17,7 +17,7 @@ function Row({ label, value, hint, negative, strong }: { label: string; value: s
   );
 }
 
-/** Printable payslip. Figures in the prototype are samples, not confirmed Lao-law calculations. */
+/** Printable payslip. Rates are general defaults until the company confirms them in Settings. */
 export function PayslipView({ slip }: { slip: Payslip }) {
   const { t, i18n } = useTranslation();
   const cur = currencyOf(useSettings());
