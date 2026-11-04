@@ -60,7 +60,7 @@ T = {
   "password": {"weak": ("ລະຫັດຜ່ານຕ້ອງມີຢ່າງໜ້ອຍ 8 ຕົວ, ມີທັງຕົວອັກສອນ ແລະ ຕົວເລກ","Password needs 8+ characters with letters and numbers")},
   "validation": {"failed": ("ກະລຸນາກວດຂໍ້ມູນທີ່ປ້ອນ","Please check the highlighted fields"), "required": ("ກະລຸນາປ້ອນຂໍ້ມູນນີ້","This field is required"),
     "email": ("ອີເມວບໍ່ຖືກຕ້ອງ","Invalid email"), "date": ("ວັນທີບໍ່ຖືກຕ້ອງ","Invalid date"), "phone": ("ເບີໂທບໍ່ຖືກຕ້ອງ","Invalid phone number"),
-    "money": ("ຈຳນວນເງິນບໍ່ຖືກຕ້ອງ","Invalid amount"), "code": ("ໃຊ້ໄດ້ສະເພາະ A–Z, 0–9, - ແລະ _","Use only A–Z, 0–9, - and _"),
+    "money": ("ຈຳນວນເງິນບໍ່ຖືກຕ້ອງ","Invalid amount"), "time": ("ກະລຸນາປ້ອນເວລາແບບ ຊຊ:ນນ","Enter a time as HH:mm"), "bankAccount": ("ເລກບັນຊີໃຊ້ໄດ້ສະເພາະຕົວເລກ, ຕົວອັກສອນອັງກິດ, ຂີດ ແລະ ຍະຫວ່າງ","Account number may contain only digits, letters, dashes and spaces"), "code": ("ໃຊ້ໄດ້ສະເພາະ A–Z, 0–9, - ແລະ _","Use only A–Z, 0–9, - and _"),
     "invalidSort": ("ການລຽງບໍ່ຖືກຕ້ອງ","Invalid sort"), "invalidJson": ("ຂໍ້ມູນບໍ່ຖືກຕ້ອງ","Invalid data"), "invalid_type": ("ກະລຸນາປ້ອນຂໍ້ມູນນີ້","This field is required"),
     "too_small": ("ຄ່ານ້ອຍເກີນໄປ","Value is too small"), "too_big": ("ຄ່າໃຫຍ່ເກີນໄປ","Value is too large"), "invalid_string": ("ຮູບແບບບໍ່ຖືກຕ້ອງ","Invalid format"),
     "invalid_enum_value": ("ກະລຸນາເລືອກຈາກລາຍການ","Please choose an option"), "custom": ("ຂໍ້ມູນບໍ່ຖືກຕ້ອງ","Invalid value")},

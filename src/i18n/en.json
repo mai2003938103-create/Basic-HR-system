@@ -178,6 +178,8 @@
    "date": "Invalid date",
    "phone": "Invalid phone number",
    "money": "Invalid amount",
+   "time": "Enter a time as HH:mm",
+   "bankAccount": "Account number may contain only digits, letters, dashes and spaces",
    "code": "Use only A–Z, 0–9, - and _",
    "invalidSort": "Invalid sort",
    "invalidJson": "Invalid data",
