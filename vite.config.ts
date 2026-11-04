@@ -10,6 +10,7 @@ const API = process.env.VITE_API_TARGET ?? 'http://localhost:4000';
 export default defineConfig(({ mode }) => ({
   plugins: mode === 'prototype' ? [react(), viteSingleFile()] : [react()],
   build: mode === 'prototype' ? { outDir: 'dist-prototype', assetsInlineLimit: 100_000_000 } : undefined,
+  define: mode === 'prototype' ? { 'import.meta.env.VITE_PROTOTYPE': JSON.stringify('1') } : undefined,
   resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
   server: { port: 5173, proxy: { '/api': API } },
   preview: { port: 5173, proxy: { '/api': API } },
