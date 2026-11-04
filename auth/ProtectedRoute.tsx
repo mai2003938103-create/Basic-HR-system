@@ -18,10 +18,10 @@ export function ForbiddenPage() {
 
 /** Signed-in area: sends anonymous visitors to /login?from=<this page> and forces a first-login password change. */
 export function RequireAuth({ children }: { children: ReactNode }) {
-  const { status, user } = useAuth();
+  const { status, user, signedOut } = useAuth();
   const { pathname, search } = useLocation();
   if (status === 'loading') return <LoadingState fullPage />;
-  if (status === 'anonymous' || !user) return <Navigate to={`/login?from=${encodeURIComponent(pathname + search)}`} replace />;
+  if (status === 'anonymous' || !user) return <Navigate to={signedOut ? '/login' : `/login?from=${encodeURIComponent(pathname + search)}`} replace />;
   if (user.mustChangePassword && pathname !== '/change-password') return <Navigate to="/change-password" replace />;
   return <>{children}</>;
 }

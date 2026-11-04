@@ -1,9 +1,10 @@
 import { execSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import mariadb from 'mariadb';
 
-const migrations = path.resolve(__dirname, '../../backend/prisma/migrations');
+const migrations = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../backend/prisma/migrations');
 
 /** Fresh MySQL database for every run: recreate, apply the Prisma migrations, seed base + demo data. */
 export default async function globalSetup() {

@@ -25,15 +25,18 @@ export function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const { register, handleSubmit, formState } = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema), defaultValues: { email: '', password: '' } });
 
-  if (status === 'authenticated' && user) return <Navigate to={homePath((p) => user.permissions.includes(p))} replace />;
+  // Back to the page that asked for sign-in (same-site paths only), else the role's start page.
+  const from = params.get('from');
+  const target = (me: { permissions: string[]; mustChangePassword: boolean }) =>
+    me.mustChangePassword ? '/change-password' : from && from.startsWith('/') && !from.startsWith('//') && !from.startsWith('/login') ? from : homePath((p) => me.permissions.includes(p));
+
+  if (status === 'authenticated' && user) return <Navigate to={target(user)} replace />;
 
   const onSubmit = handleSubmit(async (v) => {
     setError(null);
     try {
       const me = await login(v.email, v.password);
-      const from = params.get('from');
-      const can = (p: string) => me.permissions.includes(p);
-      navigate(me.mustChangePassword ? '/change-password' : from && from.startsWith('/') && !from.startsWith('//') && !from.startsWith('/login') ? from : homePath(can), { replace: true });
+      navigate(target(me), { replace: true });
     } catch (e) {
       setError(apiError(e).messageKey);
     }

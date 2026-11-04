@@ -18,13 +18,13 @@ test('each role sees its own menu', async ({ page }) => {
   const menu = async () => (await page.locator('aside nav').last().locator('a').allTextContents()).map((s) => s.trim());
   await login(page, EMPLOYEE);
   await expect(page).toHaveURL(/\/attendance$/);
-  expect(await menu()).toEqual(['ການເຂົ້າວຽກ', 'ການລາພັກ', 'ຂໍ້ມູນຂອງຂ້ອຍ']);
+  expect(await menu()).toEqual(['ການເຂົ້າວຽກ', 'ການລາພັກ', 'ໃບແຈ້ງເງິນເດືອນ', 'ຂໍ້ມູນຂອງຂ້ອຍ']);
   await page.context().clearCookies();
   await login(page, MANAGER);
-  expect(await menu()).toEqual(['ໜ້າຫຼັກ', 'ພະນັກງານ', 'ພະແນກ', 'ຕຳແໜ່ງ', 'ການເຂົ້າວຽກ', 'ການລາພັກ', 'ຂໍ້ມູນຂອງຂ້ອຍ']);
+  expect(await menu()).toEqual(['ໜ້າຫຼັກ', 'ພະນັກງານ', 'ພະແນກ', 'ຕຳແໜ່ງ', 'ການເຂົ້າວຽກ', 'ການລາພັກ', 'ໃບແຈ້ງເງິນເດືອນ', 'ລາຍງານ', 'ຂໍ້ມູນຂອງຂ້ອຍ']);
   await page.context().clearCookies();
   await login(page, HR);
-  expect(await menu()).toEqual(['ໜ້າຫຼັກ', 'ພະນັກງານ', 'ພະແນກ', 'ຕຳແໜ່ງ', 'ການເຂົ້າວຽກ', 'ການລາພັກ', 'ຜູ້ໃຊ້ ແລະ ສິດ', 'ຂໍ້ມູນຂອງຂ້ອຍ']);
+  expect(await menu()).toEqual(['ໜ້າຫຼັກ', 'ພະນັກງານ', 'ພະແນກ', 'ຕຳແໜ່ງ', 'ການເຂົ້າວຽກ', 'ການລາພັກ', 'ເງິນເດືອນ', 'ໃບແຈ້ງເງິນເດືອນ', 'ລາຍງານ', 'ຜູ້ໃຊ້ ແລະ ສິດ', 'ຕັ້ງຄ່າ', 'ຂໍ້ມູນຂອງຂ້ອຍ']);
 });
 
 test('the language choice survives a reload', async ({ page }) => {
