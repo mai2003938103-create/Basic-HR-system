@@ -1,10 +1,10 @@
 import type { Config } from 'tailwindcss';
-import colorNames from './src/styles/color-tokens.json';
+import colorNames from './styles/color-tokens.json';
 
 const colors = Object.fromEntries((colorNames as string[]).map((n) => [n, `var(--${n})`]));
 
 export default {
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  content: ['./app/**/*.{ts,tsx}', './auth/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './hooks/**/*.{ts,tsx}', './layouts/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}', './screens/**/*.{ts,tsx}'],
   darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {

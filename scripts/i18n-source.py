@@ -291,6 +291,6 @@ def split(node, i):
   return {k: (v[i] if isinstance(v, tuple) else split(v, i)) for k, v in node.items()}
 here = os.path.dirname(os.path.abspath(__file__))
 for i, lang in enumerate(['lo', 'en']):
-  with open(os.path.join(here, '..', 'src', 'i18n', f'{lang}.json'), 'w', encoding='utf-8') as f:
+  with open(os.path.join(here, '..', 'i18n', f'{lang}.json'), 'w', encoding='utf-8') as f:
     json.dump(split(T, i), f, ensure_ascii=False, indent=1)
 print('ok')
