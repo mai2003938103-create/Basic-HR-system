@@ -2,7 +2,8 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LoginPage } from './LoginPage';
 import { renderApp } from '../../test/render';
-import { anonymousHandlers, employeeMe, http, HttpResponse, me, server } from '../../test/server';
+import { navigation } from '../../test/navigation';
+import { anonymousHandlers, employeeMe, http, HttpResponse, me, server, sessionHandlers } from '../../test/server';
 
 const routes = [
   { path: '/', element: <div>HOME</div> },
@@ -44,5 +45,12 @@ describe('LoginPage', () => {
     await userEvent.type(screen.getByLabelText('ລະຫັດຜ່ານ'), 'Passw0rd1');
     await userEvent.click(screen.getByRole('button', { name: 'ເຂົ້າສູ່ລະບົບ' }));
     await waitFor(() => expect(screen.getByText('ATTENDANCE')).toBeInTheDocument());
+  });
+
+  it('ignores a ?from= that points to another site (open redirect)', async () => {
+    server.use(...sessionHandlers(me()));
+    renderApp(<LoginPage />, { route: '/login?from=/%5Cevil.com', path: '/login', routes });
+    await waitFor(() => expect(navigation.pathname).not.toBe('/login'));
+    expect(navigation.href).toBe('http://localhost/');
   });
 });

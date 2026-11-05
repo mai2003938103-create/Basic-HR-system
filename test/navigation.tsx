@@ -11,6 +11,10 @@ const subscribe = (l: () => void) => {
 };
 
 export const navigation = {
+  /** Full current URL (an off-site redirect changes the host). */
+  get href() {
+    return url.href;
+  },
   get pathname() {
     return url.pathname;
   },

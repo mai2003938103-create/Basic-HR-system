@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Navigate, useNavigate, useSearchParams } from '@/lib/router';
+import { safeReturnPath } from '@/lib/redirect';
 import { z } from 'zod';
 import { AuthLayout } from '../../layouts/AuthLayout';
 import { FormField } from '../../components/common/FormField';
@@ -26,9 +27,9 @@ export function LoginPage() {
   const { register, handleSubmit, formState } = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema), defaultValues: { email: '', password: '' } });
 
   // Back to the page that asked for sign-in (same-site paths only), else the role's start page.
-  const from = params.get('from');
+  const from = safeReturnPath(params.get('from'));
   const target = (me: { permissions: string[]; mustChangePassword: boolean }) =>
-    me.mustChangePassword ? '/change-password' : from && from.startsWith('/') && !from.startsWith('//') && !from.startsWith('/login') ? from : homePath((p) => me.permissions.includes(p));
+    me.mustChangePassword ? '/change-password' : (from ?? homePath((p) => me.permissions.includes(p)));
 
   if (status === 'authenticated' && user) return <Navigate to={target(user)} replace />;
 
