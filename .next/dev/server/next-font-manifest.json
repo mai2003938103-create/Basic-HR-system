@@ -1,0 +1,8 @@
+{
+  "app": {
+    "[project]/frontend/app/(app)/page": []
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

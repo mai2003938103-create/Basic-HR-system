@@ -1,0 +1,98 @@
+/* Systory HRMS — generated from tokens.json (Design System artifact). Do not edit by hand. */
+:root,
+[data-theme="light"] {
+  --surface-100: #f4f7f6;
+  --surface-card: #ffffff;
+  --surface-sunken: #eaf2f0;
+  --border: #d3e3e0;
+  --border-strong: #778d8a;
+  --ink: #0f2523;
+  --ink-muted: #4a605e;
+  --primary: #19827b;
+  --primary-hover: #046262;
+  --primary-light: #2ba495;
+  --primary-tint: #e3f2f0;
+  --on-primary: #ffffff;
+  --secondary: #046262;
+  --secondary-end: #167a78;
+  --on-secondary: #ffffff;
+  --on-secondary-muted: #daffff;
+  --accent: #81121b;
+  --accent-bright: #de2323;
+  --accent-tint: #fdecec;
+  --on-accent: #ffffff;
+  --success: #16a34a;
+  --success-text: #15803d;
+  --success-tint: #e8f6ee;
+  --warning: #f59e0b;
+  --warning-text: #b45309;
+  --warning-tint: #fef5e6;
+  --danger: #dc2626;
+  --danger-text: #b91c1c;
+  --on-danger: #ffffff;
+  --danger-tint: #fdecec;
+  --neutral-tint: #edf1f1;
+  --focus-ring: var(--primary-hover);
+  --chart-1: #008c7c;
+  --chart-2: #b88a00;
+  --chart-3: #2f6fb5;
+  --chart-4: #dc2626;
+  --shadow-card: 0 1px 2px rgba(4,98,98,0.06), 0 1px 3px rgba(4,98,98,0.08);
+  --shadow-overlay: 0 12px 32px rgba(4,98,98,0.16);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --surface-100: #071c1b;
+  --surface-card: #0e2b29;
+  --surface-sunken: #133532;
+  --border: #22453f;
+  --border-strong: #5e8580;
+  --ink: #e4f1ef;
+  --ink-muted: #9bb5b1;
+  --primary: #2ba495;
+  --primary-hover: #51c4b5;
+  --primary-light: #51c4b5;
+  --primary-tint: #0f3f3b;
+  --on-primary: #04201f;
+  --secondary: #04403f;
+  --secondary-end: #0b5a57;
+  --on-secondary-muted: #b8ece6;
+  --accent: #f0a0a4;
+  --accent-bright: #ff6b6b;
+  --accent-tint: #3a1618;
+  --on-accent: #2a0605;
+  --success: #4ade80;
+  --success-text: #4ade80;
+  --success-tint: #123222;
+  --warning: #fbbf24;
+  --warning-text: #fbbf24;
+  --warning-tint: #33280f;
+  --danger: #f87171;
+  --danger-text: #f87171;
+  --on-danger: #2a0606;
+  --danger-tint: #3a1a1a;
+  --neutral-tint: #1f3533;
+  --chart-2: #b88b18;
+  --chart-3: #4f8fd6;
+  --chart-4: #e05252;
+  --shadow-card: none;
+  --shadow-overlay: 0 12px 32px rgba(0,0,0,0.5);
+  --chart-1: #2ba495;
+  color-scheme: dark;
+}
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-none: 0px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --font-sans: "Noto Sans", "Noto Sans Lao", "Phetsarath OT", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}

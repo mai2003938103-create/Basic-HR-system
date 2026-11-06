@@ -1,0 +1,62 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowJs": false,
+    "esModuleInterop": true,
+    "incremental": true,
+    "noEmit": true,
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "app",
+    "auth",
+    "components",
+    "hooks",
+    "i18n",
+    "layouts",
+    "lib",
+    "screens",
+    "test",
+    "styles",
+    ".next/types/**/*.ts",
+    "vitest.config.ts",
+    "next.config.ts",
+    "tailwind.config.ts",
+    "e2e",
+    "playwright.config.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src",
+    "dist",
+    "dist-prototype"
+  ]
+}

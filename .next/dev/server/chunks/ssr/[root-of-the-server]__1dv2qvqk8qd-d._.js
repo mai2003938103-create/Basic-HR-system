@@ -1,0 +1,413 @@
+module.exports = [
+(()=>{"use strict";return[
+"[project]/frontend/app/providers.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Providers",
+    ()=>Providers
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$i18n$2f$index$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/i18n/index.ts [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$auth$2f$AuthProvider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/auth/AuthProvider.tsx [app-ssr] (ecmascript)");
+'use client';
+;
+;
+;
+;
+;
+function Providers({ children }) {
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>setMounted(true), []);
+    if (!mounted) return null;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$auth$2f$AuthProvider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AuthProvider"], {
+        children: [
+            children,
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Toaster"], {
+                position: "top-right",
+                richColors: true,
+                closeButton: true
+            }, void 0, false, {
+                fileName: "[project]/frontend/app/providers.tsx",
+                lineNumber: 18,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/frontend/app/providers.tsx",
+        lineNumber: 16,
+        columnNumber: 5
+    }, this);
+}
+}),
+"[project]/frontend/auth/AuthProvider.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "AuthContext",
+    ()=>AuthContext,
+    "AuthProvider",
+    ()=>AuthProvider
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/lib/api.ts [app-ssr] (ecmascript)");
+;
+;
+;
+const AuthContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContext"])(null);
+function AuthProvider({ children }) {
+    const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [status, setStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('loading');
+    const [signedOut, setSignedOut] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["onSession"])((s)=>{
+            setUser(s?.user ?? null);
+            setStatus(s ? 'authenticated' : 'anonymous');
+        });
+        void (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["refreshSession"])();
+    }, []);
+    const login = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (email, password)=>{
+        const r = await __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post('/auth/login', {
+            email,
+            password
+        });
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setAccessToken"])(r.data.data.accessToken);
+        setUser(r.data.data.user);
+        setSignedOut(false);
+        setStatus('authenticated');
+        return r.data.data.user;
+    }, []);
+    const logout = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async ()=>{
+        try {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post('/auth/logout');
+        } finally{
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setAccessToken"])(null);
+            setUser(null);
+            setSignedOut(true);
+            setStatus('anonymous');
+        }
+    }, []);
+    const reload = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async ()=>{
+        const r = await __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].get('/auth/me');
+        setUser(r.data.data);
+    }, []);
+    const perms = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>new Set(user?.permissions ?? []), [
+        user
+    ]);
+    const can = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((p)=>perms.has(p), [
+        perms
+    ]);
+    const value = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>({
+            user,
+            status,
+            login,
+            logout,
+            can,
+            reload,
+            signedOut
+        }), [
+        user,
+        status,
+        login,
+        logout,
+        can,
+        reload,
+        signedOut
+    ]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(AuthContext.Provider, {
+        value: value,
+        children: children
+    }, void 0, false, {
+        fileName: "[project]/frontend/auth/AuthProvider.tsx",
+        lineNumber: 60,
+        columnNumber: 10
+    }, this);
+}
+}),
+"[project]/frontend/i18n/index.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__,
+    "localName",
+    ()=>localName,
+    "setLanguage",
+    ()=>setLanguage
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$i18next$2f$dist$2f$esm$2f$i18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/i18next/dist/esm/i18next.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$i18next$2f$dist$2f$es$2f$initReactI18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-i18next/dist/es/initReactI18next.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$i18n$2f$lo$2e$json$2e5b$json$5d2e$cjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/i18n/lo.json.[json].cjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$i18n$2f$en$2e$json$2e5b$json$5d2e$cjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/i18n/en.json.[json].cjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+const KEY = 'hrms_lang';
+function stored() {
+    try {
+        const v = localStorage.getItem(KEY);
+        return v === 'en' ? 'en' : 'lo';
+    } catch  {
+        return 'lo';
+    }
+}
+void __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$i18next$2f$dist$2f$esm$2f$i18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].use(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$i18next$2f$dist$2f$es$2f$initReactI18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["initReactI18next"]).init({
+    resources: {
+        lo: {
+            translation: __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$i18n$2f$lo$2e$json$2e5b$json$5d2e$cjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
+        },
+        en: {
+            translation: __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$i18n$2f$en$2e$json$2e5b$json$5d2e$cjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
+        }
+    },
+    lng: stored(),
+    fallbackLng: 'en',
+    interpolation: {
+        escapeValue: false
+    },
+    returnNull: false
+});
+if (typeof document !== 'undefined') document.documentElement.lang = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$i18next$2f$dist$2f$esm$2f$i18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].language;
+async function setLanguage(lang) {
+    await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$i18next$2f$dist$2f$esm$2f$i18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].changeLanguage(lang);
+    try {
+        localStorage.setItem(KEY, lang);
+    } catch  {
+    /* storage unavailable */ }
+    document.documentElement.lang = lang;
+}
+const localName = (r)=>r ? __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$i18next$2f$dist$2f$esm$2f$i18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].language === 'lo' ? r.nameLo : r.nameEn : '';
+const __TURBOPACK__default__export__ = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$i18next$2f$dist$2f$esm$2f$i18next$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"];
+}),
+"[project]/frontend/lib/api.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "api",
+    ()=>api,
+    "apiError",
+    ()=>apiError,
+    "onSession",
+    ()=>onSession,
+    "refreshSession",
+    ()=>refreshSession,
+    "setAccessToken",
+    ()=>setAccessToken
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-ssr] (ecmascript)");
+;
+/** API base: same origin by default (Next.js forwards /api to Express); override with NEXT_PUBLIC_API_URL. */ const BASE = process.env.NEXT_PUBLIC_API_URL ?? '/api';
+const api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].create({
+    baseURL: BASE,
+    withCredentials: true
+});
+let accessToken = null;
+const setAccessToken = (t)=>{
+    accessToken = t;
+};
+let sessionListener = ()=>{};
+const onSession = (fn)=>{
+    sessionListener = fn;
+};
+let refreshing = null;
+function refreshSession() {
+    refreshing ??= __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post(`${BASE}/auth/refresh`, null, {
+        withCredentials: true
+    }).then((r)=>{
+        setAccessToken(r.data.data.accessToken);
+        sessionListener(r.data.data);
+        return r.data.data.accessToken;
+    }).catch(()=>{
+        setAccessToken(null);
+        sessionListener(null);
+        return null;
+    }).finally(()=>{
+        refreshing = null;
+    });
+    return refreshing;
+}
+api.interceptors.request.use((config)=>{
+    if (accessToken) config.headers.set('Authorization', `Bearer ${accessToken}`);
+    return config;
+});
+api.interceptors.response.use(undefined, async (error)=>{
+    const cfg = error.config;
+    if (error.response?.status === 401 && cfg && !cfg._retried && !cfg.url?.startsWith('/auth/')) {
+        cfg._retried = true;
+        const token = await refreshSession();
+        if (token) {
+            cfg.headers = {
+                ...cfg.headers ?? {},
+                Authorization: `Bearer ${token}`
+            };
+            return api.request(cfg);
+        }
+    }
+    throw error;
+});
+function apiError(e) {
+    const ax = e;
+    const err = ax?.response?.data?.error;
+    if (!err) return {
+        code: 'NETWORK',
+        messageKey: ax?.response ? 'errors.common.internal' : 'errors.common.network',
+        fieldErrors: {}
+    };
+    return {
+        code: err.code,
+        messageKey: err.message,
+        fieldErrors: Object.fromEntries((err.details ?? []).map((d)=>[
+                d.field,
+                d.message
+            ]))
+    };
+}
+}),
+]})(),
+"[externals]/assert [external] (assert, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("assert", () => require("assert"));
+
+module.exports = mod;
+}),
+"[externals]/crypto [external] (crypto, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("crypto", () => require("crypto"));
+
+module.exports = mod;
+}),
+"[externals]/events [external] (events, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("events", () => require("events"));
+
+module.exports = mod;
+}),
+"[externals]/fs [external] (fs, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}),
+"[externals]/http [external] (http, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("http", () => require("http"));
+
+module.exports = mod;
+}),
+"[externals]/http2 [external] (http2, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("http2", () => require("http2"));
+
+module.exports = mod;
+}),
+"[externals]/https [external] (https, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("https", () => require("https"));
+
+module.exports = mod;
+}),
+"[externals]/net [external] (net, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("net", () => require("net"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/compiled/next-server/app-page-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-page-turbo.runtime.dev.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("next/dist/compiled/next-server/app-page-turbo.runtime.dev.js", () => require("next/dist/compiled/next-server/app-page-turbo.runtime.dev.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/action-async-storage.external.js [external] (next/dist/server/app-render/action-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("next/dist/server/app-render/action-async-storage.external.js", () => require("next/dist/server/app-render/action-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/after-task-async-storage.external.js [external] (next/dist/server/app-render/after-task-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("next/dist/server/app-render/after-task-async-storage.external.js", () => require("next/dist/server/app-render/after-task-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/dynamic-access-async-storage.external.js [external] (next/dist/server/app-render/dynamic-access-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("next/dist/server/app-render/dynamic-access-async-storage.external.js", () => require("next/dist/server/app-render/dynamic-access-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-async-storage.external.js [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("next/dist/server/app-render/work-async-storage.external.js", () => require("next/dist/server/app-render/work-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-unit-async-storage.external.js [external] (next/dist/server/app-render/work-unit-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("next/dist/server/app-render/work-unit-async-storage.external.js", () => require("next/dist/server/app-render/work-unit-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/runtime-reacts.external.js [external] (next/dist/server/runtime-reacts.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("next/dist/server/runtime-reacts.external.js", () => require("next/dist/server/runtime-reacts.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/path [external] (path, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("path", () => require("path"));
+
+module.exports = mod;
+}),
+"[externals]/stream [external] (stream, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("stream", () => require("stream"));
+
+module.exports = mod;
+}),
+"[externals]/tls [external] (tls, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("tls", () => require("tls"));
+
+module.exports = mod;
+}),
+"[externals]/tty [external] (tty, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("tty", () => require("tty"));
+
+module.exports = mod;
+}),
+"[externals]/url [external] (url, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("url", () => require("url"));
+
+module.exports = mod;
+}),
+"[externals]/util [external] (util, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("util", () => require("util"));
+
+module.exports = mod;
+}),
+"[externals]/zlib [external] (zlib, cjs)", ((__turbopack_context__, module, exports) => {
+
+var mod = __turbopack_context__.x("zlib", () => require("zlib"));
+
+module.exports = mod;
+}),
+"[project]/frontend/i18n/en.json.[json].cjs [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+module.exports = JSON.parse("{\"common\":{\"months\":{\"m1\":\"January\",\"m2\":\"February\",\"m3\":\"March\",\"m4\":\"April\",\"m5\":\"May\",\"m6\":\"June\",\"m7\":\"July\",\"m8\":\"August\",\"m9\":\"September\",\"m10\":\"October\",\"m11\":\"November\",\"m12\":\"December\"},\"save\":\"Save\",\"cancel\":\"Cancel\",\"delete\":\"Delete\",\"edit\":\"Edit\",\"add\":\"Add\",\"search\":\"Search\",\"all\":\"All\",\"actions\":\"Actions\",\"confirm\":\"Confirm\",\"close\":\"Close\",\"back\":\"Back\",\"retry\":\"Try again\",\"loading\":\"Loading...\",\"yes\":\"Yes\",\"no\":\"No\",\"optional\":\"Optional\",\"export\":\"Export\",\"view\":\"View\",\"viewAll\":\"View all\",\"status\":\"Status\",\"from\":\"From\",\"to\":\"To\",\"today\":\"Today\",\"logout\":\"Sign out\",\"language\":\"Language\",\"notifications\":\"Notifications\",\"markAllRead\":\"Mark all as read\",\"noNotifications\":\"No notifications\",\"previous\":\"Previous\",\"next\":\"Next\",\"showing\":\"{{from}}–{{to}} of {{total}}\",\"rowsPerPage\":\"Rows per page\",\"details\":\"Details\",\"reason\":\"Reason\",\"note\":\"Note\",\"submit\":\"Submit\",\"saving\":\"Saving...\",\"active\":\"Active\",\"inactive\":\"Inactive\",\"choose\":\"Select...\",\"filters\":\"Filters\",\"clear\":\"Clear\",\"menu\":\"Menu\",\"saved\":\"Saved\",\"deleted\":\"Deleted\",\"none\":\"None\",\"emptyTitle\":\"Nothing here yet\",\"emptyFiltered\":\"No results match your search\",\"errorTitle\":\"Could not load data\",\"confirmDeleteTitle\":\"Confirm delete\",\"cannotUndo\":\"This cannot be undone.\",\"profile\":\"My profile\",\"changePassword\":\"Change password\",\"user\":\"User\",\"openMenu\":\"Open menu\",\"unread\":\"unread\",\"lightMode\":\"Light mode\",\"darkMode\":\"Dark mode\",\"sortAsc\":\"Sort ascending\",\"sortDesc\":\"Sort descending\",\"download\":\"Download\",\"fileHint\":\"Max 5 MB\",\"chooseFile\":\"Choose file\",\"removeFile\":\"Remove file\"},\"nav\":{\"dashboard\":\"Dashboard\",\"employees\":\"Employees\",\"departments\":\"Departments\",\"positions\":\"Positions\",\"attendance\":\"Attendance\",\"leave\":\"Leave\",\"users\":\"Users\",\"roles\":\"Roles\",\"profile\":\"My profile\",\"system\":\"System\",\"payroll\":\"Payroll\",\"payslips\":\"My payslips\",\"reports\":\"Reports\",\"settings\":\"Settings\",\"productName\":\"Systory HRMS\",\"productTagline\":\"HR Management System\"},\"auth\":{\"title\":\"Sign in\",\"subtitle\":\"Human resource management for small and medium businesses\",\"tagline\":\"Let's step up together\",\"email\":\"Email\",\"password\":\"Password\",\"signIn\":\"Sign in\",\"signingIn\":\"Signing in...\",\"forgot\":\"Forgot your password? Ask HR for a reset link.\",\"changeTitle\":\"Set a new password\",\"mustChange\":\"For security, please change your password before continuing.\",\"currentPassword\":\"Current password\",\"newPassword\":\"New password\",\"confirmPassword\":\"Confirm new password\",\"passwordRule\":\"At least 8 characters with letters and numbers\",\"passwordMismatch\":\"Passwords do not match\",\"passwordChanged\":\"Password changed\",\"resetTitle\":\"Reset password\",\"resetDone\":\"Password reset. Please sign in.\",\"resetMissing\":\"This link is invalid or has expired.\",\"backToLogin\":\"Back to sign in\"},\"status\":{\"attendance\":{\"present\":\"Present\",\"late\":\"Late\",\"absent\":\"Absent\",\"half_day\":\"Half day\",\"leave\":\"Leave\"},\"leave\":{\"pending\":\"Pending\",\"approved\":\"Approved\",\"rejected\":\"Rejected\",\"cancelled\":\"Cancelled\"},\"employment\":{\"active\":\"Active\",\"probation\":\"Probation\",\"inactive\":\"Inactive\",\"terminated\":\"Terminated\"},\"account\":{\"active\":\"Active\",\"inactive\":\"Inactive\"},\"payroll\":{\"draft\":\"Draft\",\"pending\":\"Pending\",\"approved\":\"Approved\",\"paid\":\"Paid\"}},\"errors\":{\"common\":{\"notFound\":\"Not found\",\"forbidden\":\"You do not have permission to do this\",\"internal\":\"Something went wrong. Please try again\",\"duplicate\":\"This already exists\",\"inUse\":\"This is in use\",\"network\":\"Cannot reach the server\"},\"auth\":{\"invalidCredentials\":\"Incorrect email or password\",\"unauthenticated\":\"Please sign in\",\"sessionExpired\":\"Your session has expired. Please sign in again\",\"accountDisabled\":\"This account is disabled\",\"tooManyAttempts\":\"Too many attempts. Wait a minute\",\"wrongPassword\":\"Current password is incorrect\",\"invalidToken\":\"This link is invalid or has expired\"},\"password\":{\"weak\":\"Password needs 8+ characters with letters and numbers\"},\"validation\":{\"failed\":\"Please check the highlighted fields\",\"required\":\"This field is required\",\"email\":\"Invalid email\",\"date\":\"Invalid date\",\"phone\":\"Invalid phone number\",\"money\":\"Invalid amount\",\"time\":\"Enter a time as HH:mm\",\"bankAccount\":\"Account number may contain only digits, letters, dashes and spaces\",\"code\":\"Use only A–Z, 0–9, - and _\",\"invalidSort\":\"Invalid sort\",\"invalidJson\":\"Invalid data\",\"invalid_type\":\"This field is required\",\"too_small\":\"Value is too small\",\"too_big\":\"Value is too large\",\"invalid_string\":\"Invalid format\",\"invalid_enum_value\":\"Please choose an option\",\"custom\":\"Invalid value\"},\"department\":{\"invalidManager\":\"The manager must be an active employee\",\"inUse\":\"Cannot delete: the department still has employees or positions\"},\"position\":{\"invalidDepartment\":\"Please choose a department\",\"inUse\":\"Cannot delete or move: the position still has employees\"},\"employee\":{\"positionMismatch\":\"This position does not belong to the chosen department\",\"hireDateTooFar\":\"Hire date is more than 90 days ahead\",\"tooYoung\":\"Must be at least 15 years old at hire date\"},\"user\":{\"invalidRole\":\"Invalid role\",\"cannotDeactivateSelf\":\"You cannot deactivate your own account\",\"invalidEmployee\":\"Employee not found\",\"employeeHasAccount\":\"This employee already has an account\"},\"role\":{\"lastSuperAdmin\":\"At least one active Super Admin is required\",\"superAdminLocked\":\"The Super Admin role cannot be changed\",\"invalidPermission\":\"Invalid permission\"},\"upload\":{\"invalidType\":\"File type not supported\",\"tooLarge\":\"File is larger than 5 MB\",\"missing\":\"Please choose a file\"},\"attendance\":{\"noEmployee\":\"This account is not linked to an employee\",\"alreadyCheckedIn\":\"You have already checked in today\",\"notCheckedIn\":\"You have not checked in yet\",\"alreadyCheckedOut\":\"You have already checked out\",\"onLeave\":\"You are on approved leave today\",\"noteRequired\":\"Please give a reason for the change\",\"invalidTimes\":\"Check-out must be after check-in\"},\"leave\":{\"invalidRange\":\"End date cannot be before start date\",\"zeroDays\":\"The chosen dates contain no working days\",\"documentRequired\":\"Please attach a supporting document\",\"overlap\":\"Overlaps an existing leave request\",\"insufficientBalance\":\"Not enough leave balance\",\"notPending\":\"This request has already been decided\",\"ownRequest\":\"You cannot decide your own request\",\"cannotCancel\":\"Cannot cancel leave that has started\",\"reasonRequired\":\"Please give a reason\",\"halfDaySingleDate\":\"Half day applies to a single date only\",\"invalidType\":\"Please choose a leave type\"},\"payroll\":{\"periodExists\":\"A payroll for this month already exists\",\"notDraft\":\"Only drafts can be changed\",\"notPending\":\"This payroll is not waiting for approval\",\"notApproved\":\"Approve the payroll before paying it\"},\"settings\":{\"endBeforeStart\":\"End time must be after start time\",\"bracketOrder\":\"Brackets must increase, with no ceiling on the last one\"},\"forbiddenPage\":\"You do not have access to this page\",\"notFoundPage\":\"Page not found\"},\"notifications\":{\"leaveRequested\":\"{{employeeName}} requested leave {{startDate}} – {{endDate}}\",\"leaveApproved\":\"Your leave {{startDate}} – {{endDate}} was approved\",\"payrollSubmitted\":\"Payroll {{period}} is waiting for approval\",\"payrollApproved\":\"Payroll {{period}} was approved\",\"payrollReturned\":\"Payroll {{period}} was returned for changes\",\"payslipReady\":\"Your payslip for {{period}} is ready\",\"leaveRejected\":\"Your leave {{startDate}} – {{endDate}} was rejected\"},\"dashboard\":{\"title\":\"Dashboard\",\"greeting\":\"Hello, {{name}}\",\"totalEmployees\":\"Total employees\",\"activeEmployees\":\"Active\",\"inactiveEmployees\":\"Inactive\",\"departments\":\"Departments\",\"presentToday\":\"Present today\",\"absentToday\":\"Absent / not checked in\",\"onLeaveToday\":\"On leave today\",\"pendingLeave\":\"Pending leave\",\"attendance30d\":\"Attendance, last 30 days\",\"byDepartment\":\"Employees by department\",\"byStatus\":\"Employees by status\",\"hiresByMonth\":\"New hires by month\",\"hires\":\"New hires\",\"teamSize\":\"Team members\",\"notCheckedIn\":\"Not checked in yet\",\"notCheckedInHint\":\"Excludes people on leave\",\"absentRecorded\":\"Absent\",\"waitingForYou\":\"Waiting for your approval\",\"nothingWaiting\":\"Nothing is waiting for you\",\"todayTeam\":\"Today: {{present}} of {{total}} in\",\"openAttendance\":\"Open attendance\",\"everyoneIn\":\"Everyone is in\",\"nobodyLate\":\"Nobody is late\",\"nobodyOnLeave\":\"Nobody is on leave\",\"untilDate\":\"until {{date}}\",\"andMore\":\"and {{n}} more\"},\"employees\":{\"title\":\"Employees\",\"add\":\"Add employee\",\"editTitle\":\"Edit employee\",\"code\":\"Employee ID\",\"firstName\":\"First name\",\"lastName\":\"Last name\",\"fullName\":\"Full name\",\"gender\":\"Gender\",\"male\":\"Male\",\"female\":\"Female\",\"other\":\"Other\",\"dob\":\"Date of birth\",\"phone\":\"Phone\",\"email\":\"Email\",\"address\":\"Address\",\"photo\":\"Profile photo\",\"uploadPhoto\":\"Upload photo\",\"department\":\"Department\",\"position\":\"Position\",\"hireDate\":\"Hire date\",\"status\":\"Status\",\"salary\":\"Basic salary\",\"emergencyName\":\"Emergency contact\",\"emergencyPhone\":\"Emergency phone\",\"emergencyRelation\":\"Relationship\",\"sectionPersonal\":\"Personal information\",\"sectionEmployment\":\"Employment\",\"sectionEmergency\":\"Emergency contact\",\"sectionAccount\":\"Login account\",\"createAccount\":\"Create a login account for this employee\",\"accountPassword\":\"Initial password\",\"accountHint\":\"The employee must change it at first sign-in\",\"roles\":\"Roles\",\"deactivate\":\"Deactivate\",\"activate\":\"Activate\",\"changeStatus\":\"Change status\",\"confirmDeactivate\":\"Deactivate this employee?\",\"confirmDeactivateText\":\"Their login account will be disabled immediately.\",\"created\":\"Employee added\",\"updated\":\"Employee updated\",\"allDepartments\":\"All departments\",\"allStatuses\":\"All statuses\",\"searchPlaceholder\":\"Search name, ID, email, phone\",\"noAccount\":\"No login account\",\"choosePosition\":\"Choose a department first\",\"photoUpdated\":\"Photo updated\",\"emptyTitle\":\"No employees yet\"},\"departments\":{\"title\":\"Departments\",\"add\":\"Add department\",\"editTitle\":\"Edit department\",\"code\":\"Code\",\"nameLo\":\"Name (Lao)\",\"nameEn\":\"Name (English)\",\"name\":\"Department\",\"description\":\"Description\",\"manager\":\"Manager\",\"noManager\":\"No manager\",\"employeeCount\":\"Employees\",\"employees\":\"Employees in this department\",\"confirmDelete\":\"Delete department {{name}}?\",\"emptyTitle\":\"No departments yet\",\"positions\":\"Positions in this department\"},\"positions\":{\"title\":\"Positions\",\"add\":\"Add position\",\"editTitle\":\"Edit position\",\"name\":\"Position\",\"confirmDelete\":\"Delete position {{name}}?\",\"emptyTitle\":\"No positions yet\"},\"attendance\":{\"lateBy\":\"{{n}} min late\",\"title\":\"Attendance\",\"myToday\":\"Today\",\"checkIn\":\"Check in\",\"checkOut\":\"Check out\",\"checkedInAt\":\"Checked in at {{time}}\",\"checkedOutAt\":\"Checked out at {{time}}\",\"done\":\"All done for today\",\"notWorkingDay\":\"Today is not a working day\",\"onLeaveToday\":\"You are on leave today\",\"history\":\"Attendance history\",\"date\":\"Date\",\"employee\":\"Employee\",\"checkInCol\":\"Check-in\",\"checkOutCol\":\"Check-out\",\"worked\":\"Worked\",\"lateMin\":\"Late\",\"earlyMin\":\"Early leave\",\"editTitle\":\"Correct attendance\",\"exportCsv\":\"Export CSV\",\"checkedIn\":\"Checked in\",\"checkedOut\":\"Checked out\",\"minutes\":\"{{n}} min\",\"noRecord\":\"Not checked in\",\"workHours\":\"Working hours {{start}} – {{end}}\",\"emptyTitle\":\"No attendance records\"},\"leave\":{\"daysN\":\"{{n}} days\",\"title\":\"Leave\",\"request\":\"Request leave\",\"myRequests\":\"My requests\",\"approvals\":\"Approvals\",\"all\":\"All requests\",\"balances\":\"Leave balance\",\"types\":\"Leave types\",\"holidays\":\"Public holidays\",\"type\":\"Leave type\",\"startDate\":\"Start date\",\"endDate\":\"End date\",\"halfDay\":\"Half day\",\"halfNone\":\"Full day\",\"halfMorning\":\"Morning\",\"halfAfternoon\":\"Afternoon\",\"days\":\"Days\",\"daysCount\":\"{{n}} day(s)\",\"reason\":\"Reason\",\"document\":\"Supporting document\",\"documentHint\":\"A document is required for more than {{n}} day(s)\",\"submitted\":\"Request submitted\",\"approvedToast\":\"Approved\",\"rejectedToast\":\"Rejected\",\"cancelledToast\":\"Cancelled\",\"approve\":\"Approve\",\"reject\":\"Reject\",\"cancel\":\"Cancel request\",\"rejectTitle\":\"Reject leave request\",\"rejectReason\":\"Reason for rejecting\",\"confirmCancel\":\"Cancel this leave request?\",\"confirmApprove\":\"Approve this leave request?\",\"remaining\":\"Remaining\",\"entitled\":\"Entitled\",\"used\":\"Used\",\"decisionNote\":\"Approver note\",\"employee\":\"Employee\",\"noPending\":\"No requests waiting for approval\",\"preview\":\"Counts as {{n}} working day(s)\",\"editEntitlement\":\"Adjust entitlement\",\"holidayDate\":\"Date\",\"holidayName\":\"Holiday\",\"addHoliday\":\"Add holiday\",\"isPaid\":\"Paid\",\"docAfter\":\"Document required after (days)\",\"defaultDays\":\"Days per year\",\"addType\":\"Add leave type\",\"year\":\"Year\",\"emptyTitle\":\"No leave requests yet\",\"requestedOn\":\"Requested\",\"unpaid\":\"Unpaid\"},\"users\":{\"title\":\"Users\",\"add\":\"Add user\",\"editTitle\":\"Edit user\",\"email\":\"Email\",\"roles\":\"Roles\",\"employee\":\"Linked employee\",\"noEmployee\":\"Not linked\",\"lastLogin\":\"Last sign-in\",\"never\":\"Never\",\"resetLink\":\"Create reset link\",\"resetLinkTitle\":\"Password reset link\",\"resetLinkHint\":\"Send this link to the user. It works once and expires at {{time}}.\",\"copy\":\"Copy\",\"copied\":\"Copied\",\"deactivate\":\"Deactivate\",\"activate\":\"Activate\",\"password\":\"Initial password\",\"confirmDeactivate\":\"Deactivate {{email}}?\",\"emptyTitle\":\"No users yet\"},\"roles\":{\"names\":{\"super_admin\":\"Super Admin\",\"hr_admin\":\"HR Admin\",\"manager\":\"Manager\",\"employee\":\"Employee\",\"director\":\"Director\"},\"title\":\"Roles & permissions\",\"add\":\"Add role\",\"editTitle\":\"Edit role\",\"code\":\"Code\",\"name\":\"Role\",\"scope\":\"Data scope\",\"permissions\":\"Permissions\",\"userCount\":\"Users\",\"locked\":\"This role has every permission and cannot be changed\",\"scopes\":{\"all\":\"Whole company\",\"department\":\"Departments they manage\",\"self\":\"Own records\"},\"modules\":{\"employee\":\"Employees\",\"department\":\"Departments\",\"position\":\"Positions\",\"attendance\":\"Attendance\",\"leave\":\"Leave\",\"dashboard\":\"Dashboard\",\"user\":\"Users\",\"payroll\":\"Payroll\",\"report\":\"Reports\",\"settings\":\"Settings\"}},\"profile\":{\"title\":\"My profile\",\"account\":\"Account\",\"noEmployee\":\"This account is not linked to an employee\"},\"prototype\":{\"badge\":\"Prototype\",\"title\":\"Clickable prototype\",\"note\":\"Every screen runs on sample data in your browser, with no backend. Payroll and tax figures are examples, not confirmed calculations.\",\"switchRole\":\"Sign in as\",\"pickAccount\":\"Pick a demo account\",\"password\":\"Password for every account: Demo1234\",\"downloadBlocked\":\"Downloads are off in the prototype. The real system saves {{file}}\",\"reset\":\"Reset sample data\",\"resetDone\":\"Sample data reset\",\"roles\":{\"superAdmin\":\"Super Admin\",\"hr\":\"HR Admin\",\"director\":\"Director (approves payroll)\",\"manager\":\"Finance manager\",\"employee\":\"Employee\"}},\"payroll\":{\"title\":\"Payroll\",\"subtitle\":\"Prepare, review, approve and pay monthly salaries\",\"newRun\":\"New payroll run\",\"newRunHint\":\"Basic salaries, overtime from attendance and unpaid leave are pulled in automatically.\",\"createRun\":\"Create\",\"created\":\"Created payroll for {{period}}\",\"period\":\"Period\",\"employees\":\"Employees\",\"employeesN\":\"{{n}} employees\",\"employee\":\"Employee\",\"gross\":\"Gross pay\",\"net\":\"Net pay\",\"totalNet\":\"Total net pay\",\"payDate\":\"Pay date\",\"latestNet\":\"Net pay · {{period}}\",\"employerCost\":\"Employer cost\",\"employerCostHint\":\"Gross pay + employer social security\",\"taxAndSs\":\"Tax {{tax}} · Social security {{ss}}\",\"taxAndSsTitle\":\"Tax & social security\",\"employerSsShort\":\"Incl. employer social security {{amount}}\",\"emptyTitle\":\"No payroll runs yet\",\"runTitle\":\"Payroll · {{period}}\",\"progress\":\"Progress\",\"steps\":{\"draft\":\"Prepare\",\"pending\":\"Submitted\",\"approved\":\"Approved\",\"paid\":\"Paid\"},\"banner\":{\"draft\":\"Draft: check the figures, adjust lines if needed, then submit for approval.\",\"draftView\":\"HR is still preparing this payroll.\",\"pendingApprover\":\"Waiting for your approval. Approve it, or return it with a reason.\",\"pending\":\"Submitted and waiting for approval. Lines are locked.\",\"approvedPay\":\"Approved. Export the bank file, then mark as paid to release payslips.\",\"approved\":\"Approved and waiting for payment.\",\"paid\":\"Paid on {{date}}. Employees can see their payslips.\"},\"exportBank\":\"Bank file\",\"recalculate\":\"Recalculate\",\"deleteDraft\":\"Delete draft\",\"submit\":\"Submit for approval\",\"approve\":\"Approve\",\"return\":\"Return\",\"markPaid\":\"Mark as paid\",\"returnTitle\":\"Return {{period}} for changes\",\"returnNote\":\"Reason / what to change\",\"done\":{\"submit\":\"Submitted for approval\",\"approve\":\"Approved\",\"pay\":\"Marked as paid\",\"reject\":\"Returned\",\"recalculate\":\"Recalculated\",\"delete\":\"Deleted\"},\"confirm\":{\"submit\":\"Submit {{period}} for approval?\",\"submitDesc\":\"{{n}} employees, {{net}} net. Lines lock until it is returned.\",\"approve\":\"Approve {{period}}?\",\"approveDesc\":\"Net pay {{net}}, employer cost {{cost}}.\",\"pay\":\"Confirm {{period}} has been paid?\",\"payDesc\":\"Every employee is notified and can open their payslip.\",\"delete\":\"Delete the {{period}} draft?\",\"recalculate\":\"Recalculate from the latest data?\",\"recalculateDesc\":\"Refreshes basic salary, overtime and unpaid leave. Allowances, bonuses and deductions you set are kept.\"},\"basic\":\"Basic salary\",\"allowance\":\"Allowance\",\"overtimePay\":\"Overtime pay\",\"bonus\":\"Bonus\",\"extraEarnings\":\"Allowance + OT + bonus\",\"ssShort\":\"Social sec.\",\"taxShort\":\"Income tax\",\"otherShort\":\"Other deductions\",\"adjust\":\"Adjust\",\"adjustTitle\":\"Adjust: {{name}}\",\"overtimeHours\":\"Overtime hours\",\"unpaidDays\":\"Unpaid leave days\",\"otherDeduction\":\"Other deductions\",\"otherDeductionHint\":\"e.g. salary advance, damages\",\"fromAttendance\":\"From attendance\",\"fromLeave\":\"From approved leave\",\"inclOther\":\"incl. other {{amount}}\",\"netAndChange\":\"Net pay / vs last run\",\"vsPeriod\":\"vs {{period}}\",\"newEmployee\":\"New\",\"bigChange\":\"Changed by 10% or more\",\"changedOnly\":\"Changed only ({{n}})\",\"comparedWith\":\"Compared with {{period}} ({{n}} employees)\",\"newThisRun\":\"{{n}} new this run\",\"leftSince\":\"Not in this run: {{names}}\",\"amountsIn\":\"Amounts in {{symbol}}\",\"payslip\":\"Payslip\",\"print\":\"Print\",\"bank\":\"Bank account\",\"workDays\":\"Working days\",\"overtime\":\"Overtime\",\"hours\":\"{{n}} h\",\"days\":\"{{n}} days\",\"earnings\":\"Earnings\",\"deductions\":\"Deductions\",\"otHint\":\"{{h}} h × {{rate}}% of hourly rate\",\"unpaidLeave\":\"Unpaid leave\",\"ssEmployee\":\"Social security (employee)\",\"ssHint\":\"{{rate}}% of {{base}}\",\"incomeTax\":\"Income tax\",\"taxableHint\":\"Taxable income {{amount}}\",\"totalDeductions\":\"Total deductions\",\"taxBreakdown\":\"How the tax was calculated\",\"bracket\":\"Bracket\",\"rate\":\"Rate\",\"amountInBracket\":\"Amount in bracket\",\"tax\":\"Tax\",\"over\":\"Over {{amount}}\",\"employerSs\":\"The company also pays {{rate}}% social security: {{amount}} (not deducted from pay).\",\"sampleNote\":\"Prototype: tax and social security rates are sample values editable in Settings. HR and accounting must confirm them against Lao law before go-live.\",\"payslipsSubtitle\":\"Your paid payslips\",\"noPayslips\":\"No payslips yet\",\"noPayslipsHint\":\"Payslips appear here after payroll is paid.\",\"paidOn\":\"Paid {{date}}\"},\"reports\":{\"title\":\"Reports\",\"subtitleAll\":\"Whole company\",\"subtitleDept\":\"Your department\",\"tabs\":{\"headcount\":\"Headcount\",\"attendance\":\"Attendance\",\"leave\":\"Leave\",\"payroll\":\"Payroll\"},\"exportCsv\":\"Export CSV\",\"code\":\"Code\",\"name\":\"Name\",\"total\":\"Total\",\"male\":\"Male\",\"female\":\"Female\",\"headcount\":\"Headcount\",\"excludesTerminated\":\"Excludes terminated\",\"femaleShare\":\"Women\",\"genderSplit\":\"{{f}} women · {{m}} men\",\"hires12m\":\"Hires, last 12 months\",\"exits12m\":\"Exits, last 12 months\",\"sampleExits\":\"Sample figure\",\"byDepartmentStatus\":\"Employees by department and status\",\"tenure\":\"Tenure\",\"tenureBuckets\":{\"lt1\":\"Under 1 year\",\"1to3\":\"1–3 years\",\"3to5\":\"3–5 years\",\"gt5\":\"5+ years\"},\"movement\":\"Hires and exits by month\",\"hires\":\"Hires\",\"exits\":\"Exits\",\"month\":\"Month\",\"lateMinutes\":\"Late minutes\",\"otHours\":\"Overtime hours\",\"attendanceRate\":\"Attendance rate\",\"avgAttendance\":\"Average attendance\",\"workDaysSoFar\":\"{{n}} working days, excluding today\",\"lateTimes\":\"Late arrivals\",\"lateMinutesTotal\":\"{{n}} minutes in total\",\"absentDays\":\"Absent days\",\"leaveByMonth\":\"Approved leave days by month\",\"leaveDays\":\"Leave days\",\"leaveByType\":\"Leave days by type\",\"usedOfEntitled\":\"Figures are used / entitled days.\",\"ssEmployee\":\"Social security (employee)\",\"ssEmployer\":\"Social security (employer)\",\"ytdCost\":\"Payroll cost this year\",\"runsCounted\":\"{{n}} approved or paid runs\",\"ytdNet\":\"Net paid this year\",\"ytdTax\":\"Income tax this year\",\"ytdSs\":\"Social security this year\",\"ssBoth\":\"Employee + employer\",\"costByMonth\":\"Payroll by month (millions)\",\"costByDept\":\"Cost by department, {{period}} (millions)\",\"costByDeptEmpty\":\"Cost by department\",\"noPayroll\":\"No approved payroll this year\",\"millionsNote\":\"Charts show millions.\"},\"settings\":{\"title\":\"Settings\",\"subtitle\":\"Company details, working hours and payroll rules\",\"tabs\":{\"company\":\"Company\",\"workTime\":\"Working time\",\"payroll\":\"Payroll & tax\"},\"company\":\"Company details\",\"nameLo\":\"Company name (Lao)\",\"nameEn\":\"Company name (English)\",\"addressLo\":\"Address (Lao)\",\"addressEn\":\"Address (English)\",\"taxId\":\"Tax ID\",\"taxIdHint\":\"Shown on payslips\",\"phone\":\"Phone\",\"email\":\"Email\",\"currencyCode\":\"Currency code\",\"currencySymbol\":\"Symbol\",\"workTime\":\"Working time\",\"workingDays\":\"Working days\",\"days\":{\"d1\":\"Mon\",\"d2\":\"Tue\",\"d3\":\"Wed\",\"d4\":\"Thu\",\"d5\":\"Fri\",\"d6\":\"Sat\",\"d7\":\"Sun\"},\"workStart\":\"Start time\",\"workEnd\":\"End time\",\"lateGrace\":\"Late grace (minutes)\",\"lateGraceHint\":\"Later than this counts as late\",\"halfDay\":\"Half day (minutes)\",\"halfDayHint\":\"Less work than this counts as a half day\",\"leaveAndHolidays\":\"Leave and holidays\",\"leaveAndHolidaysHint\":\"Leave types and public holidays are managed on the Leave page.\",\"payrollWarning\":\"These rates are sample values. Ask accounting to confirm them against the current Lao income tax and social security laws before go-live.\",\"payrollGeneral\":\"General\",\"payDay\":\"Pay day\",\"payDayHint\":\"Day of the month\",\"workDaysPerMonth\":\"Working days per month\",\"workDaysPerMonthHint\":\"Used for the daily rate\",\"overtimeRate\":\"Overtime rate (%)\",\"overtimeRateHint\":\"Of the hourly rate\",\"socialSecurity\":\"Social security\",\"ssEmployee\":\"Employee share (%)\",\"ssEmployer\":\"Employer share (%)\",\"ssCeiling\":\"Salary ceiling\",\"ssCeilingHint\":\"Contributions stop above this salary\",\"taxBrackets\":\"Income tax brackets (monthly)\",\"taxBracketsHint\":\"Progressive: each rate applies only to the part of income inside its bracket. Taxable income = gross pay − employee social security.\",\"from\":\"From\",\"upTo\":\"Up to\",\"rate\":\"Rate\",\"noCeiling\":\"No ceiling\",\"addBracket\":\"Add bracket\",\"preview\":\"Try it\",\"previewGross\":\"Gross pay\"}}");
+}),
+"[project]/frontend/i18n/lo.json.[json].cjs [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+module.exports = JSON.parse("{\"common\":{\"months\":{\"m1\":\"ມັງກອນ\",\"m2\":\"ກຸມພາ\",\"m3\":\"ມີນາ\",\"m4\":\"ເມສາ\",\"m5\":\"ພຶດສະພາ\",\"m6\":\"ມິຖຸນາ\",\"m7\":\"ກໍລະກົດ\",\"m8\":\"ສິງຫາ\",\"m9\":\"ກັນຍາ\",\"m10\":\"ຕຸລາ\",\"m11\":\"ພະຈິກ\",\"m12\":\"ທັນວາ\"},\"save\":\"ບັນທຶກ\",\"cancel\":\"ຍົກເລີກ\",\"delete\":\"ລຶບ\",\"edit\":\"ແກ້ໄຂ\",\"add\":\"ເພີ່ມ\",\"search\":\"ຄົ້ນຫາ\",\"all\":\"ທັງໝົດ\",\"actions\":\"ຈັດການ\",\"confirm\":\"ຢືນຢັນ\",\"close\":\"ປິດ\",\"back\":\"ກັບຄືນ\",\"retry\":\"ລອງໃໝ່\",\"loading\":\"ກຳລັງໂຫຼດ...\",\"yes\":\"ແມ່ນ\",\"no\":\"ບໍ່\",\"optional\":\"ບໍ່ບັງຄັບ\",\"export\":\"ສົ່ງອອກ\",\"view\":\"ເບິ່ງ\",\"viewAll\":\"ເບິ່ງທັງໝົດ\",\"status\":\"ສະຖານະ\",\"from\":\"ຈາກວັນທີ\",\"to\":\"ເຖິງວັນທີ\",\"today\":\"ມື້ນີ້\",\"logout\":\"ອອກຈາກລະບົບ\",\"language\":\"ພາສາ\",\"notifications\":\"ການແຈ້ງເຕືອນ\",\"markAllRead\":\"ໝາຍວ່າອ່ານແລ້ວທັງໝົດ\",\"noNotifications\":\"ບໍ່ມີການແຈ້ງເຕືອນ\",\"previous\":\"ກ່ອນໜ້າ\",\"next\":\"ຕໍ່ໄປ\",\"showing\":\"{{from}}–{{to}} ຈາກ {{total}}\",\"rowsPerPage\":\"ແຖວຕໍ່ໜ້າ\",\"details\":\"ລາຍລະອຽດ\",\"reason\":\"ເຫດຜົນ\",\"note\":\"ໝາຍເຫດ\",\"submit\":\"ສົ່ງ\",\"saving\":\"ກຳລັງບັນທຶກ...\",\"active\":\"ເປີດໃຊ້\",\"inactive\":\"ປິດໃຊ້\",\"choose\":\"ເລືອກ...\",\"filters\":\"ຕົວກັ່ນຕອງ\",\"clear\":\"ລ້າງ\",\"menu\":\"ເມນູ\",\"saved\":\"ບັນທຶກແລ້ວ\",\"deleted\":\"ລຶບແລ້ວ\",\"none\":\"ບໍ່ມີ\",\"emptyTitle\":\"ຍັງບໍ່ມີຂໍ້ມູນ\",\"emptyFiltered\":\"ບໍ່ພົບຂໍ້ມູນທີ່ກົງກັບການຄົ້ນຫາ\",\"errorTitle\":\"ໂຫຼດຂໍ້ມູນບໍ່ສຳເລັດ\",\"confirmDeleteTitle\":\"ຢືນຢັນການລຶບ\",\"cannotUndo\":\"ການກະທຳນີ້ຍ້ອນຄືນບໍ່ໄດ້.\",\"profile\":\"ຂໍ້ມູນຂອງຂ້ອຍ\",\"changePassword\":\"ປ່ຽນລະຫັດຜ່ານ\",\"user\":\"ຜູ້ໃຊ້\",\"openMenu\":\"ເປີດເມນູ\",\"unread\":\"ຍັງບໍ່ອ່ານ\",\"lightMode\":\"ໂໝດແຈ້ງ\",\"darkMode\":\"ໂໝດມືດ\",\"sortAsc\":\"ລຽງນ້ອຍຫາໃຫຍ່\",\"sortDesc\":\"ລຽງໃຫຍ່ຫານ້ອຍ\",\"download\":\"ດາວໂຫຼດ\",\"fileHint\":\"ໄຟລ໌ບໍ່ເກີນ 5 MB\",\"chooseFile\":\"ເລືອກໄຟລ໌\",\"removeFile\":\"ເອົາໄຟລ໌ອອກ\"},\"nav\":{\"dashboard\":\"ໜ້າຫຼັກ\",\"employees\":\"ພະນັກງານ\",\"departments\":\"ພະແນກ\",\"positions\":\"ຕຳແໜ່ງ\",\"attendance\":\"ການເຂົ້າວຽກ\",\"leave\":\"ການລາພັກ\",\"users\":\"ຜູ້ໃຊ້ ແລະ ສິດ\",\"roles\":\"ບົດບາດ\",\"profile\":\"ຂໍ້ມູນຂອງຂ້ອຍ\",\"system\":\"ລະບົບ\",\"payroll\":\"ເງິນເດືອນ\",\"payslips\":\"ໃບແຈ້ງເງິນເດືອນ\",\"reports\":\"ລາຍງານ\",\"settings\":\"ຕັ້ງຄ່າ\",\"productName\":\"Systory HRMS\",\"productTagline\":\"ລະບົບບໍລິຫານບຸກຄະລາກອນ\"},\"auth\":{\"title\":\"ເຂົ້າສູ່ລະບົບ\",\"subtitle\":\"ລະບົບບໍລິຫານຊັບພະຍາກອນມະນຸດ ສຳລັບທຸລະກິດຂະໜາດນ້ອຍ ແລະ ກາງ\",\"tagline\":\"Let's step up together\",\"email\":\"ອີເມວ\",\"password\":\"ລະຫັດຜ່ານ\",\"signIn\":\"ເຂົ້າສູ່ລະບົບ\",\"signingIn\":\"ກຳລັງເຂົ້າສູ່ລະບົບ...\",\"forgot\":\"ລືມລະຫັດຜ່ານ? ຕິດຕໍ່ຝ່າຍບຸກຄະລາກອນ ເພື່ອຂໍລິ້ງຕັ້ງລະຫັດໃໝ່.\",\"changeTitle\":\"ຕັ້ງລະຫັດຜ່ານໃໝ່\",\"mustChange\":\"ເພື່ອຄວາມປອດໄພ, ກະລຸນາປ່ຽນລະຫັດຜ່ານກ່ອນໃຊ້ງານ.\",\"currentPassword\":\"ລະຫັດຜ່ານປັດຈຸບັນ\",\"newPassword\":\"ລະຫັດຜ່ານໃໝ່\",\"confirmPassword\":\"ຢືນຢັນລະຫັດຜ່ານໃໝ່\",\"passwordRule\":\"ຢ່າງໜ້ອຍ 8 ຕົວ, ມີທັງຕົວອັກສອນ ແລະ ຕົວເລກ\",\"passwordMismatch\":\"ລະຫັດຜ່ານບໍ່ກົງກັນ\",\"passwordChanged\":\"ປ່ຽນລະຫັດຜ່ານແລ້ວ\",\"resetTitle\":\"ຕັ້ງລະຫັດຜ່ານໃໝ່\",\"resetDone\":\"ຕັ້ງລະຫັດຜ່ານໃໝ່ແລ້ວ. ກະລຸນາເຂົ້າສູ່ລະບົບ.\",\"resetMissing\":\"ລິ້ງບໍ່ຖືກຕ້ອງ ຫຼື ໝົດອາຍຸ.\",\"backToLogin\":\"ກັບໄປໜ້າເຂົ້າສູ່ລະບົບ\"},\"status\":{\"attendance\":{\"present\":\"ມາເຮັດວຽກ\",\"late\":\"ມາຊ້າ\",\"absent\":\"ຂາດວຽກ\",\"half_day\":\"ເຄິ່ງວັນ\",\"leave\":\"ລາພັກ\"},\"leave\":{\"pending\":\"ລໍຖ້າອະນຸມັດ\",\"approved\":\"ອະນຸມັດແລ້ວ\",\"rejected\":\"ປະຕິເສດ\",\"cancelled\":\"ຍົກເລີກແລ້ວ\"},\"employment\":{\"active\":\"ເຮັດວຽກຢູ່\",\"probation\":\"ທົດລອງວຽກ\",\"inactive\":\"ປິດໃຊ້\",\"terminated\":\"ພົ້ນສະພາບ\"},\"account\":{\"active\":\"ເປີດໃຊ້\",\"inactive\":\"ປິດໃຊ້\"},\"payroll\":{\"draft\":\"ສະບັບຮ່າງ\",\"pending\":\"ລໍຖ້າອະນຸມັດ\",\"approved\":\"ອະນຸມັດແລ້ວ\",\"paid\":\"ຈ່າຍແລ້ວ\"}},\"errors\":{\"common\":{\"notFound\":\"ບໍ່ພົບຂໍ້ມູນ\",\"forbidden\":\"ທ່ານບໍ່ມີສິດເຮັດລາຍການນີ້\",\"internal\":\"ລະບົບຂັດຂ້ອງ, ກະລຸນາລອງໃໝ່\",\"duplicate\":\"ຂໍ້ມູນນີ້ມີຢູ່ແລ້ວ\",\"inUse\":\"ຂໍ້ມູນນີ້ກຳລັງຖືກໃຊ້ຢູ່\",\"network\":\"ເຊື່ອມຕໍ່ເຊີບເວີບໍ່ໄດ້\"},\"auth\":{\"invalidCredentials\":\"ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ\",\"unauthenticated\":\"ກະລຸນາເຂົ້າສູ່ລະບົບ\",\"sessionExpired\":\"ໝົດເວລາເຂົ້າໃຊ້, ກະລຸນາເຂົ້າສູ່ລະບົບໃໝ່\",\"accountDisabled\":\"ບັນຊີນີ້ຖືກປິດໃຊ້\",\"tooManyAttempts\":\"ພະຍາຍາມຫຼາຍເກີນໄປ, ກະລຸນາລໍຖ້າ 1 ນາທີ\",\"wrongPassword\":\"ລະຫັດຜ່ານປັດຈຸບັນບໍ່ຖືກຕ້ອງ\",\"invalidToken\":\"ລິ້ງບໍ່ຖືກຕ້ອງ ຫຼື ໝົດອາຍຸ\"},\"password\":{\"weak\":\"ລະຫັດຜ່ານຕ້ອງມີຢ່າງໜ້ອຍ 8 ຕົວ, ມີທັງຕົວອັກສອນ ແລະ ຕົວເລກ\"},\"validation\":{\"failed\":\"ກະລຸນາກວດຂໍ້ມູນທີ່ປ້ອນ\",\"required\":\"ກະລຸນາປ້ອນຂໍ້ມູນນີ້\",\"email\":\"ອີເມວບໍ່ຖືກຕ້ອງ\",\"date\":\"ວັນທີບໍ່ຖືກຕ້ອງ\",\"phone\":\"ເບີໂທບໍ່ຖືກຕ້ອງ\",\"money\":\"ຈຳນວນເງິນບໍ່ຖືກຕ້ອງ\",\"time\":\"ກະລຸນາປ້ອນເວລາແບບ ຊຊ:ນນ\",\"bankAccount\":\"ເລກບັນຊີໃຊ້ໄດ້ສະເພາະຕົວເລກ, ຕົວອັກສອນອັງກິດ, ຂີດ ແລະ ຍະຫວ່າງ\",\"code\":\"ໃຊ້ໄດ້ສະເພາະ A–Z, 0–9, - ແລະ _\",\"invalidSort\":\"ການລຽງບໍ່ຖືກຕ້ອງ\",\"invalidJson\":\"ຂໍ້ມູນບໍ່ຖືກຕ້ອງ\",\"invalid_type\":\"ກະລຸນາປ້ອນຂໍ້ມູນນີ້\",\"too_small\":\"ຄ່ານ້ອຍເກີນໄປ\",\"too_big\":\"ຄ່າໃຫຍ່ເກີນໄປ\",\"invalid_string\":\"ຮູບແບບບໍ່ຖືກຕ້ອງ\",\"invalid_enum_value\":\"ກະລຸນາເລືອກຈາກລາຍການ\",\"custom\":\"ຂໍ້ມູນບໍ່ຖືກຕ້ອງ\"},\"department\":{\"invalidManager\":\"ຫົວໜ້າພະແນກຕ້ອງເປັນພະນັກງານທີ່ເຮັດວຽກຢູ່\",\"inUse\":\"ລຶບບໍ່ໄດ້: ພະແນກນີ້ຍັງມີພະນັກງານ ຫຼື ຕຳແໜ່ງ\"},\"position\":{\"invalidDepartment\":\"ກະລຸນາເລືອກພະແນກ\",\"inUse\":\"ລຶບ ຫຼື ຍ້າຍບໍ່ໄດ້: ຕຳແໜ່ງນີ້ຍັງມີພະນັກງານ\"},\"employee\":{\"positionMismatch\":\"ຕຳແໜ່ງນີ້ບໍ່ຢູ່ໃນພະແນກທີ່ເລືອກ\",\"hireDateTooFar\":\"ວັນເລີ່ມວຽກໄກເກີນ 90 ວັນ\",\"tooYoung\":\"ອາຍຸຕ້ອງບໍ່ຕ່ຳກວ່າ 15 ປີ ໃນວັນເລີ່ມວຽກ\"},\"user\":{\"invalidRole\":\"ບົດບາດບໍ່ຖືກຕ້ອງ\",\"cannotDeactivateSelf\":\"ທ່ານປິດບັນຊີຂອງຕົນເອງບໍ່ໄດ້\",\"invalidEmployee\":\"ບໍ່ພົບພະນັກງານ\",\"employeeHasAccount\":\"ພະນັກງານນີ້ມີບັນຊີຜູ້ໃຊ້ແລ້ວ\"},\"role\":{\"lastSuperAdmin\":\"ຕ້ອງມີຜູ້ດູແລລະບົບສູງສຸດຢ່າງໜ້ອຍ 1 ຄົນ\",\"superAdminLocked\":\"ບົດບາດ Super Admin ແກ້ໄຂບໍ່ໄດ້\",\"invalidPermission\":\"ສິດບໍ່ຖືກຕ້ອງ\"},\"upload\":{\"invalidType\":\"ປະເພດໄຟລ໌ບໍ່ຮອງຮັບ\",\"tooLarge\":\"ໄຟລ໌ໃຫຍ່ເກີນ 5 MB\",\"missing\":\"ກະລຸນາເລືອກໄຟລ໌\"},\"attendance\":{\"noEmployee\":\"ບັນຊີນີ້ບໍ່ໄດ້ຜູກກັບພະນັກງານ\",\"alreadyCheckedIn\":\"ທ່ານລົງເວລາເຂົ້າວຽກມື້ນີ້ແລ້ວ\",\"notCheckedIn\":\"ທ່ານຍັງບໍ່ໄດ້ລົງເວລາເຂົ້າວຽກ\",\"alreadyCheckedOut\":\"ທ່ານລົງເວລາເລີກວຽກແລ້ວ\",\"onLeave\":\"ມື້ນີ້ທ່ານມີການລາທີ່ອະນຸມັດແລ້ວ\",\"noteRequired\":\"ກະລຸນາໃສ່ເຫດຜົນການແກ້ໄຂ\",\"invalidTimes\":\"ເວລາເລີກວຽກຕ້ອງຫຼັງເວລາເຂົ້າວຽກ\"},\"leave\":{\"invalidRange\":\"ວັນສິ້ນສຸດຕ້ອງບໍ່ກ່ອນວັນເລີ່ມ\",\"zeroDays\":\"ຊ່ວງວັນທີ່ເລືອກບໍ່ມີວັນເຮັດວຽກ\",\"documentRequired\":\"ກະລຸນາແນບເອກະສານຢັ້ງຢືນ\",\"overlap\":\"ທັບກັບຄຳຮ້ອງລາທີ່ມີຢູ່ແລ້ວ\",\"insufficientBalance\":\"ວັນລາຄົງເຫຼືອບໍ່ພໍ\",\"notPending\":\"ຄຳຮ້ອງນີ້ຖືກຕັດສິນແລ້ວ\",\"ownRequest\":\"ທ່ານອະນຸມັດຄຳຮ້ອງຂອງຕົນເອງບໍ່ໄດ້\",\"cannotCancel\":\"ຍົກເລີກບໍ່ໄດ້ເພາະການລາເລີ່ມແລ້ວ\",\"reasonRequired\":\"ກະລຸນາໃສ່ເຫດຜົນ\",\"halfDaySingleDate\":\"ລາເຄິ່ງວັນໄດ້ສະເພາະ 1 ວັນ\",\"invalidType\":\"ກະລຸນາເລືອກປະເພດການລາ\"},\"payroll\":{\"periodExists\":\"ງວດເດືອນນີ້ມີຢູ່ແລ້ວ\",\"notDraft\":\"ແກ້ໄຂໄດ້ສະເພາະສະບັບຮ່າງ\",\"notPending\":\"ງວດນີ້ບໍ່ໄດ້ລໍຖ້າອະນຸມັດ\",\"notApproved\":\"ຕ້ອງອະນຸມັດກ່ອນຈ່າຍ\"},\"settings\":{\"endBeforeStart\":\"ເວລາເລີກວຽກຕ້ອງຫຼັງເວລາເຂົ້າວຽກ\",\"bracketOrder\":\"ຂັ້ນລາຍໄດ້ຕ້ອງລຽງຈາກນ້ອຍຫາໃຫຍ່ ແລະ ຂັ້ນສຸດທ້າຍບໍ່ມີເພດານ\"},\"forbiddenPage\":\"ທ່ານບໍ່ມີສິດເຂົ້າໜ້ານີ້\",\"notFoundPage\":\"ບໍ່ພົບໜ້ານີ້\"},\"notifications\":{\"leaveRequested\":\"{{employeeName}} ຂໍລາ {{startDate}} – {{endDate}}\",\"leaveApproved\":\"ຄຳຮ້ອງລາ {{startDate}} – {{endDate}} ຖືກອະນຸມັດແລ້ວ\",\"payrollSubmitted\":\"ເງິນເດືອນງວດ {{period}} ລໍຖ້າອະນຸມັດ\",\"payrollApproved\":\"ເງິນເດືອນງວດ {{period}} ອະນຸມັດແລ້ວ\",\"payrollReturned\":\"ເງິນເດືອນງວດ {{period}} ຖືກສົ່ງຄືນໃຫ້ແກ້ໄຂ\",\"payslipReady\":\"ໃບແຈ້ງເງິນເດືອນງວດ {{period}} ພ້ອມແລ້ວ\",\"leaveRejected\":\"ຄຳຮ້ອງລາ {{startDate}} – {{endDate}} ຖືກປະຕິເສດ\"},\"dashboard\":{\"title\":\"ໜ້າຫຼັກ\",\"greeting\":\"ສະບາຍດີ, {{name}}\",\"totalEmployees\":\"ພະນັກງານທັງໝົດ\",\"activeEmployees\":\"ເຮັດວຽກຢູ່\",\"inactiveEmployees\":\"ປິດໃຊ້\",\"departments\":\"ພະແນກ\",\"presentToday\":\"ມາເຮັດວຽກມື້ນີ້\",\"absentToday\":\"ຂາດ / ຍັງບໍ່ລົງເວລາ\",\"onLeaveToday\":\"ລາພັກມື້ນີ້\",\"pendingLeave\":\"ຄຳຮ້ອງລາລໍຖ້າ\",\"attendance30d\":\"ການເຂົ້າວຽກ 30 ວັນຜ່ານມາ\",\"byDepartment\":\"ພະນັກງານຕາມພະແນກ\",\"byStatus\":\"ພະນັກງານຕາມສະຖານະ\",\"hiresByMonth\":\"ພະນັກງານໃໝ່ລາຍເດືອນ\",\"hires\":\"ພະນັກງານໃໝ່\",\"teamSize\":\"ພະນັກງານໃນທີມ\",\"notCheckedIn\":\"ຍັງບໍ່ລົງເວລາ\",\"notCheckedInHint\":\"ບໍ່ລວມຄົນທີ່ລາພັກ\",\"absentRecorded\":\"ຂາດວຽກ\",\"waitingForYou\":\"ລໍຖ້າທ່ານອະນຸມັດ\",\"nothingWaiting\":\"ບໍ່ມີຄຳຮ້ອງລໍຖ້າທ່ານ\",\"todayTeam\":\"ມື້ນີ້: ມາແລ້ວ {{present}} ຈາກ {{total}} ຄົນ\",\"openAttendance\":\"ເບິ່ງການເຂົ້າວຽກ\",\"everyoneIn\":\"ມາຄົບແລ້ວ\",\"nobodyLate\":\"ບໍ່ມີໃຜມາຊ້າ\",\"nobodyOnLeave\":\"ບໍ່ມີໃຜລາພັກ\",\"untilDate\":\"ເຖິງ {{date}}\",\"andMore\":\"ແລະ ອີກ {{n}} ຄົນ\"},\"employees\":{\"title\":\"ລາຍຊື່ພະນັກງານ\",\"add\":\"ເພີ່ມພະນັກງານ\",\"editTitle\":\"ແກ້ໄຂຂໍ້ມູນພະນັກງານ\",\"code\":\"ລະຫັດພະນັກງານ\",\"firstName\":\"ຊື່\",\"lastName\":\"ນາມສະກຸນ\",\"fullName\":\"ຊື່ ແລະ ນາມສະກຸນ\",\"gender\":\"ເພດ\",\"male\":\"ຊາຍ\",\"female\":\"ຍິງ\",\"other\":\"ອື່ນໆ\",\"dob\":\"ວັນເດືອນປີເກີດ\",\"phone\":\"ເບີໂທລະສັບ\",\"email\":\"ອີເມວ\",\"address\":\"ທີ່ຢູ່\",\"photo\":\"ຮູບໂປຣໄຟລ໌\",\"uploadPhoto\":\"ອັບໂຫຼດຮູບ\",\"department\":\"ພະແນກ\",\"position\":\"ຕຳແໜ່ງ\",\"hireDate\":\"ວັນເລີ່ມວຽກ\",\"status\":\"ສະຖານະ\",\"salary\":\"ເງິນເດືອນພື້ນຖານ\",\"emergencyName\":\"ຊື່ຜູ້ຕິດຕໍ່ສຸກເສີນ\",\"emergencyPhone\":\"ເບີໂທຜູ້ຕິດຕໍ່ສຸກເສີນ\",\"emergencyRelation\":\"ຄວາມສຳພັນ\",\"sectionPersonal\":\"ຂໍ້ມູນສ່ວນຕົວ\",\"sectionEmployment\":\"ຂໍ້ມູນການເຮັດວຽກ\",\"sectionEmergency\":\"ຜູ້ຕິດຕໍ່ສຸກເສີນ\",\"sectionAccount\":\"ບັນຊີເຂົ້າລະບົບ\",\"createAccount\":\"ສ້າງບັນຊີເຂົ້າລະບົບໃຫ້ພະນັກງານຄົນນີ້\",\"accountPassword\":\"ລະຫັດຜ່ານເລີ່ມຕົ້ນ\",\"accountHint\":\"ພະນັກງານຈະຕ້ອງປ່ຽນລະຫັດຜ່ານເມື່ອເຂົ້າລະບົບຄັ້ງທຳອິດ\",\"roles\":\"ບົດບາດ\",\"deactivate\":\"ປິດໃຊ້\",\"activate\":\"ເປີດໃຊ້\",\"changeStatus\":\"ປ່ຽນສະຖານະ\",\"confirmDeactivate\":\"ປິດໃຊ້ພະນັກງານຄົນນີ້?\",\"confirmDeactivateText\":\"ບັນຊີເຂົ້າລະບົບຂອງເຂົາຈະຖືກປິດທັນທີ.\",\"created\":\"ເພີ່ມພະນັກງານແລ້ວ\",\"updated\":\"ບັນທຶກຂໍ້ມູນແລ້ວ\",\"allDepartments\":\"ທຸກພະແນກ\",\"allStatuses\":\"ທຸກສະຖານະ\",\"searchPlaceholder\":\"ຄົ້ນຫາຊື່, ລະຫັດ, ອີເມວ, ເບີໂທ\",\"noAccount\":\"ຍັງບໍ່ມີບັນຊີເຂົ້າລະບົບ\",\"choosePosition\":\"ເລືອກພະແນກກ່ອນ\",\"photoUpdated\":\"ອັບເດດຮູບແລ້ວ\",\"emptyTitle\":\"ຍັງບໍ່ມີພະນັກງານ\"},\"departments\":{\"title\":\"ພະແນກ\",\"add\":\"ເພີ່ມພະແນກ\",\"editTitle\":\"ແກ້ໄຂພະແນກ\",\"code\":\"ລະຫັດ\",\"nameLo\":\"ຊື່ (ລາວ)\",\"nameEn\":\"ຊື່ (ອັງກິດ)\",\"name\":\"ຊື່ພະແນກ\",\"description\":\"ລາຍລະອຽດ\",\"manager\":\"ຫົວໜ້າພະແນກ\",\"noManager\":\"ຍັງບໍ່ມີຫົວໜ້າ\",\"employeeCount\":\"ຈຳນວນພະນັກງານ\",\"employees\":\"ພະນັກງານໃນພະແນກ\",\"confirmDelete\":\"ລຶບພະແນກ {{name}}?\",\"emptyTitle\":\"ຍັງບໍ່ມີພະແນກ\",\"positions\":\"ຕຳແໜ່ງໃນພະແນກ\"},\"positions\":{\"title\":\"ຕຳແໜ່ງ\",\"add\":\"ເພີ່ມຕຳແໜ່ງ\",\"editTitle\":\"ແກ້ໄຂຕຳແໜ່ງ\",\"name\":\"ຊື່ຕຳແໜ່ງ\",\"confirmDelete\":\"ລຶບຕຳແໜ່ງ {{name}}?\",\"emptyTitle\":\"ຍັງບໍ່ມີຕຳແໜ່ງ\"},\"attendance\":{\"lateBy\":\"ຊ້າ {{n}} ນາທີ\",\"title\":\"ການເຂົ້າວຽກ\",\"myToday\":\"ການລົງເວລາມື້ນີ້\",\"checkIn\":\"ລົງເວລາເຂົ້າວຽກ\",\"checkOut\":\"ລົງເວລາເລີກວຽກ\",\"checkedInAt\":\"ເຂົ້າວຽກເວລາ {{time}}\",\"checkedOutAt\":\"ເລີກວຽກເວລາ {{time}}\",\"done\":\"ລົງເວລາຄົບແລ້ວມື້ນີ້\",\"notWorkingDay\":\"ມື້ນີ້ບໍ່ແມ່ນວັນເຮັດວຽກ\",\"onLeaveToday\":\"ມື້ນີ້ທ່ານລາພັກ\",\"history\":\"ປະຫວັດການເຂົ້າວຽກ\",\"date\":\"ວັນທີ\",\"employee\":\"ພະນັກງານ\",\"checkInCol\":\"ເຂົ້າວຽກ\",\"checkOutCol\":\"ເລີກວຽກ\",\"worked\":\"ເວລາເຮັດວຽກ\",\"lateMin\":\"ມາຊ້າ\",\"earlyMin\":\"ອອກກ່ອນ\",\"editTitle\":\"ແກ້ໄຂການເຂົ້າວຽກ\",\"exportCsv\":\"ສົ່ງອອກ CSV\",\"checkedIn\":\"ລົງເວລາເຂົ້າວຽກແລ້ວ\",\"checkedOut\":\"ລົງເວລາເລີກວຽກແລ້ວ\",\"minutes\":\"{{n}} ນາທີ\",\"noRecord\":\"ຍັງບໍ່ໄດ້ລົງເວລາ\",\"workHours\":\"ເວລາເຮັດວຽກ {{start}} – {{end}}\",\"emptyTitle\":\"ຍັງບໍ່ມີຂໍ້ມູນການເຂົ້າວຽກ\"},\"leave\":{\"daysN\":\"{{n}} ວັນ\",\"title\":\"ການລາພັກ\",\"request\":\"ຂໍລາພັກ\",\"myRequests\":\"ຄຳຮ້ອງຂອງຂ້ອຍ\",\"approvals\":\"ລໍຖ້າອະນຸມັດ\",\"all\":\"ຄຳຮ້ອງທັງໝົດ\",\"balances\":\"ວັນລາຄົງເຫຼືອ\",\"types\":\"ປະເພດການລາ\",\"holidays\":\"ວັນພັກລັດຖະການ\",\"type\":\"ປະເພດການລາ\",\"startDate\":\"ວັນເລີ່ມ\",\"endDate\":\"ວັນສິ້ນສຸດ\",\"halfDay\":\"ເຄິ່ງວັນ\",\"halfNone\":\"ໝົດມື້\",\"halfMorning\":\"ຕອນເຊົ້າ\",\"halfAfternoon\":\"ຕອນແລງ\",\"days\":\"ຈຳນວນວັນ\",\"daysCount\":\"{{n}} ວັນ\",\"reason\":\"ເຫດຜົນ\",\"document\":\"ເອກະສານຢັ້ງຢືນ\",\"documentHint\":\"ຕ້ອງແນບເອກະສານເມື່ອລາເກີນ {{n}} ວັນ\",\"submitted\":\"ສົ່ງຄຳຮ້ອງແລ້ວ\",\"approvedToast\":\"ອະນຸມັດແລ້ວ\",\"rejectedToast\":\"ປະຕິເສດແລ້ວ\",\"cancelledToast\":\"ຍົກເລີກແລ້ວ\",\"approve\":\"ອະນຸມັດ\",\"reject\":\"ປະຕິເສດ\",\"cancel\":\"ຍົກເລີກຄຳຮ້ອງ\",\"rejectTitle\":\"ປະຕິເສດຄຳຮ້ອງລາ\",\"rejectReason\":\"ເຫດຜົນທີ່ປະຕິເສດ\",\"confirmCancel\":\"ຍົກເລີກຄຳຮ້ອງລານີ້?\",\"confirmApprove\":\"ອະນຸມັດຄຳຮ້ອງລານີ້?\",\"remaining\":\"ຄົງເຫຼືອ\",\"entitled\":\"ສິດທັງໝົດ\",\"used\":\"ໃຊ້ແລ້ວ\",\"decisionNote\":\"ໝາຍເຫດຜູ້ອະນຸມັດ\",\"employee\":\"ພະນັກງານ\",\"noPending\":\"ບໍ່ມີຄຳຮ້ອງລໍຖ້າອະນຸມັດ\",\"preview\":\"ຈະນັບເປັນ {{n}} ວັນເຮັດວຽກ\",\"editEntitlement\":\"ປັບສິດວັນລາ\",\"holidayDate\":\"ວັນທີ\",\"holidayName\":\"ຊື່ວັນພັກ\",\"addHoliday\":\"ເພີ່ມວັນພັກ\",\"isPaid\":\"ໄດ້ຮັບເງິນເດືອນ\",\"docAfter\":\"ຕ້ອງມີເອກະສານເມື່ອເກີນ (ວັນ)\",\"defaultDays\":\"ວັນລາຕໍ່ປີ\",\"addType\":\"ເພີ່ມປະເພດການລາ\",\"year\":\"ປີ\",\"emptyTitle\":\"ຍັງບໍ່ມີຄຳຮ້ອງລາ\",\"requestedOn\":\"ສົ່ງເມື່ອ\",\"unpaid\":\"ບໍ່ໄດ້ຮັບເງິນເດືອນ\"},\"users\":{\"title\":\"ຜູ້ໃຊ້ລະບົບ\",\"add\":\"ເພີ່ມຜູ້ໃຊ້\",\"editTitle\":\"ແກ້ໄຂຜູ້ໃຊ້\",\"email\":\"ອີເມວ\",\"roles\":\"ບົດບາດ\",\"employee\":\"ພະນັກງານທີ່ຜູກ\",\"noEmployee\":\"ບໍ່ຜູກກັບພະນັກງານ\",\"lastLogin\":\"ເຂົ້າລະບົບລ່າສຸດ\",\"never\":\"ຍັງບໍ່ເຄີຍ\",\"resetLink\":\"ສ້າງລິ້ງຕັ້ງລະຫັດໃໝ່\",\"resetLinkTitle\":\"ລິ້ງຕັ້ງລະຫັດຜ່ານໃໝ່\",\"resetLinkHint\":\"ສົ່ງລິ້ງນີ້ໃຫ້ຜູ້ໃຊ້. ໃຊ້ໄດ້ເທື່ອດຽວ ແລະ ໝົດອາຍຸ {{time}}.\",\"copy\":\"ສຳເນົາ\",\"copied\":\"ສຳເນົາແລ້ວ\",\"deactivate\":\"ປິດບັນຊີ\",\"activate\":\"ເປີດບັນຊີ\",\"password\":\"ລະຫັດຜ່ານເລີ່ມຕົ້ນ\",\"confirmDeactivate\":\"ປິດບັນຊີ {{email}}?\",\"emptyTitle\":\"ຍັງບໍ່ມີຜູ້ໃຊ້\"},\"roles\":{\"names\":{\"super_admin\":\"ຜູ້ດູແລລະບົບສູງສຸດ\",\"hr_admin\":\"ຜູ້ດູແລຝ່າຍບຸກຄະລາກອນ\",\"manager\":\"ຫົວໜ້າພະແນກ\",\"employee\":\"ພະນັກງານ\",\"director\":\"ຜູ້ອຳນວຍການ\"},\"title\":\"ບົດບາດ ແລະ ສິດ\",\"add\":\"ເພີ່ມບົດບາດ\",\"editTitle\":\"ແກ້ໄຂບົດບາດ\",\"code\":\"ລະຫັດ\",\"name\":\"ຊື່ບົດບາດ\",\"scope\":\"ຂອບເຂດຂໍ້ມູນ\",\"permissions\":\"ສິດ\",\"userCount\":\"ຜູ້ໃຊ້\",\"locked\":\"ບົດບາດນີ້ມີສິດທັງໝົດ ແລະ ແກ້ໄຂບໍ່ໄດ້\",\"scopes\":{\"all\":\"ທັງບໍລິສັດ\",\"department\":\"ພະແນກທີ່ເປັນຫົວໜ້າ\",\"self\":\"ຂໍ້ມູນຕົນເອງ\"},\"modules\":{\"employee\":\"ພະນັກງານ\",\"department\":\"ພະແນກ\",\"position\":\"ຕຳແໜ່ງ\",\"attendance\":\"ການເຂົ້າວຽກ\",\"leave\":\"ການລາ\",\"dashboard\":\"ໜ້າຫຼັກ\",\"user\":\"ຜູ້ໃຊ້\",\"payroll\":\"ເງິນເດືອນ\",\"report\":\"ລາຍງານ\",\"settings\":\"ຕັ້ງຄ່າ\"}},\"profile\":{\"title\":\"ຂໍ້ມູນຂອງຂ້ອຍ\",\"account\":\"ບັນຊີ\",\"noEmployee\":\"ບັນຊີນີ້ບໍ່ໄດ້ຜູກກັບພະນັກງານ\"},\"prototype\":{\"badge\":\"ຕົວຢ່າງທົດລອງ\",\"title\":\"ຕົວຢ່າງທົດລອງ (Prototype)\",\"note\":\"ໜ້າຈໍທັງໝົດໃຊ້ຂໍ້ມູນສົມມຸດໃນ browser ເທົ່ານັ້ນ, ບໍ່ມີ backend. ຕົວເລກເງິນເດືອນ ແລະ ອາກອນ ເປັນຕົວຢ່າງ, ບໍ່ແມ່ນການຄິດໄລ່ທີ່ຢືນຢັນແລ້ວ.\",\"switchRole\":\"ເຂົ້າໃຊ້ເປັນ\",\"pickAccount\":\"ເລືອກບັນຊີທົດລອງ\",\"password\":\"ລະຫັດຜ່ານທຸກບັນຊີ: Demo1234\",\"downloadBlocked\":\"ໃນຕົວຢ່າງທົດລອງ ດາວໂຫຼດໄຟລ໌ບໍ່ໄດ້. ລະບົບຈິງຈະດາວໂຫຼດ {{file}}\",\"reset\":\"ລີເຊັດຂໍ້ມູນຕົວຢ່າງ\",\"resetDone\":\"ລີເຊັດຂໍ້ມູນແລ້ວ\",\"roles\":{\"superAdmin\":\"ຜູ້ດູແລລະບົບສູງສຸດ\",\"hr\":\"ຝ່າຍບຸກຄະລາກອນ (HR)\",\"director\":\"ຜູ້ອຳນວຍການ (ອະນຸມັດເງິນເດືອນ)\",\"manager\":\"ຫົວໜ້າພະແນກການເງິນ\",\"employee\":\"ພະນັກງານ\"}},\"payroll\":{\"title\":\"ເງິນເດືອນ\",\"subtitle\":\"ສ້າງ, ກວດ, ອະນຸມັດ ແລະ ຈ່າຍເງິນເດືອນປະຈຳເດືອນ\",\"newRun\":\"ສ້າງງວດເງິນເດືອນ\",\"newRunHint\":\"ລະບົບຈະດຶງເງິນເດືອນພື້ນຖານ, ໂອທີ ຈາກການເຂົ້າວຽກ ແລະ ວັນລາບໍ່ຮັບເງິນເດືອນ ມາຄິດໄລ່ໃຫ້.\",\"createRun\":\"ສ້າງ\",\"created\":\"ສ້າງງວດ {{period}} ແລ້ວ\",\"period\":\"ງວດ (ເດືອນ)\",\"employees\":\"ພະນັກງານ\",\"employeesN\":\"{{n}} ຄົນ\",\"employee\":\"ພະນັກງານ\",\"gross\":\"ເງິນເດືອນລວມ\",\"net\":\"ຮັບສຸດທິ\",\"totalNet\":\"ຍອດຈ່າຍສຸດທິ\",\"payDate\":\"ວັນຈ່າຍ\",\"latestNet\":\"ຍອດຈ່າຍ {{period}}\",\"employerCost\":\"ຕົ້ນທຶນບໍລິສັດ\",\"employerCostHint\":\"ເງິນເດືອນລວມ + ປະກັນສັງຄົມສ່ວນບໍລິສັດ\",\"taxAndSs\":\"ອາກອນ {{tax}} · ປະກັນສັງຄົມ {{ss}}\",\"taxAndSsTitle\":\"ອາກອນ ແລະ ປະກັນສັງຄົມ\",\"employerSsShort\":\"ລວມປະກັນສັງຄົມບໍລິສັດ {{amount}}\",\"emptyTitle\":\"ຍັງບໍ່ມີງວດເງິນເດືອນ\",\"runTitle\":\"ເງິນເດືອນ {{period}}\",\"progress\":\"ຂັ້ນຕອນ\",\"steps\":{\"draft\":\"ກະກຽມ\",\"pending\":\"ສົ່ງຂໍອະນຸມັດ\",\"approved\":\"ອະນຸມັດ\",\"paid\":\"ຈ່າຍແລ້ວ\"},\"banner\":{\"draft\":\"ສະບັບຮ່າງ: ກວດສອບຕົວເລກ, ປັບລາຍການຖ້າຈຳເປັນ, ແລ້ວກົດ \\\"ສົ່ງຂໍອະນຸມັດ\\\".\",\"draftView\":\"ງວດນີ້ຍັງເປັນສະບັບຮ່າງ ທີ່ຝ່າຍບຸກຄະລາກອນກຳລັງກະກຽມ.\",\"pendingApprover\":\"ງວດນີ້ລໍຖ້າທ່ານອະນຸມັດ. ກວດສອບແລ້ວກົດ \\\"ອະນຸມັດ\\\" ຫຼື \\\"ສົ່ງຄືນ\\\" ພ້ອມເຫດຜົນ.\",\"pending\":\"ສົ່ງຂໍອະນຸມັດແລ້ວ, ລໍຖ້າຜູ້ອຳນວຍການອະນຸມັດ. ແກ້ໄຂບໍ່ໄດ້ໃນຂັ້ນນີ້.\",\"approvedPay\":\"ອະນຸມັດແລ້ວ. ສົ່ງອອກໄຟລ໌ໂອນເງິນໃຫ້ທະນາຄານ, ແລ້ວກົດ \\\"ໝາຍວ່າຈ່າຍແລ້ວ\\\" ເພື່ອສົ່ງໃບແຈ້ງເງິນເດືອນໃຫ້ພະນັກງານ.\",\"approved\":\"ອະນຸມັດແລ້ວ, ລໍຖ້າຝ່າຍບຸກຄະລາກອນຈ່າຍເງິນ.\",\"paid\":\"ຈ່າຍແລ້ວວັນທີ {{date}}. ພະນັກງານເບິ່ງໃບແຈ້ງເງິນເດືອນໄດ້ແລ້ວ.\"},\"exportBank\":\"ໄຟລ໌ໂອນເງິນ\",\"recalculate\":\"ຄິດໄລ່ໃໝ່\",\"deleteDraft\":\"ລຶບສະບັບຮ່າງ\",\"submit\":\"ສົ່ງຂໍອະນຸມັດ\",\"approve\":\"ອະນຸມັດ\",\"return\":\"ສົ່ງຄືນ\",\"markPaid\":\"ໝາຍວ່າຈ່າຍແລ້ວ\",\"returnTitle\":\"ສົ່ງຄືນງວດ {{period}} ໃຫ້ແກ້ໄຂ\",\"returnNote\":\"ເຫດຜົນ / ສິ່ງທີ່ຕ້ອງແກ້\",\"done\":{\"submit\":\"ສົ່ງຂໍອະນຸມັດແລ້ວ\",\"approve\":\"ອະນຸມັດແລ້ວ\",\"pay\":\"ໝາຍວ່າຈ່າຍແລ້ວ\",\"reject\":\"ສົ່ງຄືນແລ້ວ\",\"recalculate\":\"ຄິດໄລ່ໃໝ່ແລ້ວ\",\"delete\":\"ລຶບແລ້ວ\"},\"confirm\":{\"submit\":\"ສົ່ງເງິນເດືອນ {{period}} ຂໍອະນຸມັດ?\",\"submitDesc\":\"{{n}} ຄົນ, ຍອດຈ່າຍສຸດທິ {{net}}. ຫຼັງຈາກສົ່ງແລ້ວ ຈະແກ້ໄຂບໍ່ໄດ້ ຈົນກວ່າຈະຖືກສົ່ງຄືນ.\",\"approve\":\"ອະນຸມັດເງິນເດືອນ {{period}}?\",\"approveDesc\":\"ຍອດຈ່າຍສຸດທິ {{net}}, ຕົ້ນທຶນບໍລິສັດ {{cost}}.\",\"pay\":\"ຢືນຢັນວ່າໂອນເງິນເດືອນ {{period}} ແລ້ວ?\",\"payDesc\":\"ພະນັກງານທຸກຄົນຈະໄດ້ຮັບການແຈ້ງເຕືອນ ແລະ ເບິ່ງໃບແຈ້ງເງິນເດືອນໄດ້.\",\"delete\":\"ລຶບສະບັບຮ່າງ {{period}}?\",\"recalculate\":\"ຄິດໄລ່ໃໝ່ຈາກຂໍ້ມູນລ່າສຸດ?\",\"recalculateDesc\":\"ດຶງເງິນເດືອນພື້ນຖານ, ໂອທີ ແລະ ວັນລາບໍ່ຮັບເງິນເດືອນ ໃໝ່. ເງິນອຸດໜູນ, ເງິນລາງວັນ ແລະ ລາຍການຫັກທີ່ປັບໄວ້ຈະຍັງຢູ່.\"},\"basic\":\"ເງິນເດືອນພື້ນຖານ\",\"allowance\":\"ເງິນອຸດໜູນ\",\"overtimePay\":\"ຄ່າລ່ວງເວລາ (ໂອທີ)\",\"bonus\":\"ເງິນລາງວັນ\",\"extraEarnings\":\"ອຸດໜູນ + ໂອທີ + ລາງວັນ\",\"ssShort\":\"ປະກັນສັງຄົມ\",\"taxShort\":\"ອາກອນ\",\"otherShort\":\"ຫັກອື່ນໆ\",\"adjust\":\"ປັບລາຍການ\",\"adjustTitle\":\"ປັບລາຍການ: {{name}}\",\"overtimeHours\":\"ຊົ່ວໂມງໂອທີ\",\"unpaidDays\":\"ວັນລາບໍ່ຮັບເງິນເດືອນ\",\"otherDeduction\":\"ລາຍການຫັກອື່ນໆ\",\"otherDeductionHint\":\"ເຊັ່ນ: ເບີກລ່ວງໜ້າ, ຄ່າເສຍຫາຍ\",\"fromAttendance\":\"ດຶງມາຈາກການເຂົ້າວຽກ\",\"fromLeave\":\"ດຶງມາຈາກການລາທີ່ອະນຸມັດ\",\"inclOther\":\"ລວມຫັກອື່ນ {{amount}}\",\"netAndChange\":\"ຮັບສຸດທິ / ທຽບເດືອນກ່ອນ\",\"vsPeriod\":\"ທຽບ {{period}}\",\"newEmployee\":\"ໃໝ່\",\"bigChange\":\"ປ່ຽນແປງ 10% ຂຶ້ນໄປ\",\"changedOnly\":\"ສະເພາະທີ່ປ່ຽນແປງ ({{n}})\",\"comparedWith\":\"ທຽບກັບ {{period}} ({{n}} ຄົນ)\",\"newThisRun\":\"ໃໝ່ໃນງວດນີ້ {{n}} ຄົນ\",\"leftSince\":\"ບໍ່ມີໃນງວດນີ້: {{names}}\",\"amountsIn\":\"ຈຳນວນເງິນເປັນ {{symbol}}\",\"payslip\":\"ໃບແຈ້ງເງິນເດືອນ\",\"print\":\"ພິມ\",\"bank\":\"ບັນຊີທະນາຄານ\",\"workDays\":\"ວັນເຮັດວຽກ\",\"overtime\":\"ໂອທີ\",\"hours\":\"{{n}} ຊົ່ວໂມງ\",\"days\":\"{{n}} ວັນ\",\"earnings\":\"ລາຍຮັບ\",\"deductions\":\"ລາຍການຫັກ\",\"otHint\":\"{{h}} ຊມ × {{rate}}% ຂອງຄ່າແຮງຕໍ່ຊົ່ວໂມງ\",\"unpaidLeave\":\"ຫັກວັນລາບໍ່ຮັບເງິນເດືອນ\",\"ssEmployee\":\"ປະກັນສັງຄົມ (ພະນັກງານ)\",\"ssHint\":\"{{rate}}% ຂອງ {{base}}\",\"incomeTax\":\"ອາກອນລາຍໄດ້\",\"taxableHint\":\"ລາຍໄດ້ຕ້ອງເສຍອາກອນ {{amount}}\",\"totalDeductions\":\"ລວມລາຍການຫັກ\",\"taxBreakdown\":\"ລາຍລະອຽດການຄິດໄລ່ອາກອນ\",\"bracket\":\"ຂັ້ນລາຍໄດ້\",\"rate\":\"ອັດຕາ\",\"amountInBracket\":\"ລາຍໄດ້ໃນຂັ້ນ\",\"tax\":\"ອາກອນ\",\"over\":\"ເກີນ {{amount}}\",\"employerSs\":\"ບໍລິສັດຈ່າຍປະກັນສັງຄົມເພີ່ມອີກ {{rate}}%: {{amount}} (ບໍ່ຫັກຈາກເງິນເດືອນ).\",\"sampleNote\":\"ຕົວຢ່າງທົດລອງ: ອັດຕາອາກອນ ແລະ ປະກັນສັງຄົມ ເປັນຄ່າຕົວຢ່າງ ທີ່ຕັ້ງໄດ້ໃນໜ້າຕັ້ງຄ່າ. ຕ້ອງໃຫ້ຝ່າຍບຸກຄະລາກອນ ແລະ ບັນຊີ ຢືນຢັນກັບກົດໝາຍລາວກ່ອນໃຊ້ຈິງ.\",\"payslipsSubtitle\":\"ໃບແຈ້ງເງິນເດືອນທີ່ຈ່າຍແລ້ວຂອງທ່ານ\",\"noPayslips\":\"ຍັງບໍ່ມີໃບແຈ້ງເງິນເດືອນ\",\"noPayslipsHint\":\"ໃບແຈ້ງເງິນເດືອນຈະສະແດງຢູ່ນີ້ ຫຼັງຈາກບໍລິສັດຈ່າຍເງິນເດືອນແລ້ວ.\",\"paidOn\":\"ຈ່າຍ {{date}}\"},\"reports\":{\"title\":\"ລາຍງານ\",\"subtitleAll\":\"ຂໍ້ມູນທັງບໍລິສັດ\",\"subtitleDept\":\"ຂໍ້ມູນພະແນກຂອງທ່ານ\",\"tabs\":{\"headcount\":\"ພະນັກງານ\",\"attendance\":\"ການເຂົ້າວຽກ\",\"leave\":\"ການລາ\",\"payroll\":\"ເງິນເດືອນ\"},\"exportCsv\":\"ສົ່ງອອກ CSV\",\"code\":\"ລະຫັດ\",\"name\":\"ຊື່ ແລະ ນາມສະກຸນ\",\"total\":\"ລວມ\",\"male\":\"ຊາຍ\",\"female\":\"ຍິງ\",\"headcount\":\"ພະນັກງານທັງໝົດ\",\"excludesTerminated\":\"ບໍ່ລວມຜູ້ທີ່ພົ້ນສະພາບ\",\"femaleShare\":\"ສັດສ່ວນພະນັກງານຍິງ\",\"genderSplit\":\"ຍິງ {{f}} · ຊາຍ {{m}}\",\"hires12m\":\"ຮັບເຂົ້າໃໝ່ 12 ເດືອນ\",\"exits12m\":\"ລາອອກ 12 ເດືອນ\",\"sampleExits\":\"ຂໍ້ມູນຕົວຢ່າງ\",\"byDepartmentStatus\":\"ພະນັກງານຕາມພະແນກ ແລະ ສະຖານະ\",\"tenure\":\"ອາຍຸງານ\",\"tenureBuckets\":{\"lt1\":\"ບໍ່ເຖິງ 1 ປີ\",\"1to3\":\"1–3 ປີ\",\"3to5\":\"3–5 ປີ\",\"gt5\":\"5 ປີຂຶ້ນໄປ\"},\"movement\":\"ການຮັບເຂົ້າ ແລະ ລາອອກ ລາຍເດືອນ\",\"hires\":\"ຮັບເຂົ້າ\",\"exits\":\"ລາອອກ\",\"month\":\"ເດືອນ\",\"lateMinutes\":\"ນາທີມາຊ້າ\",\"otHours\":\"ຊົ່ວໂມງໂອທີ\",\"attendanceRate\":\"ອັດຕາມາວຽກ\",\"avgAttendance\":\"ອັດຕາມາວຽກສະເລ່ຍ\",\"workDaysSoFar\":\"{{n}} ວັນເຮັດວຽກ (ບໍ່ລວມມື້ນີ້)\",\"lateTimes\":\"ມາຊ້າ (ເທື່ອ)\",\"lateMinutesTotal\":\"ລວມ {{n}} ນາທີ\",\"absentDays\":\"ຂາດວຽກ (ວັນ)\",\"leaveByMonth\":\"ວັນລາທີ່ອະນຸມັດ ລາຍເດືອນ\",\"leaveDays\":\"ວັນລາ\",\"leaveByType\":\"ວັນລາຕາມປະເພດ\",\"usedOfEntitled\":\"ຕົວເລກແມ່ນ ໃຊ້ແລ້ວ / ສິດທັງໝົດ (ວັນ).\",\"ssEmployee\":\"ປະກັນສັງຄົມ (ພະນັກງານ)\",\"ssEmployer\":\"ປະກັນສັງຄົມ (ບໍລິສັດ)\",\"ytdCost\":\"ຕົ້ນທຶນເງິນເດືອນປີນີ້\",\"runsCounted\":\"{{n}} ງວດທີ່ອະນຸມັດ ຫຼື ຈ່າຍແລ້ວ\",\"ytdNet\":\"ຈ່າຍສຸດທິປີນີ້\",\"ytdTax\":\"ອາກອນລາຍໄດ້ປີນີ້\",\"ytdSs\":\"ປະກັນສັງຄົມປີນີ້\",\"ssBoth\":\"ສ່ວນພະນັກງານ + ບໍລິສັດ\",\"costByMonth\":\"ເງິນເດືອນລາຍເດືອນ (ລ້ານ)\",\"costByDept\":\"ຕົ້ນທຶນຕາມພະແນກ {{period}} (ລ້ານ)\",\"costByDeptEmpty\":\"ຕົ້ນທຶນຕາມພະແນກ\",\"noPayroll\":\"ປີນີ້ຍັງບໍ່ມີງວດທີ່ອະນຸມັດ\",\"millionsNote\":\"ກຣາຟສະແດງເປັນລ້ານ.\"},\"settings\":{\"title\":\"ຕັ້ງຄ່າ\",\"subtitle\":\"ຂໍ້ມູນບໍລິສັດ, ເວລາເຮັດວຽກ ແລະ ກົດການຄິດໄລ່ເງິນເດືອນ\",\"tabs\":{\"company\":\"ບໍລິສັດ\",\"workTime\":\"ເວລາເຮັດວຽກ\",\"payroll\":\"ເງິນເດືອນ ແລະ ອາກອນ\"},\"company\":\"ຂໍ້ມູນບໍລິສັດ\",\"nameLo\":\"ຊື່ບໍລິສັດ (ລາວ)\",\"nameEn\":\"ຊື່ບໍລິສັດ (ອັງກິດ)\",\"addressLo\":\"ທີ່ຢູ່ (ລາວ)\",\"addressEn\":\"ທີ່ຢູ່ (ອັງກິດ)\",\"taxId\":\"ເລກປະຈຳຕົວຜູ້ເສຍອາກອນ\",\"taxIdHint\":\"ສະແດງໃນໃບແຈ້ງເງິນເດືອນ\",\"phone\":\"ເບີໂທ\",\"email\":\"ອີເມວ\",\"currencyCode\":\"ລະຫັດສະກຸນເງິນ\",\"currencySymbol\":\"ສັນຍາລັກ\",\"workTime\":\"ເວລາເຮັດວຽກ\",\"workingDays\":\"ວັນເຮັດວຽກ\",\"days\":{\"d1\":\"ຈັນ\",\"d2\":\"ອັງຄານ\",\"d3\":\"ພຸດ\",\"d4\":\"ພະຫັດ\",\"d5\":\"ສຸກ\",\"d6\":\"ເສົາ\",\"d7\":\"ອາທິດ\"},\"workStart\":\"ເວລາເຂົ້າວຽກ\",\"workEnd\":\"ເວລາເລີກວຽກ\",\"lateGrace\":\"ຜ່ອນຜັນມາຊ້າ (ນາທີ)\",\"lateGraceHint\":\"ເຂົ້າຫຼັງນີ້ຖືວ່າມາຊ້າ\",\"halfDay\":\"ເຄິ່ງວັນ (ນາທີ)\",\"halfDayHint\":\"ເຮັດວຽກໜ້ອຍກວ່ານີ້ ຖືວ່າເຄິ່ງວັນ\",\"leaveAndHolidays\":\"ການລາ ແລະ ວັນພັກ\",\"leaveAndHolidaysHint\":\"ປະເພດການລາ ແລະ ວັນພັກລັດຖະການ ຈັດການຢູ່ໜ້າການລາພັກ.\",\"payrollWarning\":\"ອັດຕາຂ້າງລຸ່ມເປັນຄ່າຕົວຢ່າງ. ກະລຸນາໃຫ້ຝ່າຍບັນຊີ ຢືນຢັນກັບກົດໝາຍອາກອນລາຍໄດ້ ແລະ ກົດໝາຍປະກັນສັງຄົມ ສະບັບປັດຈຸບັນ ກ່ອນໃຊ້ຈິງ.\",\"payrollGeneral\":\"ທົ່ວໄປ\",\"payDay\":\"ວັນຈ່າຍເງິນເດືອນ\",\"payDayHint\":\"ວັນທີຂອງເດືອນ\",\"workDaysPerMonth\":\"ວັນເຮັດວຽກຕໍ່ເດືອນ\",\"workDaysPerMonthHint\":\"ໃຊ້ຄິດຄ່າແຮງຕໍ່ວັນ\",\"overtimeRate\":\"ອັດຕາໂອທີ (%)\",\"overtimeRateHint\":\"ຂອງຄ່າແຮງຕໍ່ຊົ່ວໂມງ\",\"socialSecurity\":\"ປະກັນສັງຄົມ\",\"ssEmployee\":\"ສ່ວນພະນັກງານ (%)\",\"ssEmployer\":\"ສ່ວນບໍລິສັດ (%)\",\"ssCeiling\":\"ເພດານເງິນເດືອນ\",\"ssCeilingHint\":\"ຄິດປະກັນສັງຄົມບໍ່ເກີນຈຳນວນນີ້\",\"taxBrackets\":\"ຂັ້ນອາກອນລາຍໄດ້ (ລາຍເດືອນ)\",\"taxBracketsHint\":\"ອັດຕາກ້າວໜ້າ: ແຕ່ລະອັດຕາໃຊ້ກັບສ່ວນຂອງລາຍໄດ້ ທີ່ຢູ່ໃນຂັ້ນນັ້ນເທົ່ານັ້ນ. ລາຍໄດ້ຕ້ອງເສຍອາກອນ = ເງິນເດືອນລວມ − ປະກັນສັງຄົມສ່ວນພະນັກງານ.\",\"from\":\"ຈາກ\",\"upTo\":\"ເຖິງ\",\"rate\":\"ອັດຕາ\",\"noCeiling\":\"ບໍ່ມີເພດານ\",\"addBracket\":\"ເພີ່ມຂັ້ນ\",\"preview\":\"ທົດລອງຄິດໄລ່\",\"previewGross\":\"ເງິນເດືອນລວມ\"}}");
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__1dv2qvqk8qd-d._.js.map
