@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 import { FormField } from '../../components/common/FormField';
 import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
+import { PasswordInput } from '../../components/ui/password-input';
 import { Card, CardContent } from '../../components/ui/card';
 import { useAuth } from '../../auth/useAuth';
 import { api, apiError } from '../../lib/api';
@@ -46,13 +46,13 @@ export function ChangePasswordPage() {
           {user?.mustChangePassword && <p className="rounded-sm bg-warning-tint px-3 py-2 text-body-sm text-warning-text">{t('auth.mustChange')}</p>}
           <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
             <FormField label={t('auth.currentPassword')} error={formState.errors.currentPassword?.message}>
-              <Input type="password" autoComplete="current-password" {...register('currentPassword')} />
+              <PasswordInput autoComplete="current-password" {...register('currentPassword')} />
             </FormField>
             <FormField label={t('auth.newPassword')} error={formState.errors.newPassword?.message} hint={t('auth.passwordRule')}>
-              <Input type="password" autoComplete="new-password" {...register('newPassword')} />
+              <PasswordInput autoComplete="new-password" {...register('newPassword')} />
             </FormField>
             <FormField label={t('auth.confirmPassword')} error={formState.errors.confirm?.message}>
-              <Input type="password" autoComplete="new-password" {...register('confirm')} />
+              <PasswordInput autoComplete="new-password" {...register('confirm')} />
             </FormField>
             <div className="flex justify-end gap-2">
               {!user?.mustChangePassword && (

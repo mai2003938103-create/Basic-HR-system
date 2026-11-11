@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
-export function Avatar({ employee, size = 'md' }: { employee: { firstName: string; lastName: string; photoUrl: string | null }; size?: 'sm' | 'md' | 'lg' }) {
-  const cls = { sm: 'size-8 text-caption', md: 'size-10 text-label', lg: 'size-20 text-section-title' }[size];
+export function Avatar({ employee, size = 'md' }: { employee: { firstName: string; lastName: string; photoUrl: string | null }; size?: 'sm' | 'md' | 'lg' | 'xl' }) {
+  const cls = { sm: 'size-8 text-caption', md: 'size-10 text-label', lg: 'size-20 text-section-title', xl: 'size-40 text-page-title' }[size];
   if (employee.photoUrl) return <AuthImage src={employee.photoUrl} alt="" className={cn('shrink-0 rounded-pill object-cover', cls)} />;
   return <span aria-hidden className={cn('grid shrink-0 place-items-center rounded-pill bg-accent-tint font-semibold text-accent', cls)}>{employee.firstName.slice(0, 1)}</span>;
 }

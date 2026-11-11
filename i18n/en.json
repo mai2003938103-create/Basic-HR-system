@@ -65,7 +65,7 @@
   "errorTitle": "Could not load data",
   "confirmDeleteTitle": "Confirm delete",
   "cannotUndo": "This cannot be undone.",
-  "profile": "My profile",
+  "profile": "Profile",
   "changePassword": "Change password",
   "user": "User",
   "openMenu": "Open menu",
@@ -88,7 +88,7 @@
   "leave": "Leave",
   "users": "Users",
   "roles": "Roles",
-  "profile": "My profile",
+  "profile": "Profile",
   "system": "System",
   "payroll": "Payroll",
   "payslips": "My payslips",
@@ -99,7 +99,9 @@
  },
  "auth": {
   "title": "Sign in",
-  "subtitle": "Human resource management for small and medium businesses",
+  "subtitle": "Human resource and data management system",
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
   "tagline": "Let's step up together",
   "email": "Email",
   "password": "Password",
@@ -502,11 +504,69 @@
    "payroll": "Payroll",
    "report": "Reports",
    "settings": "Settings"
+  },
+  "permissionNames": {
+   "employee": {
+    "read": "View employees",
+    "create": "Add employees",
+    "update": "Edit employees",
+    "delete": "Delete employees"
+   },
+   "department": {
+    "read": "View departments",
+    "manage": "Manage departments"
+   },
+   "position": {
+    "read": "View positions",
+    "manage": "Manage positions"
+   },
+   "attendance": {
+    "read": "View attendance records",
+    "check": "Record clock-in and clock-out",
+    "manage": "Manage attendance"
+   },
+   "leave": {
+    "read": "View leave requests",
+    "request": "Submit leave requests",
+    "approve": "Approve leave requests",
+    "manage": "Manage leave types"
+   },
+   "dashboard": {
+    "view": "View dashboard"
+   },
+   "user": {
+    "read": "View users",
+    "manage": "Manage users"
+   },
+   "role": {
+    "manage": "Manage roles and permissions"
+   },
+   "payroll": {
+    "read": "View payroll",
+    "manage": "Manage payroll",
+    "approve": "Approve payroll"
+   },
+   "payslip": {
+    "self": "View own payslip"
+   },
+   "report": {
+    "view": "View reports"
+   },
+   "settings": {
+    "manage": "Manage settings"
+  }
   }
  },
  "profile": {
-  "title": "My profile",
+  "title": "Profile",
   "account": "Account",
+  "changePhoto": "Change photo",
+  "removePhoto": "Remove photo",
+  "photoHint": "JPG, PNG or WebP, up to 5MB",
+  "photoRemoved": "Photo removed",
+  "tabInfo": "Profile information",
+  "tabSecurity": "Security settings",
+  "securityHint": "Change your password regularly to keep your account safe.",
   "noEmployee": "This account is not linked to an employee"
  },
  "prototype": {

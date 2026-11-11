@@ -18,7 +18,7 @@ T = {
   "deleted": ("ລຶບແລ້ວ","Deleted"), "none": ("ບໍ່ມີ","None"), "emptyTitle": ("ຍັງບໍ່ມີຂໍ້ມູນ","Nothing here yet"),
   "emptyFiltered": ("ບໍ່ພົບຂໍ້ມູນທີ່ກົງກັບການຄົ້ນຫາ","No results match your search"), "errorTitle": ("ໂຫຼດຂໍ້ມູນບໍ່ສຳເລັດ","Could not load data"),
   "confirmDeleteTitle": ("ຢືນຢັນການລຶບ","Confirm delete"), "cannotUndo": ("ການກະທຳນີ້ຍ້ອນຄືນບໍ່ໄດ້.","This cannot be undone."),
-  "profile": ("ຂໍ້ມູນຂອງຂ້ອຍ","My profile"), "changePassword": ("ປ່ຽນລະຫັດຜ່ານ","Change password"), "user": ("ຜູ້ໃຊ້","User"),
+  "profile": ("ໂປຣໄຟລ໌","Profile"), "changePassword": ("ປ່ຽນລະຫັດຜ່ານ","Change password"), "user": ("ຜູ້ໃຊ້","User"),
   "openMenu": ("ເປີດເມນູ","Open menu"), "unread": ("ຍັງບໍ່ອ່ານ","unread"), "lightMode": ("ໂໝດແຈ້ງ","Light mode"), "darkMode": ("ໂໝດມືດ","Dark mode"),
   "sortAsc": ("ລຽງນ້ອຍຫາໃຫຍ່","Sort ascending"), "sortDesc": ("ລຽງໃຫຍ່ຫານ້ອຍ","Sort descending"), "download": ("ດາວໂຫຼດ","Download"),
   "fileHint": ("ໄຟລ໌ບໍ່ເກີນ 5 MB","Max 5 MB"), "chooseFile": ("ເລືອກໄຟລ໌","Choose file"), "removeFile": ("ເອົາໄຟລ໌ອອກ","Remove file"),
@@ -26,12 +26,12 @@ T = {
  "nav": {
   "dashboard": ("ໜ້າຫຼັກ","Dashboard"), "employees": ("ພະນັກງານ","Employees"), "departments": ("ພະແນກ","Departments"),
   "positions": ("ຕຳແໜ່ງ","Positions"), "attendance": ("ການເຂົ້າວຽກ","Attendance"), "leave": ("ການລາພັກ","Leave"),
-  "users": ("ຜູ້ໃຊ້ ແລະ ສິດ","Users"), "roles": ("ບົດບາດ","Roles"), "profile": ("ຂໍ້ມູນຂອງຂ້ອຍ","My profile"), "system": ("ລະບົບ","System"),
+  "users": ("ຜູ້ໃຊ້ ແລະ ສິດ","Users"), "roles": ("ບົດບາດ","Roles"), "profile": ("ໂປຣໄຟລ໌","Profile"), "system": ("ລະບົບ","System"),
   "payroll": ("ເງິນເດືອນ","Payroll"), "payslips": ("ໃບແຈ້ງເງິນເດືອນ","My payslips"), "reports": ("ລາຍງານ","Reports"), "settings": ("ຕັ້ງຄ່າ","Settings"),
   "productName": ("Systory HRMS","Systory HRMS"), "productTagline": ("ລະບົບບໍລິຫານບຸກຄະລາກອນ","HR Management System"),
  },
  "auth": {
-  "title": ("ເຂົ້າສູ່ລະບົບ","Sign in"), "subtitle": ("ລະບົບບໍລິຫານຊັບພະຍາກອນມະນຸດ ສຳລັບທຸລະກິດຂະໜາດນ້ອຍ ແລະ ກາງ","Human resource management for small and medium businesses"),
+  "title": ("ເຂົ້າສູ່ລະບົບ","Sign in"), "subtitle": ("ລະບົບບໍລິຫານຊັບພະຍາກອນມະນຸດ ແລະ ຈັດການຂໍ້ມູນ","Human resource and data management system"), "showPassword": ("ສະແດງລະຫັດຜ່ານ","Show password"), "hidePassword": ("ເຊື່ອງລະຫັດຜ່ານ","Hide password"),
   "tagline": ("Let's step up together","Let's step up together"), "email": ("ອີເມວ","Email"), "password": ("ລະຫັດຜ່ານ","Password"),
   "signIn": ("ເຂົ້າສູ່ລະບົບ","Sign in"), "signingIn": ("ກຳລັງເຂົ້າສູ່ລະບົບ...","Signing in..."),
   "forgot": ("ລືມລະຫັດຜ່ານ? ຕິດຕໍ່ຝ່າຍບຸກຄະລາກອນ ເພື່ອຂໍລິ້ງຕັ້ງລະຫັດໃໝ່.","Forgot your password? Ask HR for a reset link."),
@@ -184,7 +184,7 @@ T = {
     "leave": ("ການລາ","Leave"), "dashboard": ("ໜ້າຫຼັກ","Dashboard"), "user": ("ຜູ້ໃຊ້","Users"),
     "payroll": ("ເງິນເດືອນ","Payroll"), "report": ("ລາຍງານ","Reports"), "settings": ("ຕັ້ງຄ່າ","Settings")},
  },
- "profile": {"title": ("ຂໍ້ມູນຂອງຂ້ອຍ","My profile"), "account": ("ບັນຊີ","Account"), "noEmployee": ("ບັນຊີນີ້ບໍ່ໄດ້ຜູກກັບພະນັກງານ","This account is not linked to an employee")},
+ "profile": {"title": ("ໂປຣໄຟລ໌","Profile"), "account": ("ບັນຊີ","Account"), "changePhoto": ("ປ່ຽນຮູບພາບ","Change photo"), "removePhoto": ("ລຶບຮູບພາບ","Remove photo"), "photoHint": ("JPG, PNG ຫຼື WebP ບໍ່ເກີນ 5MB","JPG, PNG or WebP, up to 5MB"), "photoRemoved": ("ລຶບຮູບແລ້ວ","Photo removed"), "tabInfo": ("ຂໍ້ມູນໂປຣໄຟລ໌","Profile information"), "tabSecurity": ("ຕັ້ງຄ່າຄວາມປອດໄພ","Security settings"), "securityHint": ("ປ່ຽນລະຫັດຜ່ານເປັນໄລຍະ ເພື່ອຮັກສາບັນຊີໃຫ້ປອດໄພ.","Change your password regularly to keep your account safe."), "noEmployee": ("ບັນຊີນີ້ບໍ່ໄດ້ຜູກກັບພະນັກງານ","This account is not linked to an employee")},
  "prototype": {
   "badge": ("ຕົວຢ່າງທົດລອງ","Prototype"), "title": ("ຕົວຢ່າງທົດລອງ (Prototype)","Clickable prototype"),
   "note": ("ໜ້າຈໍທັງໝົດໃຊ້ຂໍ້ມູນສົມມຸດໃນ browser ເທົ່ານັ້ນ, ບໍ່ມີ backend. ຕົວເລກເງິນເດືອນ ແລະ ອາກອນ ເປັນຕົວຢ່າງ, ບໍ່ແມ່ນການຄິດໄລ່ທີ່ຢືນຢັນແລ້ວ.","Every screen runs on sample data in your browser, with no backend. Payroll and tax figures are examples, not confirmed calculations."),

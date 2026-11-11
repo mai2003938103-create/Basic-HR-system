@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { AuthLayout } from '../../layouts/AuthLayout';
 import { FormField } from '../../components/common/FormField';
 import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
+import { PasswordInput } from '../../components/ui/password-input';
 import { api, apiError } from '../../lib/api';
 import { newPasswordSchema } from './passwordSchema';
 
@@ -36,10 +36,10 @@ export function ResetPasswordPage() {
         {state === 'form' && (
           <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
             <FormField label={t('auth.newPassword')} error={formState.errors.newPassword?.message} hint={t('auth.passwordRule')}>
-              <Input type="password" autoComplete="new-password" {...register('newPassword')} />
+              <PasswordInput autoComplete="new-password" {...register('newPassword')} />
             </FormField>
             <FormField label={t('auth.confirmPassword')} error={formState.errors.confirm?.message}>
-              <Input type="password" autoComplete="new-password" {...register('confirm')} />
+              <PasswordInput autoComplete="new-password" {...register('confirm')} />
             </FormField>
             <Button type="submit" className="w-full" loading={formState.isSubmitting}>{t('common.save')}</Button>
           </form>

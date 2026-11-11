@@ -82,8 +82,8 @@ function RoleEditor({ role, open, onOpenChange, permissions, onSaved }: { role: 
                 <div className="flex flex-col gap-2">
                   {list.map((c) => (
                     <label key={c} className="flex items-center gap-2 text-body-sm">
-                      <Checkbox aria-label={c} checked={codes.has(c)} onCheckedChange={(v) => setCodes((cur) => { const n = new Set(cur); if (v === true) n.add(c); else n.delete(c); return n; })} />
-                      <code className="text-ink-muted">{c}</code>
+                      <Checkbox aria-label={t(`roles.permissionNames.${c}`, { defaultValue: c })} checked={codes.has(c)} onCheckedChange={(v) => setCodes((cur) => { const n = new Set(cur); if (v === true) n.add(c); else n.delete(c); return n; })} />
+                      <span className="text-ink-muted">{t(`roles.permissionNames.${c}`, { defaultValue: c })}</span>
                     </label>
                   ))}
                 </div>

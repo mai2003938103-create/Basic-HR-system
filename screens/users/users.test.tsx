@@ -55,7 +55,8 @@ describe('RolesPage', () => {
     await userEvent.click(await screen.findByRole('button', { name: 'ແກ້ໄຂ ຫົວໜ້າພະແນກ' }));
     const dialog = await screen.findByRole('dialog');
     expect(within(dialog).getByRole('group', { name: 'ການລາ' })).toBeInTheDocument();
-    await userEvent.click(within(dialog).getByRole('checkbox', { name: 'leave.approve' }));
+    expect(within(dialog).getByRole('checkbox', { name: 'ເບິ່ງຂໍ້ມູນພະນັກງານ' })).toBeInTheDocument();
+    await userEvent.click(within(dialog).getByRole('checkbox', { name: 'ອະນຸມັດການລາ' }));
     await userEvent.click(within(dialog).getByRole('button', { name: 'ບັນທຶກ' }));
     await waitFor(() => expect(saved.sort()).toEqual(['employee.read', 'leave.approve']));
     expect(screen.queryByRole('button', { name: 'ແກ້ໄຂ ຜູ້ດູແລລະບົບສູງສຸດ' })).toBeNull();

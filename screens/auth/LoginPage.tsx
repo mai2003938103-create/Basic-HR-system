@@ -9,6 +9,7 @@ import { AuthLayout } from '../../layouts/AuthLayout';
 import { FormField } from '../../components/common/FormField';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
+import { PasswordInput } from '../../components/ui/password-input';
 import { useAuth } from '../../auth/useAuth';
 import { apiError } from '../../lib/api';
 import { homePath } from '../../lib/permissions';
@@ -23,8 +24,7 @@ export function LoginPage() {
   const { login, status, user } = useAuth();
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  const [error, setError] = useState<string | null>(null);
-  const { register, handleSubmit, formState } = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema), defaultValues: { email: '', password: '' } });
+  const [error, setError] = useState<string | null>(null);  const { register, handleSubmit, formState } = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema), defaultValues: { email: '', password: '' } });
 
   // Back to the page that asked for sign-in (same-site paths only), else the role's start page.
   const from = safeReturnPath(params.get('from'));
@@ -56,7 +56,7 @@ export function LoginPage() {
           <Input type="email" autoComplete="username" placeholder="name@company.la" {...register('email')} />
         </FormField>
         <FormField label={t('auth.password')} error={formState.errors.password?.message}>
-          <Input type="password" autoComplete="current-password" {...register('password')} />
+          <PasswordInput autoComplete="current-password" {...register('password')} />
         </FormField>
         <Button type="submit" className="h-11 w-full" loading={formState.isSubmitting}>
           {formState.isSubmitting ? t('auth.signingIn') : t('auth.signIn')}
