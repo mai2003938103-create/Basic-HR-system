@@ -14,7 +14,11 @@ export default {
       boxShadow: { card: 'var(--shadow-card)', overlay: 'var(--shadow-overlay)' },
       fontSize: {
         'page-title': ['28px', { lineHeight: '40px', fontWeight: '600' }],
+        // The live check-in clock: the one oversized reading on an employee's day.
+        clock: ['40px', { lineHeight: '48px', fontWeight: '700' }],
         'stat-value': ['30px', { lineHeight: '38px', fontWeight: '700' }],
+        // Kip amounts in stat cards: one step under stat-value so 10-digit sums stay on one line in four columns.
+        'stat-money': ['26px', { lineHeight: '38px', fontWeight: '700' }],
         'section-title': ['20px', { lineHeight: '30px', fontWeight: '600' }],
         subhead: ['16px', { lineHeight: '26px', fontWeight: '600' }],
         body: ['15px', { lineHeight: '24px' }],

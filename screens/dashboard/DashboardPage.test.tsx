@@ -22,12 +22,12 @@ const pendingRequest = {
 };
 
 describe('DashboardPage', () => {
-  it('shows eight stat cards with one featured card, linked to modules', async () => {
+  it('shows four company stat cards with one featured card, linked to modules', async () => {
     server.use(...sessionHandlers(), ...extras(), http.get('/api/dashboard/summary', () => HttpResponse.json({ data: summary })), http.get('/api/dashboard/charts', () => HttpResponse.json({ data: charts })));
     renderApp(<DashboardPage />);
     expect(await screen.findByText('128')).toBeInTheDocument();
     const cards = screen.getAllByTestId('stat-card');
-    expect(cards).toHaveLength(8);
+    expect(cards).toHaveLength(4);
     expect(cards.filter((c) => c.className.includes('bg-brand'))).toHaveLength(1);
     expect(screen.getByRole('link', { name: /ຄຳຮ້ອງລາລໍຖ້າ/ })).toHaveAttribute('href', '/leave?tab=approvals');
     expect(screen.getByRole('heading', { name: 'ການເຂົ້າວຽກ 30 ວັນຜ່ານມາ' })).toBeInTheDocument();
@@ -40,19 +40,17 @@ describe('DashboardPage', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: 'ລອງໃໝ່' })).toBeInTheDocument());
   });
 
-  it('gives a manager their team, own check-in and pending approvals first', async () => {
+  it('shows a manager no company stat cards and none of the removed task cards', async () => {
     const manager = me({ roles: ['manager'], scope: 'department', permissions: ['employee.read', 'attendance.read', 'attendance.check', 'leave.read', 'leave.request', 'leave.approve', 'dashboard.view'] });
     server.use(
       ...sessionHandlers(manager), ...extras([pendingRequest]),
-      http.get('/api/dashboard/summary', () => HttpResponse.json({ data: { ...summary, totalEmployees: 6, activeEmployees: 6, departments: 1, notCheckedInToday: 2, absentToday: 0 } })),
+      http.get('/api/dashboard/summary', () => HttpResponse.json({ data: summary })),
       http.get('/api/dashboard/charts', () => HttpResponse.json({ data: charts })),
     );
     renderApp(<DashboardPage />);
-    expect(await screen.findByRole('heading', { name: /ລໍຖ້າທ່ານອະນຸມັດ/ })).toBeInTheDocument();
-    expect(await screen.findByText('ບຸນມີ ແກ້ວ')).toBeInTheDocument();
-    expect(await screen.findByRole('button', { name: /ລົງເວລາເຂົ້າວຽກ/ })).toBeInTheDocument();
-    await waitFor(() => expect(screen.getAllByTestId('stat-card')).toHaveLength(4)); // team, present, not checked in, on leave
-    expect(screen.queryByText('ພະແນກ')).not.toBeInTheDocument();
-    expect(screen.getByText('ຍັງບໍ່ລົງເວລາ')).toBeInTheDocument();
+    await screen.findByRole('heading', { name: 'ການເຂົ້າວຽກ 30 ວັນຜ່ານມາ' });
+    expect(screen.queryAllByTestId('stat-card')).toHaveLength(0);
+    expect(screen.queryByRole('heading', { name: /ລໍຖ້າທ່ານອະນຸມັດ/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /ລົງເວລາເຂົ້າວຽກ/ })).not.toBeInTheDocument();
   });
 });

@@ -1,4 +1,4 @@
-import { ArrowLeft, Pencil } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from '@/lib/router';
@@ -6,7 +6,7 @@ import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import { LoadingState } from '../../components/common/LoadingState';
 import { EmptyState, ErrorState } from '../../components/common/EmptyState';
-import { PageHeader, PermissionGate, SectionTab } from '../../components/common/layout-bits';
+import { PageHeader, PermissionGate, SectionTab, BackLink } from '../../components/common/layout-bits';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { useQuery } from '../../hooks/useQuery';
 import { localName } from '../../i18n';
@@ -29,10 +29,9 @@ export function DepartmentDetailPage() {
 
   return (
     <>
-      <Link to="/departments" className="mb-3 inline-flex items-center gap-1 text-body-sm text-primary-hover hover:underline">
-        <ArrowLeft className="size-4" />{t('departments.title')}
-      </Link>
+      <BackLink to="/departments">{t('departments.title')}</BackLink>
       <PageHeader
+        showTitle
         title={localName(d)}
         subtitle={`${d.code} · ${d.manager ? `${t('departments.manager')}: ${fullName(d.manager)}` : t('departments.noManager')}`}
         actions={<PermissionGate permission="department.manage"><Button variant="outline" onClick={() => setEdit(true)}><Pencil />{t('common.edit')}</Button></PermissionGate>}

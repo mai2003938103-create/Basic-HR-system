@@ -94,7 +94,7 @@ export function AttendancePage() {
               <div className="min-w-0 flex-1">
                 <p className="tabular font-medium">{formatDate(r.workDate)}{team && <span className="font-normal text-ink-muted"> · {fullName(r.employee)}</span>}</p>
                 <p className="tabular text-body-sm text-ink-muted">
-                  {r.checkInAt ? `${formatTime(r.checkInAt)} – ${formatTime(r.checkOutAt) || '…'}` : t(`status.attendance.${r.status}`)}
+                  {r.checkInAt ? `${formatTime(r.checkInAt)} – ${formatTime(r.checkOutAt) || '…'}` : t('attendance.noCheckIn')}
                   {r.workedMinutes ? ` · ${formatMinutes(r.workedMinutes, i18n.language)}` : ''}
                   {r.lateMinutes ? <span className="text-warning-text"> · {t('attendance.lateBy', { n: r.lateMinutes })}</span> : null}
                 </p>

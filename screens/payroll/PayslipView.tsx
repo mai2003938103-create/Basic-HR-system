@@ -100,7 +100,7 @@ export function PayslipView({ slip }: { slip: Payslip }) {
           <p className="mt-3 text-body-sm text-ink-muted">{t('payroll.employerSs', { rate: slip.rates.ssEmployerRate, amount: m(c.ssEmployer) })}</p>
         </div>
       </details>
-      <p className="px-6 pb-6 text-body-sm text-ink-muted">{t('payroll.sampleNote')}</p>
+      {!slip.ratesConfirmed && <p className="px-6 pb-6 text-body-sm text-ink-muted">{t('payroll.slipRatesUnconfirmed')}</p>}
     </article>
   );
 }

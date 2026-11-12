@@ -1,7 +1,7 @@
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from '@/lib/router';
+import { Link, useNavigate } from '@/lib/router';
 import { toast } from 'sonner';
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
@@ -33,7 +33,7 @@ export function DepartmentsPage() {
 
   const columns: Column<Department>[] = [
     { key: 'code', header: t('departments.code'), sortable: true, cell: (d) => <span className="font-medium">{d.code}</span> },
-    { key: i18n.language === 'lo' ? 'nameLo' : 'nameEn', header: t('departments.name'), sortable: true, cell: (d) => localName(d) },
+    { key: i18n.language === 'lo' ? 'nameLo' : 'nameEn', header: t('departments.name'), sortable: true, cell: (d) => <Link to={`/departments/${d.id}`} onClick={(ev) => ev.stopPropagation()} className="font-medium text-primary-hover hover:underline">{localName(d)}</Link> },
     { key: 'manager', header: t('departments.manager'), cell: (d) => (d.manager ? fullName(d.manager) : <span className="text-ink-muted">{t('departments.noManager')}</span>) },
     { key: 'employeeCount', header: t('departments.employeeCount'), align: 'right', cell: (d) => d.employeeCount },
     { key: 'isActive', header: t('common.status'), cell: (d) => <StatusBadge kind="account" value={d.isActive ? 'active' : 'inactive'} /> },

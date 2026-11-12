@@ -58,7 +58,7 @@ export function Brand({ collapsed = false }: { collapsed?: boolean }) {
       <img src="/systory-logo.jpg" alt="Systory" className="size-10 shrink-0 rounded-sm bg-white object-contain" />
       {!collapsed && (
         <span className="min-w-0">
-          <b className="block truncate text-[15px] leading-5 text-on-secondary">{t('nav.productName')}</b>
+          <b className="block truncate text-body font-bold text-on-secondary">{t('nav.productName')}</b>
           <small className="block truncate text-caption font-normal text-on-secondary-muted">{t('nav.productTagline')}</small>
         </span>
       )}

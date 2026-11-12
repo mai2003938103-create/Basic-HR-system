@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 export const Tabs = T.Root;
 export const TabsList = forwardRef<ElementRef<typeof T.List>, ComponentPropsWithoutRef<typeof T.List>>(({ className, ...p }, ref) => (
-  <T.List ref={ref} className={cn('flex gap-1 overflow-x-auto border-b border-border', className)} {...p} />
+  <T.List ref={ref} className={cn('flex gap-1 overflow-x-auto overflow-y-hidden border-b border-border', className)} {...p} />
 ));
 TabsList.displayName = 'TabsList';
 export const TabsTrigger = forwardRef<ElementRef<typeof T.Trigger>, ComponentPropsWithoutRef<typeof T.Trigger>>(({ className, ...p }, ref) => (
@@ -16,6 +16,8 @@ export const TabsTrigger = forwardRef<ElementRef<typeof T.Trigger>, ComponentPro
 ));
 TabsTrigger.displayName = 'TabsTrigger';
 export const TabsContent = forwardRef<ElementRef<typeof T.Content>, ComponentPropsWithoutRef<typeof T.Content>>(({ className, ...p }, ref) => (
-  <T.Content ref={ref} className={cn('pt-6 focus-visible:outline-none', className)} {...p} />
+  // Our panels always hold their own buttons and fields, so the panel itself is not a tab stop
+  // (tabIndex -1) and never shows a focus ring around the whole content.
+  <T.Content ref={ref} tabIndex={-1} className={cn('pt-6 focus:outline-none', className)} {...p} />
 ));
 TabsContent.displayName = 'TabsContent';

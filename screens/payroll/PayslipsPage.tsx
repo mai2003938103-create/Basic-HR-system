@@ -2,6 +2,8 @@ import { Printer } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState, ErrorState } from '../../components/common/EmptyState';
+import { FormField } from '../../components/common/FormField';
+import { SelectInput } from '../../components/common/inputs';
 import { PageHeader } from '../../components/common/layout-bits';
 import { LoadingState } from '../../components/common/LoadingState';
 import { Button } from '../../components/ui/button';
@@ -29,12 +31,21 @@ export function PayslipsPage() {
 
   return (
     <>
-      <PageHeader title={t('nav.payslips')} subtitle={t('payroll.payslipsSubtitle')} actions={slip.data && <Button variant="outline" onClick={() => window.print()}><Printer />{t('payroll.print')}</Button>} />
+      <PageHeader title={t('nav.payslips')} subtitle={t('payroll.payslipsSubtitle')} actions={slip.data && <Button variant="outline" className="hidden sm:inline-flex" onClick={() => window.print()}><Printer />{t('payroll.print')}</Button>} />
       {list.error ? <ErrorState onRetry={list.reload} message={apiError(list.error).messageKey} /> : !list.data ? <LoadingState rows={4} /> : list.data.length === 0 ? (
         <Card><EmptyState title={t('payroll.noPayslips')} text={t('payroll.noPayslipsHint')} /></Card>
       ) : (
         <div className="grid items-start gap-6 lg:grid-cols-[18rem_1fr]">
-          <Card className="overflow-hidden print:hidden">
+          <div className="lg:hidden print:hidden">
+            <FormField label={t('payroll.period')}>
+              <SelectInput
+                value={selected?.payRunId ?? ''}
+                onChange={(v) => setSelected(list.data!.find((p) => p.payRunId === v) ?? null)}
+                options={list.data.map((p) => ({ value: p.payRunId, label: `${formatPeriod(p.period)} · ${formatMoney(p.net, cur)}` }))}
+              />
+            </FormField>
+          </div>
+          <Card className="hidden overflow-hidden lg:block print:hidden">
             <ul className="divide-y divide-border" aria-label={t('nav.payslips')}>
               {list.data.map((p) => {
                 const active = selected?.payRunId === p.payRunId;

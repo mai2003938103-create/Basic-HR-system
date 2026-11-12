@@ -80,7 +80,7 @@ describe('ProfilePage', () => {
     );
     renderApp(<ProfilePage />);
     expect(await screen.findByText('ນາລີ ວົງສະຫວັນ')).toBeInTheDocument();
-    expect(screen.getByText('9,000,000 ₭')).toBeInTheDocument();
+    expect(screen.queryByText('9,000,000 ₭')).not.toBeInTheDocument(); // pay and job details are not on the profile
     expect(screen.getByRole('link', { name: /ປ່ຽນລະຫັດຜ່ານ/ })).toHaveAttribute('href', '/change-password');
   });
 });

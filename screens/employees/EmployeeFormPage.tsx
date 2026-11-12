@@ -1,18 +1,20 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowLeft } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useParams } from '@/lib/router';
+import { useNavigate, useParams } from '@/lib/router';
 import { toast } from 'sonner';
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import { Checkbox } from '../../components/ui/checkbox';
 import { Input, Textarea } from '../../components/ui/input';
+import { PasswordInput } from '../../components/ui/password-input';
+import { ConfirmDialog } from '../../components/common/ConfirmDialog';
+import { useUnsavedChanges } from '../../hooks/useUnsavedChanges';
 import { FormField } from '../../components/common/FormField';
 import { DatePicker, SelectInput } from '../../components/common/inputs';
 import { LoadingState } from '../../components/common/LoadingState';
-import { PageHeader, SectionTab } from '../../components/common/layout-bits';
+import { PageHeader, SectionTab, BackLink } from '../../components/common/layout-bits';
 import { useAuth } from '../../auth/useAuth';
 import { useDepartments } from '../../hooks/useDepartments';
 import { useQuery } from '../../hooks/useQuery';
@@ -49,6 +51,10 @@ export function EmployeeFormPage() {
   const { register, handleSubmit, formState, control, watch, setValue, reset, setError } = form;
   const departmentId = watch('departmentId');
   const createAccount = watch('createAccount');
+  // Ask before throwing away typed-in details (Cancel, closing or reloading the tab).
+  const dirty = formState.isDirty && !formState.isSubmitSuccessful;
+  const [leaving, setLeaving] = useState(false);
+  useUnsavedChanges(dirty);
 
   const positions = useQuery(
     () => api.get<Page<Position>>('/positions', { params: { departmentId, pageSize: 100, isActive: 'true' } }).then((r) => r.data.data),
@@ -100,10 +106,8 @@ export function EmployeeFormPage() {
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-6">
       <div>
-        <Link to={editing ? `/employees/${id}` : '/employees'} className="mb-3 inline-flex items-center gap-1 text-body-sm text-primary-hover hover:underline">
-          <ArrowLeft className="size-4" />{t('common.back')}
-        </Link>
-        <PageHeader title={editing ? t('employees.editTitle') : t('employees.add')} />
+        <BackLink to={editing ? `/employees/${id}` : '/employees'}>{t('common.back')}</BackLink>
+        <PageHeader showTitle title={editing ? t('employees.editTitle') : t('employees.add')} />
       </div>
       <Section title={t('employees.sectionPersonal')}>
         <FormField label={t('employees.code')} required error={err('employeeCode')}><Input {...register('employeeCode')} maxLength={30} /></FormField>
@@ -154,7 +158,7 @@ export function EmployeeFormPage() {
           {createAccount && (
             <>
               <FormField label={t('employees.accountPassword')} required error={err('accountPassword')} hint={t('employees.accountHint')}>
-                <Input type="text" autoComplete="new-password" {...register('accountPassword')} />
+                <PasswordInput autoComplete="new-password" {...register('accountPassword')} />
               </FormField>
               <FormField label={t('employees.roles')} required error={err('accountRole')}>
                 <Controller control={control} name="accountRole" render={({ field }) => <SelectInput value={field.value} onChange={field.onChange} options={roleOptions} />} />
@@ -164,9 +168,18 @@ export function EmployeeFormPage() {
         </Section>
       )}
       <div className="flex justify-end gap-2">
-        <Button type="button" variant="outline" onClick={() => navigate(-1)}>{t('common.cancel')}</Button>
+        <Button type="button" variant="outline" onClick={() => (dirty ? setLeaving(true) : navigate(-1))}>{t('common.cancel')}</Button>
         <Button type="submit" loading={formState.isSubmitting}>{t('common.save')}</Button>
       </div>
+      <ConfirmDialog
+        open={leaving}
+        onOpenChange={setLeaving}
+        title={t('common.unsavedTitle')}
+        description={t('common.unsavedDesc')}
+        confirmLabel={t('common.discard')}
+        tone="danger"
+        onConfirm={() => navigate(-1)}
+      />
     </form>
   );
 }

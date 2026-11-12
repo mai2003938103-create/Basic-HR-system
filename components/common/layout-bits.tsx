@@ -1,14 +1,20 @@
 import type { ReactNode } from 'react';
 import { Link } from '@/lib/router';
-import type { LucideIcon } from 'lucide-react';
+import { ArrowLeft, type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '../../auth/useAuth';
 
-export function PageHeader({ title, actions, subtitle }: { title: string; actions?: ReactNode; subtitle?: ReactNode }) {
+/**
+ * Page title row. The header bar already names the module, so the big title shows only where it adds
+ * something the bar cannot (`showTitle`: the dashboard, a pay run's month, a department's name, add vs edit).
+ * Hidden titles stay as the page's h1 for screen readers.
+ */
+export function PageHeader({ title, actions, subtitle, showTitle = false }: { title: string; actions?: ReactNode; subtitle?: ReactNode; showTitle?: boolean }) {
+  if (!showTitle && !subtitle && !actions) return <h1 className="sr-only">{title}</h1>;
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h1 className="text-page-title">{title}</h1>
+    <div className={cn('flex flex-wrap justify-between gap-3', showTitle ? 'mb-6' : 'mb-3', showTitle || subtitle ? 'items-end' : 'items-center justify-end')}>
+      <div className={cn(!showTitle && !subtitle && 'sr-only')}>
+        <h1 className={showTitle ? 'text-page-title' : 'sr-only'}>{title}</h1>
         {subtitle && <p className="text-body-sm text-ink-muted">{subtitle}</p>}
       </div>
       {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
@@ -26,12 +32,22 @@ export function PermissionGate({ permission, children, fallback = null }: { perm
   return <>{can(permission) ? children : fallback}</>;
 }
 
+/** Back to the parent list, the same on every detail and form page. */
+export function BackLink({ to, children }: { to: string; children: ReactNode }) {
+  return (
+    <Link to={to} className="mb-3 inline-flex items-center gap-1 rounded-sm text-body-sm text-primary-hover hover:underline">
+      <ArrowLeft className="size-4" aria-hidden />{children}
+    </Link>
+  );
+}
+
 /** Money for a StatCard: the amount stays on one line and the symbol drops to label size. */
 export function MoneyValue({ amount, symbol }: { amount: number; symbol: string }) {
   return (
-    <span className="whitespace-nowrap">
-      <span className="text-[26px] leading-[38px]">{Math.round(amount).toLocaleString('en-US')}</span>
-      <span className="ml-1 text-label">{symbol}</span>
+    // The number never breaks; on a narrow card the symbol wraps under it instead of overflowing.
+    <span className="inline-flex flex-wrap items-baseline gap-x-1">
+      <span className="whitespace-nowrap text-stat-money">{Math.round(amount).toLocaleString('en-US')}</span>
+      <span className="text-label">{symbol}</span>
     </span>
   );
 }
@@ -46,14 +62,15 @@ export function DashboardCard({ label, value, icon: Icon, tone = 'primary', meta
     featured: 'bg-surface-card text-primary-hover',
   }[tone];
   const body = (
-    <div data-testid="stat-card" className={cn('flex h-full flex-col gap-2 rounded-md border p-4 transition-shadow sm:p-6', featured ? 'border-transparent bg-brand text-on-secondary' : 'border-border bg-surface-card shadow-card', to && 'hover:shadow-overlay')}>
-      <div className={cn('flex items-center justify-between gap-2 text-label', featured ? 'text-on-secondary-muted' : 'text-ink-muted')}>
-        <span>{label}</span>
-        <span className={cn('grid size-9 place-items-center rounded-sm', tile)}>
-          <Icon className="size-5" aria-hidden />
+    // Icon sits beside the label so the value and meta get the card's full width (kip amounts are long).
+    <div data-testid="stat-card" className={cn('flex h-full min-w-0 flex-col gap-1 rounded-md border p-4 transition-shadow sm:p-5', featured ? 'border-transparent bg-brand text-on-secondary' : 'border-border bg-surface-card shadow-card', to && 'hover:shadow-overlay')}>
+      <div className={cn('flex items-center gap-2 text-label', featured ? 'text-on-secondary-muted' : 'text-ink-muted')}>
+        <span className={cn('grid size-8 shrink-0 place-items-center rounded-sm', tile)}>
+          <Icon className="size-4" aria-hidden />
         </span>
+        <span className="min-w-0">{label}</span>
       </div>
-      <div className="tabular text-stat-value">{value}</div>
+      <div className="tabular mt-1 text-stat-value">{value}</div>
       {meta && <div className={cn('text-body-sm', featured ? 'text-on-secondary-muted' : 'text-ink-muted')}>{meta}</div>}
     </div>
   );

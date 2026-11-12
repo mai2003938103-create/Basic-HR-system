@@ -10,6 +10,8 @@ export interface PublicSettings {
   workingDays: number[];
   workStart: string;
   workEnd: string;
+  breakStart?: string;
+  breakEnd?: string;
 }
 
 let cache: PublicSettings | null = null;

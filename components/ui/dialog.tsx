@@ -17,7 +17,7 @@ export const DialogContent = forwardRef<ElementRef<typeof D.Content>, ComponentP
         <D.Content
           ref={ref}
           className={cn(
-            'fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100vh-32px)] w-[calc(100vw-32px)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-md bg-surface-card text-ink shadow-overlay focus:outline-none',
+            'fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100dvh-32px)] w-[calc(100vw-32px)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-md bg-surface-card text-ink shadow-overlay focus:outline-none',
             wide ? 'max-w-2xl' : 'max-w-md',
             className,
           )}

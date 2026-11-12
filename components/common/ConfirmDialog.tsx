@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/button';
+import { Checkbox } from '../ui/checkbox';
 import { Dialog, DialogBody, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog';
 import { Textarea } from '../ui/input';
 import { Label } from '../ui/label';
@@ -13,6 +14,8 @@ export interface ConfirmDialogProps {
   tone?: 'primary' | 'danger';
   requireReason?: boolean;
   reasonLabel?: string;
+  /** For irreversible steps: a statement the user must tick before confirming. */
+  acknowledge?: string;
   onConfirm: (reason?: string) => Promise<void> | void;
   onOpenChange: (open: boolean) => void;
 }
@@ -21,8 +24,12 @@ export function ConfirmDialog(p: ConfirmDialogProps) {
   const { t } = useTranslation();
   const [reason, setReason] = useState('');
   const [busy, setBusy] = useState(false);
+  const [acked, setAcked] = useState(false);
   useEffect(() => {
-    if (p.open) setReason('');
+    if (p.open) {
+      setReason('');
+      setAcked(false);
+    }
   }, [p.open]);
 
   const confirm = async () => {
@@ -48,11 +55,19 @@ export function ConfirmDialog(p: ConfirmDialogProps) {
             <Textarea id="confirm-reason" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={500} />
           </DialogBody>
         )}
+        {p.acknowledge && (
+          <DialogBody>
+            <label className="flex cursor-pointer items-start gap-3 rounded-sm border border-border-strong p-3 text-label has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary-tint">
+              <Checkbox className="mt-0.5" checked={acked} onCheckedChange={(v) => setAcked(v === true)} />
+              {p.acknowledge}
+            </label>
+          </DialogBody>
+        )}
         <DialogFooter>
           <Button variant="outline" onClick={() => p.onOpenChange(false)} disabled={busy}>
             {t('common.cancel')}
           </Button>
-          <Button variant={p.tone === 'danger' ? 'danger' : 'primary'} onClick={confirm} loading={busy} disabled={p.requireReason && !reason.trim()}>
+          <Button variant={p.tone === 'danger' ? 'danger' : 'primary'} onClick={confirm} loading={busy} disabled={(p.requireReason && !reason.trim()) || (!!p.acknowledge && !acked)}>
             {p.confirmLabel}
           </Button>
         </DialogFooter>

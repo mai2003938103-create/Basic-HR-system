@@ -4,6 +4,7 @@ import { Link, useNavigate } from '@/lib/router';
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import { DataTable, type Column } from '../../components/common/DataTable';
+import { FilterBar } from '../../components/common/FilterBar';
 import { FilterDropdown, SearchBar } from '../../components/common/inputs';
 import { PageHeader, PermissionGate } from '../../components/common/layout-bits';
 import { StatusBadge } from '../../components/common/StatusBadge';
@@ -30,7 +31,7 @@ export function EmployeesPage() {
       cell: (e) => (
         <span className="flex items-center gap-3">
           <Avatar employee={e} size="sm" />
-          <span><span className="block">{fullName(e)}</span><span className="block text-body-sm text-ink-muted">{e.email}</span></span>
+          <span><Link to={`/employees/${e.id}`} onClick={(ev) => ev.stopPropagation()} className="block font-medium text-primary-hover hover:underline">{fullName(e)}</Link><span className="block text-body-sm text-ink-muted">{e.email}</span></span>
         </span>
       ),
     },
@@ -44,10 +45,12 @@ export function EmployeesPage() {
     <>
       <PageHeader title={t('employees.title')} actions={<PermissionGate permission="employee.create"><Button asChild><Link to="/employees/new"><Plus />{t('employees.add')}</Link></Button></PermissionGate>} />
       <Card>
-        <div className="flex flex-wrap gap-3 p-4">
+        <div className="flex flex-col gap-3 p-4 md:flex-row md:flex-wrap md:items-end">
           <SearchBar value={lq.searchInput} onChange={lq.setSearch} placeholder={t('employees.searchPlaceholder')} className="sm:w-80" />
+          <FilterBar className="p-0" activeCount={['departmentId', 'status'].filter((k) => lq.params[k]).length}>
           <FilterDropdown label={t('employees.department')} value={lq.params.departmentId as string | undefined} onChange={(v) => lq.setFilter('departmentId', v)} allLabel={t('employees.allDepartments')} options={(depts.data ?? []).map((d) => ({ value: d.id, label: localName(d) }))} />
           <FilterDropdown label={t('employees.status')} value={lq.params.status as string | undefined} onChange={(v) => lq.setFilter('status', v)} allLabel={t('employees.allStatuses')} options={['active', 'probation', 'inactive', 'terminated'].map((s) => ({ value: s, label: t(`status.employment.${s}`) }))} />
+          </FilterBar>
         </div>
         <DataTable
           columns={columns}

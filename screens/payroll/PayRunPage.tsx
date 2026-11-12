@@ -1,14 +1,14 @@
-import { ArrowLeft, Banknote, Building2, Check, Download, FileText, Minus, Pencil, Printer, RefreshCw, Send, Trash2, TrendingDown, TrendingUp, Undo2, Wallet } from 'lucide-react';
+import { Banknote, Building2, Check, Download, FileText, Landmark, Minus, Pencil, Printer, RefreshCw, Send, Trash2, TrendingDown, TrendingUp, Undo2, Wallet } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useParams } from '@/lib/router';
+import { useNavigate, useParams } from '@/lib/router';
 import { toast } from 'sonner';
 import { ConfirmDialog } from '../../components/common/ConfirmDialog';
 import { DataTable, type Column } from '../../components/common/DataTable';
 import { ErrorState } from '../../components/common/EmptyState';
 import { FormField } from '../../components/common/FormField';
 import { FilterDropdown, SearchBar } from '../../components/common/inputs';
-import { DashboardCard, MoneyValue, PageHeader } from '../../components/common/layout-bits';
+import { DashboardCard, MoneyValue, PageHeader, BackLink } from '../../components/common/layout-bits';
 import { LoadingState } from '../../components/common/LoadingState';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { Button } from '../../components/ui/button';
@@ -30,28 +30,30 @@ import { useLocalTable } from './useLocalTable';
 
 const STEPS: PayRunStatus[] = ['draft', 'pending', 'approved', 'paid'];
 
-function Stepper({ run }: { run: PayRunDetail }) {
+/** Where the run is and what happens next, in one band: four compact steps, then the sentence for this viewer. */
+function StatusBand({ run, message }: { run: PayRunDetail; message: string }) {
   const { t } = useTranslation();
   const at = STEPS.indexOf(run.status);
   const when = [run.createdAt, run.submittedAt, run.approvedAt, run.paidAt];
   return (
-    <ol className="mb-6 grid gap-3 sm:grid-cols-4" aria-label={t('payroll.progress')}>
-      {STEPS.map((s, i) => {
-        const done = i < at || run.status === 'paid';
-        const current = i === at && run.status !== 'paid';
-        return (
-          <li key={s} aria-current={current ? 'step' : undefined} className={cn('flex items-center gap-3 rounded-md border bg-surface-card p-4', current ? 'border-primary' : 'border-border')}>
-            <span className={cn('grid size-8 shrink-0 place-items-center rounded-full text-label', done ? 'bg-primary text-on-primary' : current ? 'bg-primary-tint text-primary-hover' : 'bg-surface-sunken text-ink-muted')}>
-              {done ? <Check className="size-4" aria-hidden /> : i + 1}
-            </span>
-            <span className="min-w-0">
-              <span className="block text-label">{t(`payroll.steps.${s}`)}</span>
-              <span className="tabular block truncate text-body-sm text-ink-muted">{done || current ? formatDateTime(when[i]) || '—' : '—'}</span>
-            </span>
-          </li>
-        );
-      })}
-    </ol>
+    <section className="mb-6 rounded-md border border-border bg-surface-card shadow-card">
+      <ol className="flex flex-wrap gap-x-6 gap-y-3 border-b border-border px-4 py-4 sm:px-6" aria-label={t('payroll.progress')}>
+        {STEPS.map((s, i) => {
+          const done = i < at || run.status === 'paid';
+          const current = i === at && run.status !== 'paid';
+          return (
+            <li key={s} aria-current={current ? 'step' : undefined} className="flex min-w-0 items-center gap-2">
+              <span className={cn('grid size-6 shrink-0 place-items-center rounded-full text-caption', done ? 'bg-primary text-on-primary' : current ? 'bg-primary-tint text-primary-hover ring-2 ring-primary' : 'bg-surface-sunken text-ink-muted')}>
+                {done ? <Check className="size-3.5" aria-hidden /> : i + 1}
+              </span>
+              <span className={cn('text-label', !done && !current && 'text-ink-muted')}>{t(`payroll.steps.${s}`)}</span>
+              {(done || current) && when[i] && <span className="tabular text-body-sm text-ink-muted">{formatDateTime(when[i])}</span>}
+            </li>
+          );
+        })}
+      </ol>
+      <p role="status" className="px-4 py-3 text-body-sm sm:px-6">{message}</p>
+    </section>
   );
 }
 
@@ -170,6 +172,8 @@ export function PayRunPage() {
   const [action, setAction] = useState<Action | null>(null);
   const [returning, setReturning] = useState(false);
   const [returnNote, setReturnNote] = useState('');
+  const [returnError, setReturnError] = useState<string>();
+  const [returnBusy, setReturnBusy] = useState(false);
 
   const run = q.data;
   const lines = useMemo(() => {
@@ -201,7 +205,10 @@ export function PayRunPage() {
   const columns: Column<Row>[] = [
     { key: 'name', header: t('payroll.employee'), sortable: true, className: 'min-w-[13rem]', cell: (l) => <span><span className="block font-medium">{fullName(l.employee)}</span><span className="block text-body-sm text-ink-muted">{l.employee.employeeCode} · {localName(l.employee.department)}</span></span> },
     { key: 'basic', header: t('payroll.basic'), sortable: true, align: 'right', cell: (l) => formatAmount(l.calc.basic) },
-    { key: 'extra', header: t('payroll.extraEarnings'), align: 'right', cell: (l) => <span title={`${t('payroll.allowance')} ${formatAmount(l.calc.allowance)} · ${t('payroll.overtimePay')} ${formatAmount(l.calc.overtimePay)} · ${t('payroll.bonus')} ${formatAmount(l.calc.bonus)}`}>{formatAmount(l.calc.allowance + l.calc.overtimePay + l.calc.bonus)}</span> },
+    { key: 'extra', header: t('payroll.extraEarnings'), align: 'right', cell: (l) => {
+      const detail = `${t('payroll.allowance')} ${formatAmount(l.calc.allowance)} · ${t('payroll.overtimePay')} ${formatAmount(l.calc.overtimePay)} · ${t('payroll.bonus')} ${formatAmount(l.calc.bonus)}`;
+      return <span title={detail}>{formatAmount(l.calc.allowance + l.calc.overtimePay + l.calc.bonus)}<span className="sr-only"> ({detail})</span></span>;
+    } },
     { key: 'gross', header: t('payroll.gross'), sortable: true, align: 'right', cell: (l) => formatAmount(l.calc.gross) },
     {
       key: 'deductions', header: t('payroll.deductions'), align: 'right',
@@ -209,6 +216,7 @@ export function PayRunPage() {
       cell: (l) => (
         <span title={`${t('payroll.ssShort')} ${formatAmount(l.calc.ssEmployee)} · ${t('payroll.taxShort')} ${formatAmount(l.calc.incomeTax)}${l.calc.otherDeduction ? ` · ${t('payroll.otherShort')} ${formatAmount(l.calc.otherDeduction)}` : ''}`}>
           {formatAmount(l.calc.totalDeductions)}
+          <span className="sr-only"> ({t('payroll.ssShort')} {formatAmount(l.calc.ssEmployee)} · {t('payroll.taxShort')} {formatAmount(l.calc.incomeTax)})</span>
           {l.calc.otherDeduction > 0 && <span className="block text-caption font-normal text-danger-text">{t('payroll.inclOther', { amount: formatAmount(l.calc.otherDeduction) })}</span>}
         </span>
       ),
@@ -240,23 +248,25 @@ export function PayRunPage() {
     paid: t('payroll.banner.paid', { date: formatDate(run.paidAt) }),
   }[run.status];
 
-  const confirmCopy: Record<Action, { title: string; desc: string; label: string; tone?: 'danger' }> = {
+  const confirmCopy: Record<Action, { title: string; desc: string; label: string; tone?: 'danger'; acknowledge?: string }> = {
     submit: { title: t('payroll.confirm.submit', { period: formatPeriod(run.period) }), desc: t('payroll.confirm.submitDesc', { n: run.employeeCount, net: m(run.totalNet) }), label: t('payroll.submit') },
     approve: { title: t('payroll.confirm.approve', { period: formatPeriod(run.period) }), desc: t('payroll.confirm.approveDesc', { net: m(run.totalNet), cost: m(run.totalEmployerCost) }), label: t('payroll.approve') },
-    pay: { title: t('payroll.confirm.pay', { period: formatPeriod(run.period) }), desc: t('payroll.confirm.payDesc'), label: t('payroll.markPaid') },
+    // Irreversible and announced to every employee: restate the money and ask HR to confirm the transfer happened.
+    pay: { title: t('payroll.confirm.pay', { period: formatPeriod(run.period) }), desc: t('payroll.confirm.payDesc', { n: run.employeeCount, net: m(run.totalNet), date: formatDate(run.payDate) }), label: t('payroll.markPaid'), acknowledge: t('payroll.confirm.payAck') },
     delete: { title: t('payroll.confirm.delete', { period: formatPeriod(run.period) }), desc: t('common.cannotUndo'), label: t('common.delete'), tone: 'danger' },
     recalculate: { title: t('payroll.confirm.recalculate'), desc: t('payroll.confirm.recalculateDesc'), label: t('payroll.recalculate') },
   };
 
   return (
     <>
-      <Button variant="ghost" size="sm" asChild className="mb-2 -ml-2"><Link to="/payroll"><ArrowLeft />{t('payroll.title')}</Link></Button>
+      <BackLink to="/payroll">{t('payroll.title')}</BackLink>
       <PageHeader
+        showTitle
         title={t('payroll.runTitle', { period: formatPeriod(run.period) })}
         subtitle={<span className="inline-flex flex-wrap items-center gap-2"><StatusBadge kind="payroll" value={run.status} />{t('payroll.payDate')}: {formatDate(run.payDate)}</span>}
         actions={
           <>
-            <Button variant="outline" onClick={() => downloadFile(`/payroll/runs/${run.id}/export`, { lang: i18n.language }, `payroll-${run.period}.csv`).catch(toastError)}><Download />{t('payroll.exportBank')}</Button>
+            {(run.status === 'approved' || run.status === 'paid') && <Button variant="outline" onClick={() => downloadFile(`/payroll/runs/${run.id}/export`, { lang: i18n.language }, `payroll-${run.period}.csv`).catch(toastError)}><Download />{t('payroll.exportBank')}</Button>}
             {run.canEdit && <Button variant="outline" onClick={() => setAction('recalculate')}><RefreshCw />{t('payroll.recalculate')}</Button>}
             {run.canEdit && <Button variant="subtle" size="icon" aria-label={t('payroll.deleteDraft')} title={t('payroll.deleteDraft')} onClick={() => setAction('delete')}><Trash2 /></Button>}
             {run.canSubmit && <Button onClick={() => setAction('submit')}><Send />{t('payroll.submit')}</Button>}
@@ -266,12 +276,11 @@ export function PayRunPage() {
           </>
         }
       />
-      <Stepper run={run} />
-      <p role="status" className="mb-6 rounded-sm bg-primary-tint px-4 py-3 text-body-sm text-ink">{banner}</p>
+      <StatusBand run={run} message={banner} />
       <div className="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        <DashboardCard tone="featured" icon={Banknote} label={t('payroll.totalNet')} value={<MoneyValue amount={run.totalNet} symbol={cur.symbol} />} meta={<>{t('payroll.employeesN', { n: run.employeeCount })}{run.previous && <> · <Delta now={run.totalNet} before={run.previous.totalNet} /></>}</>} />
+        <DashboardCard icon={Banknote} label={t('payroll.totalNet')} value={<MoneyValue amount={run.totalNet} symbol={cur.symbol} />} meta={<>{t('payroll.employeesN', { n: run.employeeCount })}{run.previous && <> · <Delta now={run.totalNet} before={run.previous.totalNet} /></>}</>} />
         <DashboardCard icon={FileText} label={t('payroll.gross')} value={<MoneyValue amount={run.totalGross} symbol={cur.symbol} />} meta={run.previous && <Delta now={run.totalGross} before={run.previous.totalGross} period={run.previous.period} />} />
-        <DashboardCard icon={Undo2} tone="warning" label={t('payroll.taxAndSsTitle')} value={<MoneyValue amount={run.totalTax + run.totalSsEmployee} symbol={cur.symbol} />} meta={t('payroll.taxAndSs', { tax: m(run.totalTax), ss: m(run.totalSsEmployee) })} />
+        <DashboardCard icon={Landmark} tone="warning" label={t('payroll.taxAndSsTitle')} value={<MoneyValue amount={run.totalTax + run.totalSsEmployee} symbol={cur.symbol} />} meta={t('payroll.taxAndSs', { tax: m(run.totalTax), ss: m(run.totalSsEmployee) })} />
         <DashboardCard icon={Building2} label={t('payroll.employerCost')} value={<MoneyValue amount={run.totalEmployerCost} symbol={cur.symbol} />} meta={run.previous ? <Delta now={run.totalEmployerCost} before={run.previous.totalEmployerCost} period={run.previous.period} /> : t('payroll.employerSsShort', { amount: m(run.totalSsEmployer) })} />
       </div>
       <Card>
@@ -315,20 +324,25 @@ export function PayRunPage() {
           )}
         />
       </Card>
-      <p className="mt-4 text-body-sm text-ink-muted">{t('payroll.sampleNote')}</p>
+      {!run.ratesConfirmed && <p className="mt-4 text-body-sm text-ink-muted">{t('payroll.sampleNote')}</p>}
 
       {editing && <AdjustDialog run={run} line={editing} onClose={() => setEditing(null)} onSaved={q.reload} />}
       {slip && <PayslipDialog runId={run.id} employeeId={slip} onClose={() => setSlip(null)} />}
       {action && (
-        <ConfirmDialog open onOpenChange={(o) => !o && setAction(null)} title={confirmCopy[action].title} description={confirmCopy[action].desc} confirmLabel={confirmCopy[action].label} tone={confirmCopy[action].tone ?? 'primary'} onConfirm={() => doAction(action)} />
+        <ConfirmDialog open onOpenChange={(o) => !o && setAction(null)} title={confirmCopy[action].title} description={confirmCopy[action].desc} confirmLabel={confirmCopy[action].label} tone={confirmCopy[action].tone ?? 'primary'} acknowledge={confirmCopy[action].acknowledge} onConfirm={() => doAction(action)} />
       )}
       <Dialog open={returning} onOpenChange={setReturning}>
         <DialogContent>
           <DialogHeader><DialogTitle>{t('payroll.returnTitle', { period: formatPeriod(run.period) })}</DialogTitle></DialogHeader>
-          <DialogBody><FormField label={t('payroll.returnNote')} required><Textarea rows={3} value={returnNote} onChange={(e) => setReturnNote(e.target.value)} /></FormField></DialogBody>
+          <DialogBody><FormField label={t('payroll.returnNote')} required error={returnError}><Textarea rows={3} value={returnNote} onChange={(e) => { setReturnNote(e.target.value); setReturnError(undefined); }} /></FormField></DialogBody>
           <DialogFooter>
             <Button variant="outline" onClick={() => setReturning(false)}>{t('common.cancel')}</Button>
-            <Button disabled={!returnNote.trim()} onClick={async () => { try { await api.put(`/payroll/runs/${run.id}/reject`, { note: returnNote.trim() }); toast.success(t('payroll.done.reject')); setReturning(false); setReturnNote(''); void q.reload(); } catch (e) { toastError(e); } }}><Undo2 />{t('payroll.return')}</Button>
+            <Button loading={returnBusy} onClick={async () => {
+              // A reason is required: say so on the field instead of leaving a silently disabled button.
+              if (!returnNote.trim()) return setReturnError('errors.validation.required');
+              setReturnBusy(true);
+              try { await api.put(`/payroll/runs/${run.id}/reject`, { note: returnNote.trim() }); toast.success(t('payroll.done.reject')); setReturning(false); setReturnNote(''); void q.reload(); } catch (e) { toastError(e); } finally { setReturnBusy(false); }
+            }}><Undo2 />{t('payroll.return')}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

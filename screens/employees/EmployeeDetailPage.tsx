@@ -1,4 +1,4 @@
-import { ArrowLeft, Camera, Pencil, UserCheck, UserX } from 'lucide-react';
+import { Camera, Pencil, UserCheck, UserX } from 'lucide-react';
 import { useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from '@/lib/router';
@@ -8,7 +8,7 @@ import { Card } from '../../components/ui/card';
 import { ConfirmDialog } from '../../components/common/ConfirmDialog';
 import { ErrorState } from '../../components/common/EmptyState';
 import { LoadingState } from '../../components/common/LoadingState';
-import { PermissionGate, SectionTab } from '../../components/common/layout-bits';
+import { PermissionGate, SectionTab, BackLink } from '../../components/common/layout-bits';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { currencyOf, useSettings } from '../../hooks/useSettings';
 import { useQuery } from '../../hooks/useQuery';
@@ -79,9 +79,7 @@ export function EmployeeDetailPage() {
 
   return (
     <>
-      <Link to="/employees" className="mb-3 inline-flex items-center gap-1 text-body-sm text-primary-hover hover:underline">
-        <ArrowLeft className="size-4" />{t('employees.title')}
-      </Link>
+      <BackLink to="/employees">{t('employees.title')}</BackLink>
       <Card className="mb-6 flex flex-wrap items-center gap-4 p-6">
         <div className="relative">
           <Avatar employee={e} size="lg" />

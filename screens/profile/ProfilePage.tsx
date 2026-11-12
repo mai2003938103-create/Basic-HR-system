@@ -6,16 +6,18 @@ import { Link } from '@/lib/router';
 import { Button } from '../../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
 import { Card } from '../../components/ui/card';
+import { Input, Textarea } from '../../components/ui/input';
+import { FormField } from '../../components/common/FormField';
+import { DatePicker, SelectInput } from '../../components/common/inputs';
 import { LoadingState } from '../../components/common/LoadingState';
 import { PageHeader } from '../../components/common/layout-bits';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { useAuth } from '../../auth/useAuth';
 import { useQuery } from '../../hooks/useQuery';
-import { currencyOf, useSettings } from '../../hooks/useSettings';
-import { localName } from '../../i18n';
-import { api } from '../../lib/api';
+import { useUnsavedChanges } from '../../hooks/useUnsavedChanges';
+import { api, apiError } from '../../lib/api';
 import { toastError } from '../../lib/form-errors';
-import { formatDate, formatMoney, fullName } from '../../lib/format';
+import { fullName } from '../../lib/format';
 import type { Employee } from '../../lib/types';
 import { Avatar } from '../employees/Avatar';
 
@@ -34,12 +36,72 @@ function Details({ title, rows }: { title: string; rows: Row[] }) {
   );
 }
 
+type Personal = {
+  firstName: string; lastName: string; gender: Employee['gender']; dateOfBirth: string; phone: string; address: string;
+  emergencyContactName: string; emergencyContactPhone: string; emergencyContactRelation: string;
+};
+const personalOf = (e: Employee): Personal => ({
+  firstName: e.firstName, lastName: e.lastName, gender: e.gender, dateOfBirth: e.dateOfBirth, phone: e.phone ?? '', address: e.address ?? '',
+  emergencyContactName: e.emergencyContactName ?? '', emergencyContactPhone: e.emergencyContactPhone ?? '', emergencyContactRelation: e.emergencyContactRelation ?? '',
+});
+
+/** Self-service personal details, edited in place. Email (the login), job and pay stay with HR. */
+function PersonalForm({ employee, onSaved }: { employee: Employee; onSaved: (e: Employee) => void }) {
+  const { t } = useTranslation();
+  const [initial] = useState(() => personalOf(employee));
+  const [f, setF] = useState<Personal>(initial);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [busy, setBusy] = useState(false);
+  const dirty = JSON.stringify(f) !== JSON.stringify(initial);
+  useUnsavedChanges(dirty);
+  const set = (k: keyof Personal) => (e: { target: { value: string } }) => setF((x) => ({ ...x, [k]: e.target.value }));
+  const save = async () => {
+    setBusy(true);
+    setErrors({});
+    try {
+      const r = await api.put<{ data: Employee }>('/employees/me', f);
+      toast.success(t('common.saved'));
+      onSaved(r.data.data);
+    } catch (e) {
+      const info = apiError(e);
+      if (Object.keys(info.fieldErrors).length) setErrors(info.fieldErrors);
+      else toastError(e);
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <form onSubmit={(ev) => { ev.preventDefault(); void save(); }} noValidate>
+      <h3 className="mb-1 text-section-title">{t('employees.sectionPersonal')}</h3>
+      <p className="mb-4 text-body-sm text-ink-muted">{t('profile.personalHint')}</p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <FormField label={t('employees.firstName')} required error={errors.firstName}><Input autoComplete="given-name" value={f.firstName} onChange={set('firstName')} /></FormField>
+        <FormField label={t('employees.lastName')} required error={errors.lastName}><Input autoComplete="family-name" value={f.lastName} onChange={set('lastName')} /></FormField>
+        <FormField label={t('employees.gender')} required error={errors.gender}>
+          <SelectInput value={f.gender} onChange={(v) => setF((x) => ({ ...x, gender: v as Personal['gender'] }))} options={(['male', 'female', 'other'] as const).map((g) => ({ value: g, label: t(`employees.${g}`) }))} />
+        </FormField>
+        <FormField label={t('employees.dob')} required error={errors.dateOfBirth}><DatePicker autoComplete="bday" value={f.dateOfBirth} onChange={set('dateOfBirth')} /></FormField>
+        <FormField label={t('employees.phone')} required error={errors.phone}><Input type="tel" autoComplete="tel" value={f.phone} onChange={set('phone')} /></FormField>
+        <FormField label={t('employees.email')} hint={t('profile.emailHint')}><Input type="email" value={employee.email} readOnly disabled /></FormField>
+        <FormField label={t('employees.address')} className="sm:col-span-2" error={errors.address}><Textarea rows={2} autoComplete="street-address" value={f.address} onChange={set('address')} /></FormField>
+        {/* Emergency contact is not shown here (HR keeps it in the employee form); its current values are sent back unchanged. */}
+      </div>
+      <div className="mt-6 flex flex-wrap items-center justify-end gap-3 border-t border-border pt-4">
+        <p role="status" className="mr-auto text-body-sm text-ink-muted">{dirty ? t('common.unsavedChanges') : t('common.noChanges')}</p>
+        {dirty && <Button type="button" variant="outline" onClick={() => { setF(initial); setErrors({}); }}>{t('common.cancel')}</Button>}
+        <Button type="submit" loading={busy} disabled={!dirty}>{t('common.save')}</Button>
+      </div>
+    </form>
+  );
+}
+
 export function ProfilePage() {
   const { t } = useTranslation();
   const { user, reload } = useAuth();
-  const settings = useSettings();
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  // Bumped after a save so the form takes the saved values as its new baseline.
+  const [version, setVersion] = useState(0);
   const q = useQuery(() => api.get<{ data: Employee }>('/employees/me').then((r) => r.data.data), [user?.employee?.id], !!user?.employee);
   const e = q.data;
 
@@ -76,22 +138,6 @@ export function ProfilePage() {
     }
   };
 
-  const personal: Row[] = e
-    ? [
-        [t('employees.firstName'), e.firstName], [t('employees.lastName'), e.lastName],
-        [t('employees.gender'), t(`employees.${e.gender}`)], [t('employees.dob'), formatDate(e.dateOfBirth)],
-        [t('employees.phone'), e.phone], [t('employees.email'), e.email],
-        [t('employees.address'), e.address],
-        [t('employees.emergencyName'), e.emergencyContactName], [t('employees.emergencyPhone'), e.emergencyContactPhone], [t('employees.emergencyRelation'), e.emergencyContactRelation],
-      ]
-    : [];
-  const work: Row[] = e
-    ? [
-        [t('employees.code'), e.employeeCode], [t('employees.department'), localName(e.department)], [t('employees.position'), localName(e.position)], [t('employees.hireDate'), formatDate(e.hireDate)],
-        ...(e.basicSalary !== undefined ? ([[t('employees.salary'), formatMoney(e.basicSalary, currencyOf(settings))]] as Row[]) : []),
-      ]
-    : [];
-
   return (
     <>
       <PageHeader title={t('profile.title')} actions={<Button variant="outline" asChild><Link to="/change-password"><KeyRound />{t('common.changePassword')}</Link></Button>} />
@@ -124,10 +170,7 @@ export function ProfilePage() {
               </TabsList>
               <TabsContent value="info">
                 {e ? (
-                  <>
-                    <Details title={t('employees.sectionPersonal')} rows={personal} />
-                    <Details title={t('employees.sectionEmployment')} rows={work} />
-                  </>
+                  <PersonalForm key={version} employee={e} onSaved={(next) => { q.setData(next); setVersion((n) => n + 1); void reload(); }} />
                 ) : (
                   <>
                     <Details title={t('profile.account')} rows={[[t('employees.email'), user.email]]} />

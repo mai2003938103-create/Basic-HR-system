@@ -21,3 +21,10 @@
   :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
   .tabular { font-variant-numeric: tabular-nums; }
 }
+
+/* Reduced motion: skeletons stay still and state changes are instant; the loading spinner keeps turning, slower. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse { animation: none; }
+  .animate-spin { animation-duration: 2s; }
+  *, *::before, *::after { transition-duration: 0s !important; scroll-behavior: auto !important; }
+}

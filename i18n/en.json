@@ -77,7 +77,12 @@
   "download": "Download",
   "fileHint": "Max 5 MB",
   "chooseFile": "Choose file",
-  "removeFile": "Remove file"
+  "removeFile": "Remove file",
+  "unsavedTitle": "Leave without saving?",
+  "unsavedDesc": "Changes you have not saved will be lost.",
+  "discard": "Leave without saving",
+  "unsavedChanges": "You have unsaved changes",
+  "noChanges": "No changes"
  },
  "nav": {
   "dashboard": "Dashboard",
@@ -156,10 +161,10 @@
   "common": {
    "notFound": "Not found",
    "forbidden": "You do not have permission to do this",
-   "internal": "Something went wrong. Please try again",
+   "internal": "Something went wrong on our side. Try again; if it keeps happening, tell your system administrator.",
    "duplicate": "This already exists",
    "inUse": "This is in use",
-   "network": "Cannot reach the server"
+   "network": "Cannot reach the server. Check your connection and try again."
   },
   "auth": {
    "invalidCredentials": "Incorrect email or password",
@@ -251,6 +256,7 @@
   },
   "settings": {
    "endBeforeStart": "End time must be after start time",
+   "breakOutsideWork": "The lunch break must fall within working hours",
    "bracketOrder": "Brackets must increase, with no ceiling on the last one"
   },
   "forbiddenPage": "You do not have access to this page",
@@ -293,7 +299,24 @@
   "nobodyLate": "Nobody is late",
   "nobodyOnLeave": "Nobody is on leave",
   "untilDate": "until {{date}}",
-  "andMore": "and {{n}} more"
+  "andMore": "and {{n}} more",
+  "payrollTitle": "Payroll {{period}}",
+  "payrollPeople": "People",
+  "payrollNone": "There is no pay run for this month yet.",
+  "payrollCreate": "Create pay run",
+  "payrollDraft": "Draft: check and adjust the lines, then submit for approval.",
+  "payrollPreparing": "HR is preparing it.",
+  "payrollContinue": "Continue draft",
+  "payrollNeedsApproval": "Waiting for your review and approval.",
+  "payrollAwaiting": "Submitted, waiting for the approver.",
+  "payrollReview": "Review and approve",
+  "payrollReadyToPay": "Approved: transfer the money, then mark it paid.",
+  "payrollApproved": "Approved, waiting to be paid.",
+  "payrollGoPay": "Go to mark paid",
+  "payrollPaidOn": "Paid on {{date}}.",
+  "payrollView": "Open pay run",
+  "activeN": "{{n}} active",
+  "moreReports": "More in Reports"
  },
  "employees": {
   "title": "Employees",
@@ -395,7 +418,8 @@
   "minutes": "{{n}} min",
   "noRecord": "Not checked in",
   "workHours": "Working hours {{start}} – {{end}}",
-  "emptyTitle": "No attendance records"
+  "emptyTitle": "No attendance records",
+  "noCheckIn": "No check-in"
  },
  "leave": {
   "daysN": "{{n}} days",
@@ -554,7 +578,7 @@
    },
    "settings": {
     "manage": "Manage settings"
-  }
+   }
   }
  },
  "profile": {
@@ -567,7 +591,11 @@
   "tabInfo": "Profile information",
   "tabSecurity": "Security settings",
   "securityHint": "Change your password regularly to keep your account safe.",
-  "noEmployee": "This account is not linked to an employee"
+  "noEmployee": "This account is not linked to an employee",
+  "editContact": "Edit contact details",
+  "editContactHint": "You can change your phone, address and emergency contact. For your name, date of birth, email, department or position, contact HR.",
+  "personalHint": "Edit your details here, then save. For your email, department, position or pay, contact HR.",
+  "emailHint": "Used to sign in; HR changes it"
  },
  "prototype": {
   "badge": "Prototype",
@@ -649,10 +677,11 @@
    "approve": "Approve {{period}}?",
    "approveDesc": "Net pay {{net}}, employer cost {{cost}}.",
    "pay": "Confirm {{period}} has been paid?",
-   "payDesc": "Every employee is notified and can open their payslip.",
+   "payDesc": "{{n}} people, net pay {{net}}, pay date {{date}}. Every employee is notified and can open their payslip. This cannot be undone.",
    "delete": "Delete the {{period}} draft?",
    "recalculate": "Recalculate from the latest data?",
-   "recalculateDesc": "Refreshes basic salary, overtime and unpaid leave. Allowances, bonuses and deductions you set are kept."
+   "recalculateDesc": "Refreshes basic salary, overtime and unpaid leave. Allowances, bonuses and deductions you set are kept.",
+   "payAck": "I have transferred the salaries through the bank"
   },
   "basic": "Basic salary",
   "allowance": "Allowance",
@@ -703,11 +732,13 @@
   "tax": "Tax",
   "over": "Over {{amount}}",
   "employerSs": "The company also pays {{rate}}% social security: {{amount}} (not deducted from pay).",
-  "sampleNote": "Prototype: tax and social security rates are sample values editable in Settings. HR and accounting must confirm them against Lao law before go-live.",
+  "sampleNote": "Tax and social security rates are not confirmed yet. Have accounting check them against current Lao law, then press \"Confirm rates\" in Settings.",
   "payslipsSubtitle": "Your paid payslips",
   "noPayslips": "No payslips yet",
   "noPayslipsHint": "Payslips appear here after payroll is paid.",
-  "paidOn": "Paid {{date}}"
+  "paidOn": "Paid {{date}}",
+  "exportAfterApproval": "The bank file can be exported once approved",
+  "slipRatesUnconfirmed": "The tax and social security rates on this payslip are awaiting company confirmation. Ask HR if you have questions."
  },
  "reports": {
   "title": "Reports",
@@ -802,19 +833,22 @@
   },
   "workStart": "Start time",
   "workEnd": "End time",
+  "breakStart": "Lunch break starts",
+  "breakEnd": "Lunch break ends",
+  "breakHint": "Not counted as time worked",
   "lateGrace": "Late grace (minutes)",
   "lateGraceHint": "Later than this counts as late",
   "halfDay": "Half day (minutes)",
   "halfDayHint": "Less work than this counts as a half day",
   "leaveAndHolidays": "Leave and holidays",
   "leaveAndHolidaysHint": "Leave types and public holidays are managed on the Leave page.",
-  "payrollWarning": "These rates are sample values. Ask accounting to confirm them against the current Lao income tax and social security laws before go-live.",
+  "payrollWarning": "These rates are not confirmed yet. Have accounting check them against the current Lao income tax and social security laws, then press \"Confirm rates\". Until then, payslips carry a notice.",
   "payrollGeneral": "General",
   "payDay": "Pay day",
   "payDayHint": "Day of the month",
   "workDaysPerMonth": "Working days per month",
   "workDaysPerMonthHint": "Used for the daily rate",
-  "overtimeRate": "Overtime rate (%)",
+  "overtimeRate": "Overtime rate, working days (%)",
   "overtimeRateHint": "Of the hourly rate",
   "socialSecurity": "Social security",
   "ssEmployee": "Employee share (%)",
@@ -829,6 +863,15 @@
   "noCeiling": "No ceiling",
   "addBracket": "Add bracket",
   "preview": "Try it",
-  "previewGross": "Gross pay"
+  "previewGross": "Gross pay",
+  "payrollSaveHint": "Saves all three sections: general, social security and tax brackets",
+  "overtimeRestRate": "Overtime rate, rest days (%)",
+  "confirmRates": "Confirm rates",
+  "confirmRatesTitle": "Confirm the payroll rates?",
+  "confirmRatesDesc": "Payslips will stop showing the \"not confirmed\" notice. If any rate is changed later, it must be confirmed again.",
+  "confirmRatesAck": "Accounting has checked every rate against current Lao law",
+  "ratesConfirmed": "Rates confirmed on {{date}}. Changing any rate requires confirming again.",
+  "ratesConfirmedToast": "Rates confirmed",
+  "saveBeforeConfirm": "Save your changes before confirming"
  }
 }

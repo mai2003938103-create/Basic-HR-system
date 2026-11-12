@@ -1,10 +1,11 @@
 import { Bell, KeyRound, LogOut, Menu, Moon, Sun, UserRound } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from '@/lib/router';
+import { Link, useLocation, useNavigate } from '@/lib/router';
 import { useAuth } from '../../auth/useAuth';
 import { api, type Page } from '../../lib/api';
 import { formatDate, formatDateTime, fullName } from '../../lib/format';
+import { NAV_ITEMS } from '../../lib/permissions';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu';
@@ -73,7 +74,7 @@ function Notifications() {
       <PopoverTrigger asChild>
         <Button variant="subtle" size="icon" aria-label={`${t('common.notifications')}${unread ? ` (${unread} ${t('common.unread')})` : ''}`} className="relative">
           <Bell />
-          {unread > 0 && <span className="absolute right-1.5 top-1.5 grid min-w-[18px] place-items-center rounded-pill bg-danger px-1 text-[11px] font-semibold leading-[18px] text-on-danger">{unread > 9 ? '9+' : unread}</span>}
+          {unread > 0 && <span className="absolute right-1.5 top-1.5 grid min-w-[18px] place-items-center rounded-pill bg-danger px-1 text-caption text-on-danger">{unread > 9 ? '9+' : unread}</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0">
@@ -104,11 +105,20 @@ function Notifications() {
   );
 }
 
+/** The sidebar entry for the current path (longest matching prefix), so the header names the page you are on. */
+function currentNavKey(pathname: string) {
+  const match = NAV_ITEMS.filter((i) => (i.to === '/' ? pathname === '/' : pathname === i.to || pathname.startsWith(`${i.to}/`)))
+    .sort((a, b) => b.to.length - a.to.length)[0];
+  return match?.key;
+}
+
 export function Header({ onMenu }: { onMenu: () => void }) {
   const { t } = useTranslation();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [theme, toggleTheme] = useTheme();
+  const { pathname } = useLocation();
+  const pageKey = currentNavKey(pathname);
   const name = user?.employee ? fullName(user.employee) : user?.email;
   const initials = (user?.employee?.firstName ?? user?.email ?? '?').slice(0, 1).toUpperCase();
 
@@ -117,7 +127,7 @@ export function Header({ onMenu }: { onMenu: () => void }) {
       <Button variant="subtle" size="icon" className="md:hidden" aria-label={t('common.openMenu')} onClick={onMenu}>
         <Menu />
       </Button>
-      <div className="flex-1" />
+      <p className="min-w-0 flex-1 truncate text-section-title">{pageKey ? t(`nav.${pageKey}`) : null}</p>
       <LanguageSwitch className="hidden sm:inline-flex" />
       <Button variant="subtle" size="icon" aria-label={theme === 'dark' ? t('common.lightMode') : t('common.darkMode')} onClick={toggleTheme}>
         {theme === 'dark' ? <Sun /> : <Moon />}

@@ -84,7 +84,7 @@ export function PayrollPage() {
       <PageHeader title={t('payroll.title')} subtitle={t('payroll.subtitle')} actions={<PermissionGate permission="payroll.manage"><Button onClick={() => setCreating(true)}><Plus />{t('payroll.newRun')}</Button></PermissionGate>} />
       {latest && (
         <div className="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          <DashboardCard tone="featured" icon={Banknote} label={t('payroll.latestNet', { period: formatPeriod(latest.period) })} value={<MoneyValue amount={latest.totalNet} symbol={cur.symbol} />} meta={<StatusBadge kind="payroll" value={latest.status} className="bg-surface-card" />} to={`/payroll/${latest.id}`} />
+          <DashboardCard icon={Banknote} label={t('payroll.latestNet', { period: formatPeriod(latest.period) })} value={<MoneyValue amount={latest.totalNet} symbol={cur.symbol} />} meta={<StatusBadge kind="payroll" value={latest.status} className="bg-surface-card" />} to={`/payroll/${latest.id}`} />
           <DashboardCard icon={ReceiptText} label={t('payroll.gross')} value={<MoneyValue amount={latest.totalGross} symbol={cur.symbol} />} meta={formatPeriod(latest.period)} />
           <DashboardCard icon={Building2} label={t('payroll.employerCost')} value={<MoneyValue amount={latest.totalEmployerCost} symbol={cur.symbol} />} meta={t('payroll.employerCostHint')} />
           <DashboardCard icon={Users} label={t('payroll.employees')} value={latest.employeeCount} meta={t('payroll.taxAndSs', { tax: m(latest.totalTax), ss: m(latest.totalSsEmployee) })} />

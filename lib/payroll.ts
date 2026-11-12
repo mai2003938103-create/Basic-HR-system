@@ -28,13 +28,15 @@ export interface PayRunDetail extends PayRunSummary {
   previous: PayRunComparison | null;
   /** In the previous run but not in this one. */
   leavers: { id: string; employeeCode: string; firstName: string; lastName: string; previousNet: number }[];
+  /** False while the tax and social-security rates used are not confirmed by the company. */
+  ratesConfirmed: boolean;
   canEdit: boolean; canSubmit: boolean; canApprove: boolean; canPay: boolean;
 }
 export interface PayslipRow { payRunId: string; employeeId: string; period: string; payDate: string; paidAt: string | null; gross: number; totalDeductions: number; net: number }
 export interface TaxBracket { upTo: number | null; rate: number }
 export interface PayrollSettings { payDay: number; workDaysPerMonth: number; overtimeRate: number; ssEmployeeRate: number; ssEmployerRate: number; ssCeiling: number; taxBrackets: TaxBracket[] }
 export interface Payslip extends PayLine {
-  period: string; payDate: string; status: PayRunStatus;
+  period: string; payDate: string; status: PayRunStatus; ratesConfirmed: boolean;
   company: { nameLo: string; nameEn: string; addressLo: string; addressEn: string; taxId: string };
   rates: PayrollSettings;
 }
