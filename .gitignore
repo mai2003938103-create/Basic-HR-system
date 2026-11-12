@@ -1,0 +1,18 @@
+# Secrets and local configuration: never commit (copy .env.example instead)
+.env
+.env.*
+!.env.example
+
+# Dependencies and build output
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Test artefacts
+test-results/
+playwright-report/
+coverage/
+
+# Design tool working files
+.impeccable/
